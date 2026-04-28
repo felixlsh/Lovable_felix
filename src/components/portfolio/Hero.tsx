@@ -77,11 +77,12 @@ export const Hero = () => {
           {stats.map((s, i) => (
             <div
               key={s.label}
-              className="relative rounded-2xl border border-border bg-gradient-card p-6 overflow-hidden group hover:border-primary/40 transition-colors"
+              className="shine relative rounded-2xl border border-border bg-gradient-card p-6 overflow-hidden group hover:border-primary/50 hover:-translate-y-1 transition-all duration-300 animate-fade-up"
+              style={{ animationDelay: `${300 + i * 120}ms` }}
             >
-              <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-primary/10 blur-2xl group-hover:bg-primary/20 transition-colors" />
+              <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-primary/10 blur-2xl group-hover:bg-primary/30 transition-colors" />
               <div className="relative flex items-start justify-between mb-4">
-                <div className="h-9 w-9 rounded-lg bg-primary/15 flex items-center justify-center">
+                <div className="h-9 w-9 rounded-lg bg-primary/15 flex items-center justify-center transition-transform group-hover:scale-110">
                   {i === 0 && <Database className="h-4 w-4 text-primary-glow" />}
                   {i === 1 && <TrendingUp className="h-4 w-4 text-primary-glow" />}
                   {i === 2 && <Sparkles className="h-4 w-4 text-primary-glow" />}
