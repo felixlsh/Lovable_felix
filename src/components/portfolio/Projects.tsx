@@ -62,10 +62,10 @@ const projects: Project[] = [
 const ProjectCard = ({ p, index }: { p: Project; index: number }) => {
   const Icon = p.icon;
   const isLive = p.status === "In Progress";
-  const cardRef = useRef<HTMLElement | null>(null);
-  const { ref: viewRef, inView } = useInView<HTMLElement>();
+  const cardRef = useRef<HTMLAnchorElement | null>(null);
+  const { ref: viewRef, inView } = useInView<HTMLAnchorElement>();
 
-  const setRefs = (el: HTMLElement | null) => {
+  const setRefs = (el: HTMLAnchorElement | null) => {
     cardRef.current = el;
     viewRef.current = el;
   };
