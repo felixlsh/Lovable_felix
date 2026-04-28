@@ -17,6 +17,7 @@ export const Hero = () => {
   return (
     <section id="about" className="relative overflow-hidden pt-12 pb-16 lg:pt-20">
       <div className="absolute inset-0 grid-bg pointer-events-none" />
+      <div className="absolute inset-0 data-network pointer-events-none opacity-70" />
 
       <div className="relative">
         {/* Status pill */}
@@ -27,14 +28,16 @@ export const Hero = () => {
         </div>
 
         <h1
-          className="font-display text-[2.5rem] sm:text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] tracking-tight animate-fade-up"
+          className="font-display text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl leading-[1.2] tracking-tight animate-fade-up"
           style={{ animationDelay: "80ms" }}
         >
-          데이터로
+          단순한 열정을 넘어,
           <br />
-          <span className="text-gradient">성장을 증명하는</span>
+          <span className="font-bold text-[hsl(var(--primary))]">데이터</span> 기반의 정교한
           <br />
-          분석가.
+          <span className="font-bold text-[hsl(var(--primary))]">의사결정</span>으로
+          <br />
+          <span className="text-gradient">가치를 증명</span>한다고 생각합니다.
         </h1>
 
         <p
@@ -43,6 +46,13 @@ export const Hero = () => {
         >
           안녕하세요, <span className="text-foreground font-semibold">이승헌</span>입니다.
           꿈에서도 데이터를 적재하고 가공하는, SQL과 시각화로 비즈니스 의사결정에 기여하는 데이터 분석가입니다.
+        </p>
+
+        <p
+          className="mt-3 max-w-2xl text-sm sm:text-base text-foreground/90 font-medium animate-fade-up"
+          style={{ animationDelay: "220ms" }}
+        >
+          <span className="font-bold text-[hsl(var(--primary))]">1,000개 이상</span>의 유저 데이터를 다뤄본 경험으로 비즈니스 임팩트를 만듭니다.
         </p>
 
         {/* CTA */}
