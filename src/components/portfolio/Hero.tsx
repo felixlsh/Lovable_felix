@@ -31,13 +31,9 @@ export const Hero = () => {
           className="font-display text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl leading-[1.2] tracking-tight animate-fade-up"
           style={{ animationDelay: "80ms" }}
         >
-          단순한 열정을 넘어,
+          <span className="text-gradient">데이터</span>의 흐름을 설계하고,
           <br />
-          <span className="font-bold text-[hsl(var(--primary))]">데이터</span> 기반의 정교한
-          <br />
-          <span className="font-bold text-[hsl(var(--primary))]">의사결정</span>으로
-          <br />
-          <span className="text-gradient">가치를 증명</span>한다고 생각합니다.
+          비즈니스의 해답을 <span className="text-gradient">시각화</span>합니다.
         </h1>
 
         <p
@@ -45,14 +41,15 @@ export const Hero = () => {
           style={{ animationDelay: "180ms" }}
         >
           안녕하세요, <span className="text-foreground font-semibold">이승헌</span>입니다.
-          꿈에서도 데이터를 적재하고 가공하는, SQL과 시각화로 비즈니스 의사결정에 기여하는 데이터 분석가입니다.
+          단순한 열정을 넘어, <span className="font-bold text-[hsl(var(--primary))]">데이터</span> 기반의 정교한{" "}
+          <span className="font-bold text-[hsl(var(--primary))]">의사결정</span>으로 가치를 증명한다고 생각합니다.
         </p>
 
         <p
           className="mt-3 max-w-2xl text-sm sm:text-base text-foreground/90 font-medium animate-fade-up"
           style={{ animationDelay: "220ms" }}
         >
-          <span className="font-bold text-[hsl(var(--primary))]">1,000개 이상</span>의 유저 데이터를 다뤄본 경험으로 비즈니스 임팩트를 만듭니다.
+          <span className="font-bold text-[hsl(var(--primary))]">1,000개 이상</span>의 유저 데이터를 다뤄본 경험으로 비즈니스 임팩트를 만들고자 합니다.
         </p>
 
         {/* CTA */}
