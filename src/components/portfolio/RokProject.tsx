@@ -180,39 +180,33 @@ export const RokProject = () => {
               <p className="text-[11px] text-muted-foreground">Powered by Looker Studio</p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="hidden sm:flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="hidden sm:inline text-[11px] text-muted-foreground font-mono">connecting…</span>
+          <div className="flex items-center gap-3">
+            <a
+              href="https://datastudio.google.com/u/0/reporting/305dc2f7-bc0e-445f-b855-157fa8ab8f56/page/p_71pb7nil6c"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden sm:inline-flex items-center gap-1.5 text-[11px] text-muted-foreground hover:text-primary-glow transition-colors font-mono"
+            >
+              <ExternalLink className="h-3 w-3" />
+              open in new tab
+            </a>
+            <span className="flex items-center gap-1.5 rounded-full bg-emerald-500/15 text-emerald-300 px-2.5 py-1 text-[10px] font-semibold">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              LIVE
+            </span>
           </div>
         </div>
 
-        {/* iframe slot */}
+        {/* Looker Studio iframe */}
         <div className="relative aspect-video bg-background/40">
-          {/* Replace src with real Looker Studio embed URL */}
           <iframe
-            title="Looker Studio Dashboard"
-            src="about:blank"
-            className="absolute inset-0 w-full h-full opacity-0"
+            title="ROK Looker Studio Dashboard"
+            src="https://lookerstudio.google.com/embed/reporting/305dc2f7-bc0e-445f-b855-157fa8ab8f56/page/p_71pb7nil6c"
+            className="absolute inset-0 w-full h-full"
+            frameBorder={0}
+            allowFullScreen
+            sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
           />
-
-          {/* Stylish placeholder overlay */}
-          <div className="absolute inset-0 grid-bg pointer-events-none" />
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-            <div className="relative mb-5">
-              <div className="absolute inset-0 bg-primary/40 blur-2xl rounded-full" />
-              <div className="relative h-14 w-14 rounded-2xl bg-gradient-primary flex items-center justify-center shadow-glow">
-                <BarChart3 className="h-6 w-6 text-primary-foreground" />
-              </div>
-            </div>
-            <p className="font-display text-xl md:text-2xl mb-2">Looker Studio Embed</p>
-            <p className="text-sm text-muted-foreground max-w-md mb-5">
-              실제 대시보드 URL이 연결되면 이 영역에 인터랙티브 보고서가 표시됩니다.
-            </p>
-            <code className="inline-flex items-center gap-2 rounded-md border border-border bg-muted/40 px-3 py-1.5 text-[11px] font-mono text-muted-foreground">
-              <ExternalLink className="h-3 w-3" />
-              https://lookerstudio.google.com/embed/...
-            </code>
-          </div>
         </div>
       </div>
     </section>
