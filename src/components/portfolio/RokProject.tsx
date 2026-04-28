@@ -191,15 +191,6 @@ export const RokProject = () => {
             </div>
           </div>
           <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-            <a
-              href="https://datastudio.google.com/u/0/reporting/305dc2f7-bc0e-445f-b855-157fa8ab8f56/page/p_71pb7nil6c"
-              target="_blank"
-              rel="noreferrer"
-              className="hidden sm:inline-flex items-center gap-1.5 text-[11px] text-muted-foreground hover:text-primary-glow transition-colors font-mono"
-            >
-              <ExternalLink className="h-3 w-3" />
-              open in new tab
-            </a>
             <span className="flex items-center gap-1.5 rounded-full bg-emerald-500/15 text-emerald-300 px-2.5 py-1 text-[10px] font-semibold">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
               LIVE
