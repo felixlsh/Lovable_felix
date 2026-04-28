@@ -145,6 +145,22 @@
     mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
   }
 
+  /* Data node network — faint geometric pattern */
+  .data-network {
+    background-image:
+      radial-gradient(circle at 12% 18%, hsl(var(--primary-glow) / 0.35) 0, hsl(var(--primary-glow) / 0.35) 2px, transparent 2.5px),
+      radial-gradient(circle at 78% 12%, hsl(199 89% 60% / 0.32) 0, hsl(199 89% 60% / 0.32) 2px, transparent 2.5px),
+      radial-gradient(circle at 32% 72%, hsl(var(--primary-glow) / 0.32) 0, hsl(var(--primary-glow) / 0.32) 2px, transparent 2.5px),
+      radial-gradient(circle at 88% 82%, hsl(173 80% 55% / 0.28) 0, hsl(173 80% 55% / 0.28) 2px, transparent 2.5px),
+      radial-gradient(circle at 55% 38%, hsl(var(--primary-glow) / 0.3) 0, hsl(var(--primary-glow) / 0.3) 1.8px, transparent 2.3px),
+      linear-gradient(32deg, transparent 49.7%, hsl(var(--primary-glow) / 0.10) 49.85%, hsl(var(--primary-glow) / 0.10) 50.15%, transparent 50.3%),
+      linear-gradient(-18deg, transparent 49.8%, hsl(199 89% 60% / 0.08) 49.9%, hsl(199 89% 60% / 0.08) 50.1%, transparent 50.2%),
+      linear-gradient(72deg, transparent 49.8%, hsl(var(--primary-glow) / 0.07) 49.9%, hsl(var(--primary-glow) / 0.07) 50.1%, transparent 50.2%);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 620px 100%, 480px 100%, 720px 100%;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat-x, repeat-x, repeat-x;
+    mask-image: radial-gradient(ellipse at center, black 25%, transparent 80%);
+  }
+
   /* Shimmer sweep on hover for project cards */
   .shine {
     position: relative;
