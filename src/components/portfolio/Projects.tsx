@@ -13,6 +13,7 @@ type Project = {
   desc: string;
   tags: string[];
   metric: { v: string; l: string };
+  href: string;
 };
 
 const projects: Project[] = [
@@ -24,6 +25,7 @@ const projects: Project[] = [
     desc: "신규 CRM에 부재했던 실적 조회 기능을 SQL + Looker Studio로 구축. 실장단이 결제 금액·내역·고객 정보를 손쉽게 조회.",
     tags: ["SQL", "Looker Studio", "Data Viz"],
     metric: { v: "100%", l: "조회 자동화" },
+    href: "https://felixlsh.oopy.io/1e98d2a0-6494-803c-a36d-ebbc70a23f17",
   },
   {
     title: "ROK Dashboard",
@@ -33,6 +35,7 @@ const projects: Project[] = [
     desc: "1,000여 개 계정의 시즌별 데이터를 수집·정리·시각화. 개인 성과 지표, 항목별 랭킹, KPI 달성률을 차트로 제공.",
     tags: ["Python", "Looker Studio", "ETL"],
     metric: { v: "1,000+", l: "계정 분석" },
+    href: "https://felixlsh.oopy.io/b29f67c3-3037-48f6-8c8a-ddd0b5a1008e",
   },
   {
     title: "AHK 업무 자동화",
@@ -42,6 +45,7 @@ const projects: Project[] = [
     desc: "솔루션 진행 과정, 데이터 전처리, 주기 보고 등 반복 업무를 AutoHotkey로 자동화하여 처리 시간 단축.",
     tags: ["AHK", "Automation", "Python"],
     metric: { v: "↓ 70%", l: "수작업 시간" },
+    href: "https://felixlsh.oopy.io/57185ce0-b3af-463b-aab3-d41fbd9f0b0d",
   },
   {
     title: "CarAD",
@@ -51,21 +55,22 @@ const projects: Project[] = [
     desc: "Node.js(Express) + MongoDB + Kotlin 기반 웹앱. REST API 설계 및 백엔드/DB 담당.",
     tags: ["Node.js", "MongoDB", "REST API"],
     metric: { v: "2인", l: "팀 프로젝트" },
+    href: "https://felixlsh.oopy.io/1901d883-b654-48ad-b4a5-169d8cef3211",
   },
 ];
 
 const ProjectCard = ({ p, index }: { p: Project; index: number }) => {
   const Icon = p.icon;
   const isLive = p.status === "In Progress";
-  const cardRef = useRef<HTMLElement | null>(null);
-  const { ref: viewRef, inView } = useInView<HTMLElement>();
+  const cardRef = useRef<HTMLAnchorElement | null>(null);
+  const { ref: viewRef, inView } = useInView<HTMLAnchorElement>();
 
-  const setRefs = (el: HTMLElement | null) => {
+  const setRefs = (el: HTMLAnchorElement | null) => {
     cardRef.current = el;
     viewRef.current = el;
   };
 
-  const onMove = (e: MouseEvent<HTMLElement>) => {
+  const onMove = (e: MouseEvent<HTMLAnchorElement>) => {
     const el = cardRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
@@ -74,11 +79,14 @@ const ProjectCard = ({ p, index }: { p: Project; index: number }) => {
   };
 
   return (
-    <article
+    <a
       ref={setRefs}
+      href={p.href}
+      target="_blank"
+      rel="noopener noreferrer"
       onMouseMove={onMove}
       className={cn(
-        "shine group relative rounded-2xl border border-border bg-gradient-card p-6 md:p-7 overflow-hidden transition-all duration-300 hover:border-primary/60 hover:-translate-y-1 hover:shadow-elevated opacity-0",
+        "shine group relative block rounded-2xl border border-border bg-gradient-card p-6 md:p-7 overflow-hidden transition-all duration-300 hover:border-primary/60 hover:-translate-y-1 hover:shadow-elevated opacity-0",
         inView && "animate-fade-up"
       )}
       style={{ animationDelay: inView ? `${index * 100}ms` : undefined }}
@@ -129,7 +137,7 @@ const ProjectCard = ({ p, index }: { p: Project; index: number }) => {
 
         <ArrowUpRight className="absolute -top-1 -right-1 h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:text-primary-glow group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
       </div>
-    </article>
+    </a>
   );
 };
 

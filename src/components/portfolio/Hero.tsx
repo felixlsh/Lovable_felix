@@ -9,7 +9,7 @@ const stacks = [
 
 const stats = [
   { value: "1,000+", label: "분석 계정", sub: "Rise of Kingdoms" },
-  { value: "8년+", label: "데이터 경력", sub: "취미 · 실무 포함" },
+  { value: "4년+", label: "데이터 경력", sub: "취미 · 실무 포함" },
   { value: "3", label: "주요 프로젝트", sub: "Data viz & 자동화" },
 ];
 
