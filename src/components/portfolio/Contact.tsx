@@ -1,51 +1,100 @@
-import { Mail, ExternalLink, Github } from "lucide-react";
+import { Mail, ExternalLink, Copy, Check } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
+
+const EMAIL = "felixlsh2@naver.com";
+const NOTION = "https://felixlsh.oopy.io/";
 
 export const Contact = () => {
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      toast.success("이메일 주소가 복사되었습니다");
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast.error("복사에 실패했어요");
+    }
+  };
+
   return (
     <section id="contact" className="py-20 lg:py-28">
-      <div className="relative rounded-3xl border border-border bg-gradient-card overflow-hidden p-8 md:p-14">
+      <div className="relative rounded-3xl border border-border bg-gradient-card overflow-hidden p-6 sm:p-8 md:p-14">
         <div className="absolute inset-0 grid-bg opacity-50 pointer-events-none" />
         <div className="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-primary/30 blur-3xl" />
 
         <div className="relative">
           <p className="text-[10px] tracking-[0.25em] text-muted-foreground mb-4">04 — LET'S TALK</p>
-          <h2 className="font-display text-4xl md:text-6xl leading-tight max-w-3xl">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-6xl leading-tight max-w-3xl">
             함께 데이터로 <span className="text-gradient">성장할 팀</span>을 찾고 있어요.
           </h2>
-          <p className="mt-6 text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+          <p className="mt-5 sm:mt-6 text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
             새로운 프로젝트, 협업, 또는 가벼운 커피챗 모두 환영합니다.
             아래 채널로 편하게 연락 주세요.
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-3">
-            <a
-              href="mailto:felixlsh@example.com"
-              className="group inline-flex items-center gap-2 rounded-xl bg-gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-glow hover:-translate-y-0.5 transition-transform"
-            >
-              <Mail className="h-4 w-4" />
-              이메일 보내기
-            </a>
-            <a
-              href="https://felixlsh.oopy.io/"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-border bg-card/40 px-6 py-3.5 text-sm font-semibold text-foreground hover:bg-card transition-colors"
-            >
-              <ExternalLink className="h-4 w-4" />
-              Notion Portfolio
-            </a>
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 rounded-xl border border-border bg-card/40 px-6 py-3.5 text-sm font-semibold text-foreground hover:bg-card transition-colors"
-            >
-              <Github className="h-4 w-4" />
-              GitHub
-            </a>
+          {/* Contact cards */}
+          <div className="mt-10 grid sm:grid-cols-2 gap-4">
+            {/* Email card */}
+            <div className="group rounded-2xl border border-border bg-card/60 backdrop-blur p-5 sm:p-6 hover:border-primary/50 transition-colors">
+              <div className="flex items-start justify-between mb-4">
+                <div className="h-11 w-11 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center">
+                  <Mail className="h-5 w-5 text-primary-glow" />
+                </div>
+                <button
+                  onClick={copyEmail}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background/50 px-2.5 py-1.5 text-[11px] font-medium text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
+                  aria-label="Copy email"
+                >
+                  {copied ? <Check className="h-3 w-3 text-emerald-400" /> : <Copy className="h-3 w-3" />}
+                  {copied ? "Copied" : "Copy"}
+                </button>
+              </div>
+              <p className="text-[10px] tracking-[0.2em] text-muted-foreground mb-1.5">EMAIL</p>
+              <a
+                href={`mailto:${EMAIL}`}
+                className="font-display text-base sm:text-lg break-all hover:text-primary-glow transition-colors"
+              >
+                {EMAIL}
+              </a>
+              <a
+                href={`mailto:${EMAIL}`}
+                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-glow hover:-translate-y-0.5 transition-transform"
+              >
+                <Mail className="h-4 w-4" />
+                이메일 보내기
+              </a>
+            </div>
+
+            {/* Notion card */}
+            <div className="group rounded-2xl border border-border bg-card/60 backdrop-blur p-5 sm:p-6 hover:border-primary/50 transition-colors">
+              <div className="flex items-start justify-between mb-4">
+                <div className="h-11 w-11 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center">
+                  <ExternalLink className="h-5 w-5 text-primary-glow" />
+                </div>
+                <span className="rounded-full bg-emerald-500/15 text-emerald-300 px-2.5 py-1 text-[10px] font-semibold">
+                  ORIGINAL
+                </span>
+              </div>
+              <p className="text-[10px] tracking-[0.2em] text-muted-foreground mb-1.5">NOTION PORTFOLIO</p>
+              <p className="font-display text-base sm:text-lg break-all">felixlsh.oopy.io</p>
+              <a
+                href={NOTION}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-background/50 px-5 py-3 text-sm font-semibold text-foreground hover:bg-card hover:border-primary/40 transition-colors"
+              >
+                <ExternalLink className="h-4 w-4" />
+                노션에서 보기
+              </a>
+            </div>
           </div>
 
-          <div className="mt-14 pt-8 border-t border-border flex flex-wrap items-center justify-between gap-4 text-xs text-muted-foreground">
+          <div className="mt-12 pt-6 sm:pt-8 border-t border-border flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
             <p>© 2026 이승헌 (Felix LSH). All rights reserved.</p>
-            <p className="font-mono">crafted with data & care</p>
+            <p className="font-mono">crafted with data &amp; care</p>
           </div>
         </div>
       </div>
