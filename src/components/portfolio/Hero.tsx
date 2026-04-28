@@ -26,7 +26,7 @@ export const Hero = () => {
           <Sparkles className="h-3 w-3 text-primary-glow" />
         </div>
 
-        <h1 className="font-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] tracking-tight">
+        <h1 className="font-display text-[2.5rem] sm:text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] tracking-tight">
           데이터로
           <br />
           <span className="text-gradient">성장을 증명하는</span>
@@ -34,7 +34,7 @@ export const Hero = () => {
           분석가.
         </h1>
 
-        <p className="mt-8 max-w-2xl text-lg text-muted-foreground leading-relaxed">
+        <p className="mt-6 sm:mt-8 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed">
           안녕하세요, <span className="text-foreground font-semibold">이승헌</span>입니다.
           꿈에서도 데이터를 적재하고 가공하는, SQL과 시각화로 비즈니스 의사결정에 기여하는 데이터 분석가입니다.
         </p>

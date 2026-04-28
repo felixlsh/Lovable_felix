@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { User, Briefcase, FolderKanban, Mail, BarChart3 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "./ThemeToggle";
 
 const items = [
   { id: "about", label: "About", icon: User },
@@ -81,30 +82,38 @@ export const Sidebar = () => {
         </div>
       </aside>
 
+      {/* Desktop floating theme toggle */}
+      <div className="hidden lg:block fixed top-6 right-6 z-50">
+        <ThemeToggle />
+      </div>
+
       {/* Mobile top nav */}
       <header className="lg:hidden sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur-xl">
-        <div className="flex items-center justify-between px-5 py-3">
-          <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between px-4 py-3 gap-3">
+          <div className="flex items-center gap-2 flex-shrink-0">
             <div className="h-8 w-8 rounded-lg bg-gradient-primary flex items-center justify-center">
               <BarChart3 className="h-4 w-4 text-primary-foreground" />
             </div>
             <span className="font-display text-sm">Felix LSH</span>
           </div>
-          <nav className="flex gap-1">
-            {items.map(({ id, label }) => (
-              <button
-                key={id}
-                onClick={() => go(id)}
-                className={cn(
-                  "rounded-md px-2.5 py-1.5 text-xs font-medium transition-colors",
-                  active === id ? "bg-primary/20 text-foreground" : "text-muted-foreground"
-                )}
-              >
-                {label}
-              </button>
-            ))}
-          </nav>
+          <ThemeToggle className="!h-8 !w-14 flex-shrink-0" />
         </div>
+        <nav className="flex gap-1 px-3 pb-2 overflow-x-auto scrollbar-none">
+          {items.map(({ id, label }) => (
+            <button
+              key={id}
+              onClick={() => go(id)}
+              className={cn(
+                "rounded-md px-3 py-1.5 text-xs font-medium transition-colors flex-shrink-0",
+                active === id
+                  ? "bg-primary/20 text-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+              )}
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
       </header>
     </>
   );
