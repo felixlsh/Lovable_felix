@@ -49,9 +49,9 @@ export const RokProject = () => {
           <div className="h-12 w-12 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center flex-shrink-0">
             <Gamepad2 className="h-5 w-5 text-primary-glow" />
           </div>
-          <div>
+          <div className="min-w-0">
             <p className="text-xs text-muted-foreground mb-1">Featured Case Study</p>
-            <h3 className="font-display text-3xl md:text-4xl">Rise of Kingdoms 데이터 분석</h3>
+            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl break-keep">Rise of Kingdoms 데이터 분석</h3>
             <p className="text-sm text-muted-foreground mt-2 max-w-xl">
               1,000여 개 계정의 시즌별 활동을 수집·가공·시각화한 장기 분석 프로젝트
             </p>
