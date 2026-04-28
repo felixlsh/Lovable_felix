@@ -43,7 +43,7 @@ export const Sidebar = () => {
             <BarChart3 className="h-5 w-5 text-primary-foreground" />
           </div>
           <div>
-            <p className="font-display text-base">Felix LSH</p>
+            <p className="font-display text-base">Felix</p>
             <p className="text-xs text-muted-foreground">Data Analyst</p>
           </div>
         </div>
@@ -94,7 +94,7 @@ export const Sidebar = () => {
             <div className="h-8 w-8 rounded-lg bg-gradient-primary flex items-center justify-center">
               <BarChart3 className="h-4 w-4 text-primary-foreground" />
             </div>
-            <span className="font-display text-sm">Felix LSH</span>
+            <span className="font-display text-sm">Felix</span>
           </div>
           <ThemeToggle className="!h-8 !w-14 flex-shrink-0" />
         </div>

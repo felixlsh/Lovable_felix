@@ -102,7 +102,7 @@ export const Contact = () => {
           </div>
 
           <div className="mt-12 pt-6 sm:pt-8 border-t border-border flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
-            <p>© 2026 이승헌 (Felix LSH). All rights reserved.</p>
+            <p>© 2026 이승헌 (Felix). All rights reserved.</p>
             <p className="font-mono">crafted with data &amp; care</p>
           </div>
         </div>
