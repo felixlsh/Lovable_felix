@@ -37,7 +37,7 @@ export const Contact = () => {
         <div className="relative">
           <p className="text-[10px] tracking-[0.25em] text-muted-foreground mb-4">04 — LET'S TALK</p>
           <h2 className="font-display text-3xl sm:text-4xl md:text-6xl leading-tight max-w-3xl">
-            함께 데이터로 <span className="text-gradient">성장할 팀</span>을 찾고 있어요.
+            단순한 취미를 넘어 <span className="text-gradient">비즈니스 인사이트</span> 도출에 기여하고자 합니다.
           </h2>
           <p className="mt-5 sm:mt-6 text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
             새로운 프로젝트, 협업, 또는 가벼운 커피챗 모두 환영합니다.
