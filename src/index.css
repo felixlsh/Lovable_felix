@@ -144,4 +144,50 @@
     background-size: 48px 48px;
     mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
   }
+
+  /* Shimmer sweep on hover for project cards */
+  .shine {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .shine::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      115deg,
+      transparent 30%,
+      hsl(var(--primary-glow) / 0.18) 48%,
+      hsl(0 0% 100% / 0.25) 50%,
+      hsl(var(--primary-glow) / 0.18) 52%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .shine:hover::before { transform: translateX(120%); }
+
+  /* Animated gradient border for the iframe bezel */
+  .bezel-border {
+    position: relative;
+  }
+  .bezel-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg,
+      hsl(var(--primary-glow) / 0.7),
+      hsl(var(--border)) 30%,
+      hsl(var(--border)) 70%,
+      hsl(199 89% 60% / 0.6));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    pointer-events: none;
+  }
 }
