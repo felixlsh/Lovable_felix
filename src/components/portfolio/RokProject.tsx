@@ -201,7 +201,7 @@ export const RokProject = () => {
         <div className="relative aspect-video bg-background/40">
           <iframe
             title="ROK Looker Studio Dashboard"
-            src="https://lookerstudio.google.com/embed/reporting/305dc2f7-bc0e-445f-b855-157fa8ab8f56/page/p_71pb7nil6c"
+            src="https://datastudio.google.com/embed/reporting/305dc2f7-bc0e-445f-b855-157fa8ab8f56/page/p_71pb7nil6c"
             className="absolute inset-0 w-full h-full"
             frameBorder={0}
             allowFullScreen
