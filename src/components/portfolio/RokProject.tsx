@@ -168,19 +168,29 @@ export const RokProject = () => {
         </div>
       </div>
 
-      {/* Looker Studio embed placeholder */}
-      <div className="rounded-2xl border border-border bg-gradient-card overflow-hidden">
-        <div className="flex items-center justify-between px-5 md:px-6 py-4 border-b border-border">
-          <div className="flex items-center gap-3">
-            <div className="h-8 w-8 rounded-lg bg-primary/15 flex items-center justify-center">
+      {/* Looker Studio embed — dashboard window */}
+      <div className="bezel-border relative rounded-2xl bg-gradient-card shadow-elevated overflow-hidden">
+        {/* ambient glow */}
+        <div className="pointer-events-none absolute -inset-px rounded-2xl bg-[radial-gradient(60%_80%_at_50%_-10%,hsl(var(--primary-glow)/0.18),transparent_60%)]" />
+
+        {/* Window chrome */}
+        <div className="relative flex items-center justify-between px-4 sm:px-5 md:px-6 py-3 sm:py-4 border-b border-border bg-background/40 backdrop-blur">
+          <div className="flex items-center gap-3 min-w-0">
+            {/* traffic lights */}
+            <div className="hidden sm:flex items-center gap-1.5 mr-1">
+              <span className="h-2.5 w-2.5 rounded-full bg-rose-400/70" />
+              <span className="h-2.5 w-2.5 rounded-full bg-amber-400/70" />
+              <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
+            </div>
+            <div className="h-8 w-8 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center flex-shrink-0">
               <BarChart3 className="h-4 w-4 text-primary-glow" />
             </div>
-            <div>
-              <p className="font-display text-sm">ROK Live Dashboard</p>
-              <p className="text-[11px] text-muted-foreground">Powered by Looker Studio</p>
+            <div className="min-w-0">
+              <p className="font-display text-sm truncate">ROK Live Dashboard</p>
+              <p className="text-[11px] text-muted-foreground truncate">Powered by Looker Studio</p>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             <a
               href="https://datastudio.google.com/u/0/reporting/305dc2f7-bc0e-445f-b855-157fa8ab8f56/page/p_71pb7nil6c"
               target="_blank"
@@ -197,8 +207,10 @@ export const RokProject = () => {
           </div>
         </div>
 
-        {/* Looker Studio iframe */}
-        <div className="relative aspect-video bg-background/40">
+        {/* iframe slot */}
+        <div className="relative aspect-video bg-background/60">
+          {/* inner ring */}
+          <div className="pointer-events-none absolute inset-0 rounded-b-2xl ring-1 ring-inset ring-border/60 z-10" />
           <iframe
             title="ROK Looker Studio Dashboard"
             src="https://datastudio.google.com/embed/reporting/305dc2f7-bc0e-445f-b855-157fa8ab8f56/page/p_71pb7nil6c"
@@ -207,6 +219,15 @@ export const RokProject = () => {
             allowFullScreen
             sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
           />
+        </div>
+
+        {/* status bar */}
+        <div className="relative flex items-center justify-between px-4 sm:px-5 md:px-6 py-2 border-t border-border bg-background/40 text-[10px] font-mono text-muted-foreground">
+          <span className="flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            connected · auto-refresh
+          </span>
+          <span className="hidden sm:inline">looker · datastudio.google.com</span>
         </div>
       </div>
     </section>
