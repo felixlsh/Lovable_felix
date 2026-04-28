@@ -1,6 +1,8 @@
 import { Mail, ExternalLink, Copy, Check } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useInView } from "@/hooks/use-in-view";
+import { cn } from "@/lib/utils";
 
 const EMAIL = "felixlsh2@naver.com";
 const NOTION = "https://felixlsh.oopy.io/";
