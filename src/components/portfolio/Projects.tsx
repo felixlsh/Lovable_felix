@@ -1,4 +1,5 @@
 import { ArrowUpRight, BarChart3, Gamepad2, Zap, Car } from "lucide-react";
+import { RokProject } from "./RokProject";
 
 const projects = [
   {
@@ -106,6 +107,8 @@ export const Projects = () => {
           );
         })}
       </div>
+
+      <RokProject />
     </section>
   );
 };
