@@ -137,7 +137,7 @@ const ProjectCard = ({ p, index }: { p: Project; index: number }) => {
 
         <ArrowUpRight className="absolute -top-1 -right-1 h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:text-primary-glow group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
       </div>
-    </article>
+    </a>
   );
 };
 
