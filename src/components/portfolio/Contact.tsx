@@ -1,12 +1,15 @@
 import { Mail, ExternalLink, Copy, Check } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useInView } from "@/hooks/use-in-view";
+import { cn } from "@/lib/utils";
 
 const EMAIL = "felixlsh2@naver.com";
 const NOTION = "https://felixlsh.oopy.io/";
 
 export const Contact = () => {
   const [copied, setCopied] = useState(false);
+  const view = useInView<HTMLDivElement>();
 
   const copyEmail = async () => {
     try {
@@ -21,7 +24,13 @@ export const Contact = () => {
 
   return (
     <section id="contact" className="py-20 lg:py-28">
-      <div className="relative rounded-3xl border border-border bg-gradient-card overflow-hidden p-6 sm:p-8 md:p-14">
+      <div
+        ref={view.ref}
+        className={cn(
+          "relative rounded-3xl border border-border bg-gradient-card overflow-hidden p-6 sm:p-8 md:p-14 opacity-0",
+          view.inView && "animate-fade-up"
+        )}
+      >
         <div className="absolute inset-0 grid-bg opacity-50 pointer-events-none" />
         <div className="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-primary/30 blur-3xl" />
 
@@ -38,7 +47,7 @@ export const Contact = () => {
           {/* Contact cards */}
           <div className="mt-10 grid sm:grid-cols-2 gap-4">
             {/* Email card */}
-            <div className="group rounded-2xl border border-border bg-card/60 backdrop-blur p-5 sm:p-6 hover:border-primary/50 transition-colors">
+            <div className="shine group rounded-2xl border border-border bg-card/60 backdrop-blur p-5 sm:p-6 hover:border-primary/60 hover:-translate-y-1 transition-all duration-300">
               <div className="flex items-start justify-between mb-4">
                 <div className="h-11 w-11 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center">
                   <Mail className="h-5 w-5 text-primary-glow" />
@@ -69,7 +78,7 @@ export const Contact = () => {
             </div>
 
             {/* Notion card */}
-            <div className="group rounded-2xl border border-border bg-card/60 backdrop-blur p-5 sm:p-6 hover:border-primary/50 transition-colors">
+            <div className="shine group rounded-2xl border border-border bg-card/60 backdrop-blur p-5 sm:p-6 hover:border-primary/60 hover:-translate-y-1 transition-all duration-300">
               <div className="flex items-start justify-between mb-4">
                 <div className="h-11 w-11 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center">
                   <ExternalLink className="h-5 w-5 text-primary-glow" />
