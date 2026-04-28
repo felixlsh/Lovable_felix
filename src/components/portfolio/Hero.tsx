@@ -1,10 +1,10 @@
-import { ArrowUpRight, Sparkles, TrendingUp, Database } from "lucide-react";
+import { ArrowUpRight, Sparkles, TrendingUp, Database, Code2, FileCode2, BarChart2, Server } from "lucide-react";
 
 const stacks = [
-  { label: "Python", color: "from-blue-500/20 to-blue-500/5" },
-  { label: "SQL", color: "from-cyan-500/20 to-cyan-500/5" },
-  { label: "Looker Studio", color: "from-indigo-500/20 to-indigo-500/5" },
-  { label: "Node.js", color: "from-emerald-500/20 to-emerald-500/5" },
+  { label: "Python", color: "from-blue-500/20 to-blue-500/5", Icon: Code2 },
+  { label: "SQL", color: "from-cyan-500/20 to-cyan-500/5", Icon: Database },
+  { label: "Looker Studio", color: "from-indigo-500/20 to-indigo-500/5", Icon: BarChart2 },
+  { label: "Node.js", color: "from-emerald-500/20 to-emerald-500/5", Icon: Server },
 ];
 
 const stats = [
