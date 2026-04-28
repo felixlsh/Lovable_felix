@@ -70,7 +70,7 @@ const ProjectCard = ({ p, index }: { p: Project; index: number }) => {
     viewRef.current = el;
   };
 
-  const onMove = (e: MouseEvent<HTMLElement>) => {
+  const onMove = (e: MouseEvent<HTMLAnchorElement>) => {
     const el = cardRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
@@ -79,11 +79,14 @@ const ProjectCard = ({ p, index }: { p: Project; index: number }) => {
   };
 
   return (
-    <article
+    <a
       ref={setRefs}
+      href={p.href}
+      target="_blank"
+      rel="noopener noreferrer"
       onMouseMove={onMove}
       className={cn(
-        "shine group relative rounded-2xl border border-border bg-gradient-card p-6 md:p-7 overflow-hidden transition-all duration-300 hover:border-primary/60 hover:-translate-y-1 hover:shadow-elevated opacity-0",
+        "shine group relative block rounded-2xl border border-border bg-gradient-card p-6 md:p-7 overflow-hidden transition-all duration-300 hover:border-primary/60 hover:-translate-y-1 hover:shadow-elevated opacity-0",
         inView && "animate-fade-up"
       )}
       style={{ animationDelay: inView ? `${index * 100}ms` : undefined }}
