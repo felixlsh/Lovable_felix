@@ -78,7 +78,7 @@ export const Contact = () => {
             </div>
 
             {/* Notion card */}
-            <div className="group rounded-2xl border border-border bg-card/60 backdrop-blur p-5 sm:p-6 hover:border-primary/50 transition-colors">
+            <div className="shine group rounded-2xl border border-border bg-card/60 backdrop-blur p-5 sm:p-6 hover:border-primary/60 hover:-translate-y-1 transition-all duration-300">
               <div className="flex items-start justify-between mb-4">
                 <div className="h-11 w-11 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center">
                   <ExternalLink className="h-5 w-5 text-primary-glow" />
