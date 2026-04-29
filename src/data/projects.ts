@@ -11,6 +11,8 @@ import rok1021_1 from "@/assets/rok/1021_1.png";
 import rok1021_2 from "@/assets/rok/1021_2.png";
 import rok1021_3 from "@/assets/rok/1021_3.png";
 import rok1021_4 from "@/assets/rok/1021_4.webp";
+import ahk2022 from "@/assets/ahk/2022_사소한_ahk.webp";
+import ahk2023 from "@/assets/ahk/2023_다이트랩_ahk.webp";
 
 export type ProjectGallery = {
   title: string;
@@ -34,6 +36,8 @@ export type Project = {
   stack: string[];
   image?: string;
   galleries?: ProjectGallery[];
+  embedUrl?: string;
+  pdfUrl?: string;
 };
 
 export const projects: Project[] = [
@@ -97,6 +101,8 @@ export const projects: Project[] = [
         images: [rok1021_1, rok1021_2, rok1021_3, rok1021_4],
       },
     ],
+    embedUrl:
+      "https://datastudio.google.com/embed/reporting/305dc2f7-bc0e-445f-b855-157fa8ab8f56/page/p_71pb7nil6c",
   },
   {
     slug: "ahk-automation",
@@ -121,6 +127,18 @@ export const projects: Project[] = [
       { title: "단일 스크립트 통합", body: "포맷 변환·셀 병합·정리 작업을 하나의 스크립트로 묶어 운영 편의성을 높였습니다." },
     ],
     stack: ["AutoHotkey", "Python", "Excel"],
+    galleries: [
+      {
+        title: "사소한 (2022)",
+        subtitle: "출근 전·업무 중·퇴근 전·서브PC 탭으로 구성된 일과 자동화 매크로",
+        images: [ahk2022],
+      },
+      {
+        title: "다이트랩 (2023)",
+        subtitle: "데이터 입력 보조 매크로 — 반복 입력·포맷 정리 자동화",
+        images: [ahk2023],
+      },
+    ],
   },
   {
     slug: "carad",
@@ -145,6 +163,7 @@ export const projects: Project[] = [
       { title: "실서비스 지향 구조", body: "확장성을 고려한 REST 설계로 추가 기능을 쉽게 붙일 수 있도록 했습니다." },
     ],
     stack: ["Node.js", "Express", "MongoDB", "Kotlin", "REST API"],
+    pdfUrl: "/carad/graduation-report.pdf",
   },
 ];
 
