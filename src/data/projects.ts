@@ -2,6 +2,21 @@ import { BarChart3, Gamepad2, Zap, Car } from "lucide-react";
 import type { LucideProps } from "lucide-react";
 import type { ComponentType } from "react";
 import crmDashboardImg from "@/assets/crm-dashboard.webp";
+import rok2489_1 from "@/assets/rok/2489_1.png";
+import rok2489_2 from "@/assets/rok/2489_2.png";
+import rok2489_3 from "@/assets/rok/2489_3.webp";
+import rok2489_4 from "@/assets/rok/2489_4.webp";
+import rok2489_5 from "@/assets/rok/2489_5.webp";
+import rok1021_1 from "@/assets/rok/1021_1.png";
+import rok1021_2 from "@/assets/rok/1021_2.png";
+import rok1021_3 from "@/assets/rok/1021_3.png";
+import rok1021_4 from "@/assets/rok/1021_4.webp";
+
+export type ProjectGallery = {
+  title: string;
+  subtitle?: string;
+  images: string[];
+};
 
 export type Project = {
   slug: string;
@@ -18,6 +33,7 @@ export type Project = {
   highlights: { title: string; body: string }[];
   stack: string[];
   image?: string;
+  galleries?: ProjectGallery[];
 };
 
 export const projects: Project[] = [
@@ -69,6 +85,18 @@ export const projects: Project[] = [
       { title: "Top 3 서버 랭킹", body: "데이터 인사이트를 운영에 반영해 서버 상위권을 유지하고 있습니다." },
     ],
     stack: ["Python", "Pandas", "Looker Studio", "Google Sheets API"],
+    galleries: [
+      {
+        title: "Kingdom 2489",
+        subtitle: "KPI 시스템 · 리더보드 · 명예의 전당",
+        images: [rok2489_1, rok2489_2, rok2489_3, rok2489_4, rok2489_5],
+      },
+      {
+        title: "Kingdom 1021",
+        subtitle: "왕국 투력·처치 포인트 · 개인 퀘스트 진행 현황",
+        images: [rok1021_1, rok1021_2, rok1021_3, rok1021_4],
+      },
+    ],
   },
   {
     slug: "ahk-automation",

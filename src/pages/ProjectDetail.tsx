@@ -138,6 +138,47 @@ const ProjectDetail = () => {
           </div>
         </section>
 
+        {/* Galleries (grouped) */}
+        {project.galleries && project.galleries.length > 0 && (
+          <section className="mb-12 space-y-10">
+            {project.galleries.map((g) => (
+              <div key={g.title}>
+                <div className="mb-5 flex items-end justify-between gap-4 flex-wrap">
+                  <div>
+                    <p className="text-[10px] tracking-[0.25em] text-primary-glow mb-1.5">
+                      SERVER
+                    </p>
+                    <h2 className="font-display text-2xl">{g.title}</h2>
+                    {g.subtitle && (
+                      <p className="text-sm text-muted-foreground mt-1">
+                        {g.subtitle}
+                      </p>
+                    )}
+                  </div>
+                  <span className="text-[11px] font-mono text-muted-foreground">
+                    {g.images.length} screens
+                  </span>
+                </div>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {g.images.map((src, i) => (
+                    <div
+                      key={src}
+                      className="rounded-2xl border border-border bg-gradient-card overflow-hidden shadow-elevated hover:border-primary/40 transition-colors"
+                    >
+                      <img
+                        src={src}
+                        alt={`${g.title} screenshot ${i + 1}`}
+                        className="w-full h-auto block"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </section>
+        )}
+
         {/* External link */}
         <a
           href={project.externalHref}
