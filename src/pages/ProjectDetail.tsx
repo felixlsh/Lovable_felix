@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, ExternalLink, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ExternalLink, CheckCircle2, ZoomIn } from "lucide-react";
 import { getProjectBySlug } from "@/data/projects";
 import NotFound from "./NotFound";
 import { cn } from "@/lib/utils";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
   const project = getProjectBySlug(slug);
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
 
   if (!project) return <NotFound />;
 
@@ -161,17 +164,27 @@ const ProjectDetail = () => {
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {g.images.map((src, i) => (
-                    <div
+                    <button
                       key={src}
-                      className="rounded-2xl border border-border bg-gradient-card overflow-hidden shadow-elevated hover:border-primary/40 transition-colors"
+                      type="button"
+                      onClick={() =>
+                        setLightbox({
+                          src,
+                          alt: `${g.title} screenshot ${i + 1}`,
+                        })
+                      }
+                      className="group relative rounded-2xl border border-border bg-muted/30 overflow-hidden shadow-elevated hover:border-primary/40 transition-colors aspect-[4/3] focus:outline-none focus:ring-2 focus:ring-primary/50"
                     >
                       <img
                         src={src}
                         alt={`${g.title} screenshot ${i + 1}`}
-                        className="w-full h-auto block"
+                        className="absolute inset-0 w-full h-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
                         loading="lazy"
                       />
-                    </div>
+                      <span className="absolute top-2 right-2 inline-flex items-center justify-center h-8 w-8 rounded-full bg-background/80 backdrop-blur-sm text-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <ZoomIn className="h-4 w-4" />
+                      </span>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -190,6 +203,18 @@ const ProjectDetail = () => {
           <ExternalLink className="h-4 w-4" />
         </a>
       </main>
+
+      <Dialog open={!!lightbox} onOpenChange={(o) => !o && setLightbox(null)}>
+        <DialogContent className="max-w-[95vw] md:max-w-5xl p-2 bg-background/95 border-border">
+          {lightbox && (
+            <img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              className="w-full h-auto max-h-[85vh] object-contain rounded-lg"
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
