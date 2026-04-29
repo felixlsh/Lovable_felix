@@ -163,6 +163,7 @@ export const projects: Project[] = [
       { title: "실서비스 지향 구조", body: "확장성을 고려한 REST 설계로 추가 기능을 쉽게 붙일 수 있도록 했습니다." },
     ],
     stack: ["Node.js", "Express", "MongoDB", "Kotlin", "REST API"],
+    pdfUrl: "/carad/graduation-report.pdf",
   },
 ];
 
