@@ -141,6 +141,55 @@ const ProjectDetail = () => {
           </div>
         </section>
 
+        {/* Live embed (e.g. Looker Studio) */}
+        {project.embedUrl && (
+          <section className="mb-12">
+            <div className="mb-5">
+              <p className="text-[10px] tracking-[0.25em] text-primary-glow mb-1.5">
+                LIVE DASHBOARD
+              </p>
+              <h2 className="font-display text-2xl">{project.title} · Live</h2>
+              <p className="text-sm text-muted-foreground mt-1">
+                실시간으로 동기화되는 Looker Studio 대시보드입니다.
+              </p>
+            </div>
+            <div className="bezel-border relative rounded-2xl bg-gradient-card shadow-elevated overflow-hidden">
+              <div className="relative flex items-center justify-between px-4 sm:px-5 py-3 border-b border-border bg-background/40 backdrop-blur">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="hidden sm:flex items-center gap-1.5 mr-1">
+                    <span className="h-2.5 w-2.5 rounded-full bg-rose-400/70" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-amber-400/70" />
+                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
+                  </div>
+                  <div className="h-8 w-8 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center flex-shrink-0">
+                    <BarChart3 className="h-4 w-4 text-primary-glow" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-display text-sm truncate">ROK Live Dashboard</p>
+                    <p className="text-[11px] text-muted-foreground truncate">
+                      Powered by Looker Studio
+                    </p>
+                  </div>
+                </div>
+                <span className="flex items-center gap-1.5 rounded-full bg-emerald-500/15 text-emerald-300 px-2.5 py-1 text-[10px] font-semibold">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  LIVE
+                </span>
+              </div>
+              <div className="relative aspect-video bg-background/60">
+                <iframe
+                  title={`${project.title} Live Dashboard`}
+                  src={project.embedUrl}
+                  className="absolute inset-0 w-full h-full"
+                  frameBorder={0}
+                  allowFullScreen
+                  sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+                />
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Galleries (grouped) */}
         {project.galleries && project.galleries.length > 0 && (
           <section className="mb-12 space-y-10">
