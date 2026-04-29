@@ -127,6 +127,18 @@ export const projects: Project[] = [
       { title: "단일 스크립트 통합", body: "포맷 변환·셀 병합·정리 작업을 하나의 스크립트로 묶어 운영 편의성을 높였습니다." },
     ],
     stack: ["AutoHotkey", "Python", "Excel"],
+    galleries: [
+      {
+        title: "사소한 (2022)",
+        subtitle: "출근 전·업무 중·퇴근 전·서브PC 탭으로 구성된 일과 자동화 매크로",
+        images: [ahk2022],
+      },
+      {
+        title: "다이트랩 (2023)",
+        subtitle: "데이터 입력 보조 매크로 — 반복 입력·포맷 정리 자동화",
+        images: [ahk2023],
+      },
+    ],
   },
   {
     slug: "carad",
