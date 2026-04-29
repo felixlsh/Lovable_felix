@@ -149,7 +149,7 @@ const ProjectDetail = () => {
                 <div className="mb-5 flex items-end justify-between gap-4 flex-wrap">
                   <div>
                     <p className="text-[10px] tracking-[0.25em] text-primary-glow mb-1.5">
-                      SERVER
+                      SECTION
                     </p>
                     <h2 className="font-display text-2xl">{g.title}</h2>
                     {g.subtitle && (
