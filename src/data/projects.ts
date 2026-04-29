@@ -38,7 +38,7 @@ export const projects: Project[] = [
     ],
     highlights: [
       { title: "조회 자동화 100%", body: "수기 집계 작업을 완전히 제거하여 실무자가 즉시 실적을 확인할 수 있도록 개선했습니다." },
-      { title: "데이터 정합성 확보", body: "이관 과정에서 발생하는 누락·중복 이슈를 SQL 검증 로직으로 사전에 차단했습니다." },
+      { title: "데이터 정합성 확보", body: "이관 과정에서 발생하는 누락·중복 이슈를 파이프라인 점검 방식으로 사전에 차단했습니다." },
       { title: "실무 친화 UI", body: "Looker Studio의 필터·드릴다운 기능을 활용해 비개발자도 다룰 수 있는 화면을 제공했습니다." },
     ],
     stack: ["SQL", "Looker Studio", "Google BigQuery"],
