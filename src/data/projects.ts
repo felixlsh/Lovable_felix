@@ -101,6 +101,8 @@ export const projects: Project[] = [
         images: [rok1021_1, rok1021_2, rok1021_3, rok1021_4],
       },
     ],
+    embedUrl:
+      "https://datastudio.google.com/embed/reporting/305dc2f7-bc0e-445f-b855-157fa8ab8f56/page/p_71pb7nil6c",
   },
   {
     slug: "ahk-automation",
