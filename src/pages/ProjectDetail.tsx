@@ -60,6 +60,18 @@ const ProjectDetail = () => {
           </p>
         </div>
 
+        {/* Preview image */}
+        {project.image && (
+          <div className="mb-12 rounded-2xl border border-border bg-gradient-card overflow-hidden shadow-elevated">
+            <img
+              src={project.image}
+              alt={`${project.title} preview`}
+              className="w-full h-auto block"
+              loading="lazy"
+            />
+          </div>
+        )}
+
         {/* Metric + tags */}
         <div className="grid md:grid-cols-3 gap-4 mb-12">
           <div className="rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/15 to-transparent p-6">
