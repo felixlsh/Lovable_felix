@@ -203,6 +203,18 @@ const ProjectDetail = () => {
           <ExternalLink className="h-4 w-4" />
         </a>
       </main>
+
+      <Dialog open={!!lightbox} onOpenChange={(o) => !o && setLightbox(null)}>
+        <DialogContent className="max-w-[95vw] md:max-w-5xl p-2 bg-background/95 border-border">
+          {lightbox && (
+            <img
+              src={lightbox.src}
+              alt={lightbox.alt}
+              className="w-full h-auto max-h-[85vh] object-contain rounded-lg"
+            />
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
