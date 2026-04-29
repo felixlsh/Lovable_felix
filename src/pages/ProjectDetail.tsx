@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, ExternalLink, CheckCircle2, ZoomIn } from "lucide-react";
+import { ArrowLeft, ExternalLink, CheckCircle2, ZoomIn, BarChart3, FileText, Download } from "lucide-react";
 import { getProjectBySlug } from "@/data/projects";
 import NotFound from "./NotFound";
 import { cn } from "@/lib/utils";
