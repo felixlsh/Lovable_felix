@@ -44,6 +44,7 @@ export const projects: Project[] = [
       { title: "실무 친화 UI", body: "Looker Studio의 필터·드릴다운 기능을 활용해 비개발자도 다룰 수 있는 화면을 제공했습니다." },
     ],
     stack: ["SQL", "Looker Studio", "Google BigQuery"],
+    image: crmDashboardImg,
   },
   {
     slug: "rok-dashboard",
