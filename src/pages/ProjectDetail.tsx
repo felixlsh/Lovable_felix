@@ -159,10 +159,15 @@ const ProjectDetail = () => {
                     )}
                   </div>
                   <span className="text-[11px] font-mono text-muted-foreground">
-                    {g.images.length} screens
+                    {g.images.length} {g.images.length === 1 ? "screen" : "screens"}
                   </span>
                 </div>
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div
+                  className={cn(
+                    "grid gap-4",
+                    g.images.length > 1 && "sm:grid-cols-2"
+                  )}
+                >
                   {g.images.map((src, i) => (
                     <button
                       key={src}
@@ -173,7 +178,10 @@ const ProjectDetail = () => {
                           alt: `${g.title} screenshot ${i + 1}`,
                         })
                       }
-                      className="group relative rounded-2xl border border-border bg-muted/30 overflow-hidden shadow-elevated hover:border-primary/40 transition-colors aspect-[4/3] focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      className={cn(
+                        "group relative rounded-2xl border border-border bg-muted/30 overflow-hidden shadow-elevated hover:border-primary/40 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50",
+                        g.images.length === 1 ? "aspect-[16/7]" : "aspect-[4/3]"
+                      )}
                     >
                       <img
                         src={src}
