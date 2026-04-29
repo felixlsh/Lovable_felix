@@ -36,6 +36,8 @@ export type Project = {
   stack: string[];
   image?: string;
   galleries?: ProjectGallery[];
+  embedUrl?: string;
+  pdfUrl?: string;
 };
 
 export const projects: Project[] = [
