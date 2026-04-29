@@ -1,6 +1,7 @@
 import { BarChart3, Gamepad2, Zap, Car } from "lucide-react";
 import type { LucideProps } from "lucide-react";
 import type { ComponentType } from "react";
+import crmDashboardImg from "@/assets/crm-dashboard.webp";
 
 export type Project = {
   slug: string;
@@ -16,6 +17,7 @@ export type Project = {
   role: string[];
   highlights: { title: string; body: string }[];
   stack: string[];
+  image?: string;
 };
 
 export const projects: Project[] = [
