@@ -2,6 +2,21 @@ import { BarChart3, Gamepad2, Zap, Car } from "lucide-react";
 import type { LucideProps } from "lucide-react";
 import type { ComponentType } from "react";
 import crmDashboardImg from "@/assets/crm-dashboard.webp";
+import rok2489_1 from "@/assets/rok/2489_1.png";
+import rok2489_2 from "@/assets/rok/2489_2.png";
+import rok2489_3 from "@/assets/rok/2489_3.webp";
+import rok2489_4 from "@/assets/rok/2489_4.webp";
+import rok2489_5 from "@/assets/rok/2489_5.webp";
+import rok1021_1 from "@/assets/rok/1021_1.png";
+import rok1021_2 from "@/assets/rok/1021_2.png";
+import rok1021_3 from "@/assets/rok/1021_3.png";
+import rok1021_4 from "@/assets/rok/1021_4.webp";
+
+export type ProjectGallery = {
+  title: string;
+  subtitle?: string;
+  images: string[];
+};
 
 export type Project = {
   slug: string;
@@ -18,6 +33,7 @@ export type Project = {
   highlights: { title: string; body: string }[];
   stack: string[];
   image?: string;
+  galleries?: ProjectGallery[];
 };
 
 export const projects: Project[] = [
