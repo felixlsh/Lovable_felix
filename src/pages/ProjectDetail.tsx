@@ -249,6 +249,42 @@ const ProjectDetail = () => {
           </section>
         )}
 
+        {/* PDF embed */}
+        {project.pdfUrl && (
+          <section className="mb-12">
+            <div className="mb-5 flex items-end justify-between gap-4 flex-wrap">
+              <div>
+                <p className="text-[10px] tracking-[0.25em] text-primary-glow mb-1.5">
+                  DOCUMENT
+                </p>
+                <h2 className="font-display text-2xl">졸업작품 보고서</h2>
+                <p className="text-sm text-muted-foreground mt-1">
+                  프로젝트 진행 과정과 결과를 정리한 PDF 보고서입니다.
+                </p>
+              </div>
+              <a
+                href={project.pdfUrl}
+                download
+                className="inline-flex items-center gap-2 rounded-xl border border-border bg-card/60 hover:border-primary/40 hover:text-primary-glow text-foreground/90 px-4 py-2 text-xs font-semibold transition-colors"
+              >
+                <Download className="h-3.5 w-3.5" />
+                Download PDF
+              </a>
+            </div>
+            <div className="rounded-2xl border border-border bg-gradient-card overflow-hidden shadow-elevated">
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-background/40 text-[11px] font-mono text-muted-foreground">
+                <FileText className="h-3.5 w-3.5 text-primary-glow" />
+                graduation-report.pdf
+              </div>
+              <iframe
+                title="졸업작품 보고서"
+                src={`${project.pdfUrl}#view=FitH`}
+                className="w-full h-[80vh] bg-background"
+              />
+            </div>
+          </section>
+        )}
+
         {/* External link */}
         <a
           href={project.externalHref}
