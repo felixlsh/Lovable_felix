@@ -200,16 +200,42 @@ export const RokProject = () => {
           </div>
         </div>
 
-        {/* iframe slot */}
-        <div className="relative aspect-video bg-background/60">
+        {/* iframe slot — responsive height */}
+        <div className="relative bg-background/60 h-[70vh] min-h-[420px] sm:h-[78vh] sm:min-h-[560px] lg:h-[820px] lg:max-h-[88vh]">
           {/* inner ring */}
           <div className="pointer-events-none absolute inset-0 rounded-b-2xl ring-1 ring-inset ring-border/60 z-10" />
+
+          {/* Loading skeleton overlay */}
+          {!iframeLoaded && (
+            <div className="absolute inset-0 z-20 p-4 sm:p-6 bg-background/80 backdrop-blur-sm flex flex-col gap-4">
+              <div className="flex items-center justify-between">
+                <Skeleton className="h-5 w-40" />
+                <Skeleton className="h-5 w-20" />
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <Skeleton key={i} className="h-20 rounded-xl" />
+                ))}
+              </div>
+              <Skeleton className="flex-1 w-full rounded-xl" />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <Skeleton className="h-32 rounded-xl" />
+                <Skeleton className="h-32 rounded-xl" />
+              </div>
+              <p className="text-center text-[11px] font-mono text-muted-foreground">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-primary-glow animate-pulse mr-2 align-middle" />
+                Loading Looker Studio…
+              </p>
+            </div>
+          )}
+
           <iframe
             title="ROK Looker Studio Dashboard"
             src="https://datastudio.google.com/embed/reporting/305dc2f7-bc0e-445f-b855-157fa8ab8f56/page/p_71pb7nil6c"
             className="absolute inset-0 w-full h-full"
             frameBorder={0}
             allowFullScreen
+            onLoad={() => setIframeLoaded(true)}
             sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
           />
         </div>
