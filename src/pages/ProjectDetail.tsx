@@ -6,7 +6,6 @@ import NotFound from "./NotFound";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Sidebar } from "@/components/portfolio/Sidebar";
-import { SectionToc, type TocItem } from "@/components/portfolio/SectionToc";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -17,17 +16,6 @@ const ProjectDetail = () => {
 
   const Icon = project.icon;
   const isLive = project.status === "In Progress";
-
-  const tocItems: TocItem[] = [
-    { id: "overview", label: "개요" },
-    { id: "role", label: "My Role" },
-    { id: "highlights", label: "성과" },
-    ...(project.embedUrl ? [{ id: "live", label: "Live Dashboard" }] : []),
-    ...(project.galleries?.length ? [{ id: "gallery", label: "갤러리" }] : []),
-    ...(project.pdfUrl ? [{ id: "document", label: "문서" }] : []),
-    { id: "stack", label: "기술 스택" },
-    { id: "links", label: "링크" },
-  ];
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -43,10 +31,8 @@ const ProjectDetail = () => {
           Back to projects
         </Link>
 
-        <SectionToc items={tocItems} />
-
         {/* Header */}
-        <div id="overview" className="mb-10 scroll-mt-24">
+        <div className="mb-10">
           <div className="flex items-center gap-4 mb-6">
             <div className="h-14 w-14 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center">
               <Icon className="h-6 w-6 text-primary-glow" />
@@ -105,7 +91,7 @@ const ProjectDetail = () => {
               {project.metric.l}
             </p>
           </div>
-          <div id="stack" className="md:col-span-2 rounded-2xl border border-border bg-gradient-card p-6 scroll-mt-24">
+          <div className="md:col-span-2 rounded-2xl border border-border bg-gradient-card p-6">
             <p className="text-[10px] tracking-[0.25em] text-muted-foreground mb-3">
               TECH STACK
             </p>
@@ -123,7 +109,7 @@ const ProjectDetail = () => {
         </div>
 
         {/* Role */}
-        <section id="role" className="mb-12 scroll-mt-24">
+        <section className="mb-12">
           <h2 className="font-display text-2xl mb-5">My Role</h2>
           <ul className="space-y-3">
             {project.role.map((r) => (
@@ -139,7 +125,7 @@ const ProjectDetail = () => {
         </section>
 
         {/* Highlights */}
-        <section id="highlights" className="mb-12 scroll-mt-24">
+        <section className="mb-12">
           <h2 className="font-display text-2xl mb-5">Highlights</h2>
           <div className="grid md:grid-cols-3 gap-4">
             {project.highlights.map((h) => (
@@ -160,7 +146,7 @@ const ProjectDetail = () => {
 
         {/* Live embed (e.g. Looker Studio) */}
         {project.embedUrl && (
-          <section id="live" className="mb-12 scroll-mt-24">
+          <section className="mb-12">
             <div className="mb-5">
               <p className="text-[10px] tracking-[0.25em] text-primary-glow mb-1.5">
                 LIVE DASHBOARD
@@ -209,7 +195,7 @@ const ProjectDetail = () => {
 
         {/* Galleries (grouped) */}
         {project.galleries && project.galleries.length > 0 && (
-          <section id="gallery" className="mb-12 space-y-10 scroll-mt-24">
+          <section className="mb-12 space-y-10">
             {project.galleries.map((g) => (
               <div key={g.title}>
                 <div className="mb-5 flex items-end justify-between gap-4 flex-wrap">
@@ -268,7 +254,7 @@ const ProjectDetail = () => {
 
         {/* PDF embed */}
         {project.pdfUrl && (
-          <section id="document" className="mb-12 scroll-mt-24">
+          <section className="mb-12">
             <div className="mb-5 flex items-end justify-between gap-4 flex-wrap">
               <div>
                 <p className="text-[10px] tracking-[0.25em] text-primary-glow mb-1.5">
@@ -303,17 +289,15 @@ const ProjectDetail = () => {
         )}
 
         {/* External link */}
-        <section id="links" className="scroll-mt-24">
-          <a
-            href={project.externalHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-xl border border-primary/40 bg-primary/10 hover:bg-primary/20 text-primary-glow px-5 py-3 text-sm font-semibold transition-colors"
-          >
-            상세 케이스 스터디 보기
-            <ExternalLink className="h-4 w-4" />
-          </a>
-        </section>
+        <a
+          href={project.externalHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 rounded-xl border border-primary/40 bg-primary/10 hover:bg-primary/20 text-primary-glow px-5 py-3 text-sm font-semibold transition-colors"
+        >
+          상세 케이스 스터디 보기
+          <ExternalLink className="h-4 w-4" />
+        </a>
         </div>
       </main>
 
