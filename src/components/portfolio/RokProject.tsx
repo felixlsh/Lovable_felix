@@ -41,6 +41,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 export const RokProject = () => {
   const peak = useMemo(() => Math.max(...data.map((d) => d.active)), []);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
 
   return (
     <section className="py-12">
