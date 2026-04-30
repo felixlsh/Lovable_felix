@@ -18,6 +18,17 @@ const ProjectDetail = () => {
   const Icon = project.icon;
   const isLive = project.status === "In Progress";
 
+  const tocItems: TocItem[] = [
+    { id: "overview", label: "개요" },
+    { id: "role", label: "My Role" },
+    { id: "highlights", label: "성과" },
+    ...(project.embedUrl ? [{ id: "live", label: "Live Dashboard" }] : []),
+    ...(project.galleries?.length ? [{ id: "gallery", label: "갤러리" }] : []),
+    ...(project.pdfUrl ? [{ id: "document", label: "문서" }] : []),
+    { id: "stack", label: "기술 스택" },
+    { id: "links", label: "링크" },
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Sidebar />
