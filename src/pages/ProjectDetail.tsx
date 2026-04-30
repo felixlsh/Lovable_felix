@@ -21,6 +21,42 @@ const ProjectDetail = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Sidebar />
       <main className="lg:pl-64">
+        {/* Sticky sub-header */}
+        <div className="sticky top-0 z-30 border-b border-border bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
+          <div className="mx-auto max-w-4xl px-5 md:px-10 lg:px-16 h-14 flex items-center gap-3">
+            <Link
+              to="/#projects"
+              className="inline-flex items-center justify-center h-8 w-8 rounded-md border border-border bg-card/60 text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors flex-shrink-0"
+              aria-label="Back to projects"
+            >
+              <ArrowLeft className="h-4 w-4" />
+            </Link>
+            <div className="h-7 w-7 rounded-md bg-primary/15 border border-primary/30 flex items-center justify-center flex-shrink-0">
+              <Icon className="h-3.5 w-3.5 text-primary-glow" />
+            </div>
+            <p className="font-display text-sm sm:text-base truncate">{project.title}</p>
+            <span
+              className={cn(
+                "ml-auto inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[10px] font-semibold flex-shrink-0",
+                isLive
+                  ? "bg-primary/20 text-primary-glow"
+                  : "bg-emerald-500/15 text-emerald-300"
+              )}
+            >
+              <span
+                className={cn(
+                  "h-1.5 w-1.5 rounded-full",
+                  isLive ? "bg-primary-glow animate-pulse" : "bg-emerald-400"
+                )}
+              />
+              {project.status}
+            </span>
+            <span className="hidden sm:inline-flex items-center rounded-full border border-border bg-muted/40 px-2 py-0.5 text-[10px] font-mono text-muted-foreground tabular-nums flex-shrink-0">
+              {project.metric.v} · {project.metric.l}
+            </span>
+          </div>
+        </div>
+
         <div className="mx-auto max-w-4xl px-5 md:px-10 lg:px-16 py-10 md:py-16">
         {/* Back link */}
         <Link
