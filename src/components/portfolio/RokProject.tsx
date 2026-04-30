@@ -1,6 +1,7 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Area, AreaChart } from "recharts";
 import { TrendingUp, Users, Trophy, Target, Gamepad2, ExternalLink, BarChart3 } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const data = [
   { week: "W1", active: 612, kills: 1.2, power: 38 },
