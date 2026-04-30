@@ -6,6 +6,7 @@ import NotFound from "./NotFound";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Sidebar } from "@/components/portfolio/Sidebar";
+import { SectionToc, type TocItem } from "@/components/portfolio/SectionToc";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
