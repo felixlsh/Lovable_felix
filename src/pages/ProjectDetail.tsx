@@ -5,6 +5,7 @@ import { getProjectBySlug } from "@/data/projects";
 import NotFound from "./NotFound";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Sidebar } from "@/components/portfolio/Sidebar";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
