@@ -20,7 +20,8 @@ const ProjectDetail = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Sidebar />
-      <main className="lg:ml-64 mx-auto max-w-4xl px-5 md:px-10 py-10 md:py-16">
+      <main className="lg:pl-64">
+        <div className="mx-auto max-w-4xl px-5 md:px-10 lg:px-16 py-10 md:py-16">
         {/* Back link */}
         <Link
           to="/#projects"
