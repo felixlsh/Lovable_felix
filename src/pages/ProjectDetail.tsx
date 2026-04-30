@@ -105,7 +105,7 @@ const ProjectDetail = () => {
               {project.metric.l}
             </p>
           </div>
-          <div className="md:col-span-2 rounded-2xl border border-border bg-gradient-card p-6">
+          <div id="stack" className="md:col-span-2 rounded-2xl border border-border bg-gradient-card p-6 scroll-mt-24">
             <p className="text-[10px] tracking-[0.25em] text-muted-foreground mb-3">
               TECH STACK
             </p>
@@ -123,7 +123,7 @@ const ProjectDetail = () => {
         </div>
 
         {/* Role */}
-        <section className="mb-12">
+        <section id="role" className="mb-12 scroll-mt-24">
           <h2 className="font-display text-2xl mb-5">My Role</h2>
           <ul className="space-y-3">
             {project.role.map((r) => (
@@ -139,7 +139,7 @@ const ProjectDetail = () => {
         </section>
 
         {/* Highlights */}
-        <section className="mb-12">
+        <section id="highlights" className="mb-12 scroll-mt-24">
           <h2 className="font-display text-2xl mb-5">Highlights</h2>
           <div className="grid md:grid-cols-3 gap-4">
             {project.highlights.map((h) => (
@@ -160,7 +160,7 @@ const ProjectDetail = () => {
 
         {/* Live embed (e.g. Looker Studio) */}
         {project.embedUrl && (
-          <section className="mb-12">
+          <section id="live" className="mb-12 scroll-mt-24">
             <div className="mb-5">
               <p className="text-[10px] tracking-[0.25em] text-primary-glow mb-1.5">
                 LIVE DASHBOARD
@@ -209,7 +209,7 @@ const ProjectDetail = () => {
 
         {/* Galleries (grouped) */}
         {project.galleries && project.galleries.length > 0 && (
-          <section className="mb-12 space-y-10">
+          <section id="gallery" className="mb-12 space-y-10 scroll-mt-24">
             {project.galleries.map((g) => (
               <div key={g.title}>
                 <div className="mb-5 flex items-end justify-between gap-4 flex-wrap">
@@ -268,7 +268,7 @@ const ProjectDetail = () => {
 
         {/* PDF embed */}
         {project.pdfUrl && (
-          <section className="mb-12">
+          <section id="document" className="mb-12 scroll-mt-24">
             <div className="mb-5 flex items-end justify-between gap-4 flex-wrap">
               <div>
                 <p className="text-[10px] tracking-[0.25em] text-primary-glow mb-1.5">
