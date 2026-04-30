@@ -43,8 +43,10 @@ const ProjectDetail = () => {
           Back to projects
         </Link>
 
+        <SectionToc items={tocItems} />
+
         {/* Header */}
-        <div className="mb-10">
+        <div id="overview" className="mb-10 scroll-mt-24">
           <div className="flex items-center gap-4 mb-6">
             <div className="h-14 w-14 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center">
               <Icon className="h-6 w-6 text-primary-glow" />
