@@ -298,6 +298,7 @@ const ProjectDetail = () => {
           상세 케이스 스터디 보기
           <ExternalLink className="h-4 w-4" />
         </a>
+        </div>
       </main>
 
       <Dialog open={!!lightbox} onOpenChange={(o) => !o && setLightbox(null)}>
