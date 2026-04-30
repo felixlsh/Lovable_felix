@@ -5,6 +5,7 @@ import { getProjectBySlug } from "@/data/projects";
 import NotFound from "./NotFound";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Sidebar } from "@/components/portfolio/Sidebar";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -18,7 +19,8 @@ const ProjectDetail = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <main className="mx-auto max-w-4xl px-5 md:px-10 py-10 md:py-16">
+      <Sidebar />
+      <main className="lg:ml-64 mx-auto max-w-4xl px-5 md:px-10 py-10 md:py-16">
         {/* Back link */}
         <Link
           to="/#projects"

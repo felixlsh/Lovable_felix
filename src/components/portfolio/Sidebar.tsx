@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { User, Briefcase, FolderKanban, Mail, BarChart3 } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { User, Briefcase, FolderKanban, Mail, BarChart3, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./ThemeToggle";
+import { projects } from "@/data/projects";
 
 const items = [
   { id: "about", label: "About", icon: User },
@@ -12,8 +14,18 @@ const items = [
 
 export const Sidebar = () => {
   const [active, setActive] = useState("about");
+  const [projectsOpen, setProjectsOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isProjectDetail = location.pathname.startsWith("/projects/");
+  const activeSlug = isProjectDetail ? location.pathname.split("/projects/")[1] : null;
 
   useEffect(() => {
+    if (isProjectDetail) {
+      setActive("projects");
+      setProjectsOpen(true);
+      return;
+    }
     const onScroll = () => {
       for (const it of items) {
         const el = document.getElementById(it.id);
@@ -28,10 +40,77 @@ export const Sidebar = () => {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isProjectDetail]);
 
   const go = (id: string) => {
+    if (isProjectDetail) {
+      navigate(`/#${id}`);
+      return;
+    }
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const goProject = (slug: string) => {
+    navigate(`/projects/${slug}`);
+  };
+
+  const renderProjectsGroup = (variant: "desktop" | "mobile") => {
+    if (variant === "mobile") {
+      return null; // handled inline below
+    }
+    return (
+      <div className="flex flex-col">
+        <button
+          onClick={() => {
+            setProjectsOpen((o) => !o);
+            go("projects");
+          }}
+          className={cn(
+            "group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all",
+            active === "projects"
+              ? "bg-primary/15 text-foreground shadow-[inset_0_0_0_1px_hsl(var(--primary)/0.4)]"
+              : "text-muted-foreground hover:bg-sidebar-accent hover:text-foreground"
+          )}
+        >
+          <FolderKanban
+            className={cn(
+              "h-4 w-4 transition-colors",
+              active === "projects" && "text-primary-glow"
+            )}
+          />
+          <span className="font-medium">Projects</span>
+          <ChevronDown
+            className={cn(
+              "ml-auto h-3.5 w-3.5 transition-transform",
+              projectsOpen && "rotate-180"
+            )}
+          />
+        </button>
+        {projectsOpen && (
+          <ul className="mt-1 ml-3 pl-4 border-l border-border/60 flex flex-col gap-0.5 py-1">
+            {projects.map((p) => {
+              const isActiveSub = activeSlug === p.slug;
+              return (
+                <li key={p.slug}>
+                  <button
+                    onClick={() => goProject(p.slug)}
+                    className={cn(
+                      "w-full text-left rounded-md px-2.5 py-1.5 text-xs transition-colors truncate",
+                      isActiveSub
+                        ? "bg-primary/10 text-primary-glow"
+                        : "text-muted-foreground hover:bg-sidebar-accent hover:text-foreground"
+                    )}
+                    title={p.title}
+                  >
+                    {p.title}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </div>
+    );
   };
 
   return (
@@ -48,9 +127,10 @@ export const Sidebar = () => {
           </div>
         </div>
 
-        <nav className="flex flex-col gap-1">
+        <nav className="flex flex-col gap-1 overflow-y-auto pr-1">
           <p className="text-[10px] tracking-[0.2em] text-muted-foreground mb-3 px-3">NAVIGATION</p>
           {items.map(({ id, label, icon: Icon }) => {
+            if (id === "projects") return <div key={id}>{renderProjectsGroup("desktop")}</div>;
             const isActive = active === id;
             return (
               <button
@@ -113,6 +193,29 @@ export const Sidebar = () => {
               {label}
             </button>
           ))}
+        </nav>
+        {/* Mobile project sublinks */}
+        <nav className="flex gap-1 px-3 pb-2 overflow-x-auto scrollbar-none border-t border-border/60 pt-2">
+          <span className="text-[10px] font-mono text-muted-foreground self-center pr-1 flex-shrink-0">
+            PROJECTS ›
+          </span>
+          {projects.map((p) => {
+            const isActiveSub = activeSlug === p.slug;
+            return (
+              <button
+                key={p.slug}
+                onClick={() => goProject(p.slug)}
+                className={cn(
+                  "rounded-md px-2.5 py-1 text-[11px] transition-colors flex-shrink-0 border",
+                  isActiveSub
+                    ? "bg-primary/15 text-primary-glow border-primary/40"
+                    : "border-border/60 text-muted-foreground hover:text-foreground"
+                )}
+              >
+                {p.title}
+              </button>
+            );
+          })}
         </nav>
       </header>
     </>
