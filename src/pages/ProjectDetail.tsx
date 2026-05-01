@@ -293,30 +293,6 @@ const ProjectDetail = () => {
                       </button>
                     </Reveal>
                   ))}
-                        type="button"
-                        onClick={() =>
-                          setLightbox({
-                            src,
-                            alt: `${g.title} screenshot ${i + 1}`,
-                          })
-                        }
-                        className={cn(
-                          "group relative rounded-2xl border border-border bg-muted/30 overflow-hidden shadow-elevated hover:border-primary/40 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50",
-                          g.images.length === 1 ? "aspect-[16/7]" : "aspect-[4/3]"
-                        )}
-                      >
-                        <img
-                          src={src}
-                          alt={`${g.title} screenshot ${i + 1}`}
-                          className="absolute inset-0 w-full h-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-                          loading="lazy"
-                        />
-                        <span className="absolute top-2 right-2 inline-flex items-center justify-center h-8 w-8 rounded-full bg-background/80 backdrop-blur-sm text-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <ZoomIn className="h-4 w-4" />
-                        </span>
-                      </button>
-                    </Reveal>
-                  ))}
                 </div>
               </div>
             ))}
