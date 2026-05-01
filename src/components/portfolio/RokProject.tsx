@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Area, AreaChart } from "recharts";
-import { TrendingUp, Users, Trophy, Target, Gamepad2, ExternalLink, BarChart3 } from "lucide-react";
+import { TrendingUp, Users, Trophy, Target, Gamepad2, ExternalLink, BarChart3, ArrowUpRight } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const data = [
@@ -45,15 +46,22 @@ export const RokProject = () => {
 
   return (
     <section className="py-12">
-      {/* Header */}
-      <div className="flex items-start justify-between gap-4 mb-8">
+      {/* Header — clickable, links to project detail */}
+      <Link
+        to="/projects/rok-dashboard"
+        aria-label="ROK Dashboard 프로젝트 상세 보기"
+        className="group flex items-start justify-between gap-4 mb-8 rounded-2xl -mx-3 px-3 py-2 transition-colors hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+      >
         <div className="flex items-start gap-4">
-          <div className="h-12 w-12 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center flex-shrink-0">
+          <div className="h-12 w-12 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
             <Gamepad2 className="h-5 w-5 text-primary-glow" />
           </div>
           <div className="min-w-0">
             <p className="text-xs text-muted-foreground mb-1">Featured Case Study</p>
-            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl break-keep">Rise of Kingdoms 데이터 분석</h3>
+            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl break-keep inline-flex items-center gap-2">
+              Rise of Kingdoms 데이터 분석
+              <ArrowUpRight className="h-5 w-5 text-muted-foreground opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary-glow" />
+            </h3>
             <p className="text-sm text-muted-foreground mt-2 max-w-xl">
               1,000여 개 계정의 시즌별 활동을 수집·가공·시각화한 장기 분석 프로젝트
             </p>
@@ -63,7 +71,7 @@ export const RokProject = () => {
           <span className="h-1.5 w-1.5 rounded-full bg-primary-glow animate-pulse" />
           IN PROGRESS
         </span>
-      </div>
+      </Link>
 
       {/* Chart + Stats grid */}
       <div className="grid lg:grid-cols-5 gap-5 mb-5">
