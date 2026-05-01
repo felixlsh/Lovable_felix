@@ -50,7 +50,7 @@ export const RokProject = () => {
       <Link
         to="/projects/rok-dashboard"
         aria-label="ROK Dashboard 프로젝트 상세 보기"
-        className="group flex items-start justify-between gap-4 mb-8 rounded-2xl -mx-3 px-3 py-2 transition-colors hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+        className="group flex items-start justify-between gap-4 mb-8 rounded-2xl -mx-3 px-3 py-2 transition-all duration-300 hover:bg-primary/5 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
       >
         <div className="flex items-start gap-4">
           <div className="h-12 w-12 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, ExternalLink, CheckCircle2, ZoomIn, BarChart3, FileText, Download } from "lucide-react";
 import { getProjectBySlug } from "@/data/projects";
@@ -12,13 +12,18 @@ const ProjectDetail = () => {
   const project = getProjectBySlug(slug);
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
 
+  // Smooth scroll to top on entry for a natural page-to-page transition
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [slug]);
+
   if (!project) return <NotFound />;
 
   const Icon = project.icon;
   const isLive = project.status === "In Progress";
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground animate-fade-in">
       <Sidebar />
       <main className="lg:pl-64">
         {/* Sticky sub-header */}
@@ -57,7 +62,7 @@ const ProjectDetail = () => {
           </div>
         </div>
 
-        <div className="mx-auto max-w-4xl px-5 md:px-10 lg:px-16 py-10 md:py-16">
+        <div className="mx-auto max-w-4xl px-5 md:px-10 lg:px-16 py-10 md:py-16 animate-fade-in" style={{ animationDelay: "80ms", animationFillMode: "backwards" }}>
         {/* Back link */}
         <Link
           to="/#projects"
