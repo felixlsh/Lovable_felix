@@ -62,7 +62,7 @@ const ProjectDetail = () => {
           </div>
         </div>
 
-        <div className="mx-auto max-w-4xl px-5 md:px-10 lg:px-16 py-10 md:py-16">
+        <div className="mx-auto max-w-4xl px-5 md:px-10 lg:px-16 py-10 md:py-16 animate-fade-in" style={{ animationDelay: "80ms", animationFillMode: "backwards" }}>
         {/* Back link */}
         <Link
           to="/#projects"
