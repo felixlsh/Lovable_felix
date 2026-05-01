@@ -6,6 +6,7 @@ import NotFound from "./NotFound";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Sidebar } from "@/components/portfolio/Sidebar";
+import { Reveal } from "@/components/Reveal";
 
 const ProjectDetail = () => {
   const { slug } = useParams();
@@ -121,7 +122,7 @@ const ProjectDetail = () => {
 
         {/* Metric + tags */}
         <div className="grid md:grid-cols-3 gap-4 mb-12">
-          <div className="rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/15 to-transparent p-6">
+          <Reveal className="rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/15 to-transparent p-6">
             <p className="text-[10px] tracking-[0.25em] text-primary-glow mb-3">
               KEY METRIC
             </p>
@@ -131,8 +132,8 @@ const ProjectDetail = () => {
             <p className="text-xs text-muted-foreground mt-2">
               {project.metric.l}
             </p>
-          </div>
-          <div className="md:col-span-2 rounded-2xl border border-border bg-gradient-card p-6">
+          </Reveal>
+          <Reveal delay={120} className="md:col-span-2 rounded-2xl border border-border bg-gradient-card p-6">
             <p className="text-[10px] tracking-[0.25em] text-muted-foreground mb-3">
               TECH STACK
             </p>
@@ -146,8 +147,47 @@ const ProjectDetail = () => {
                 </span>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
+
+        {/* Role */}
+        <section className="mb-12">
+          <h2 className="font-display text-2xl mb-5">My Role</h2>
+          <ul className="space-y-3">
+            {project.role.map((r, i) => (
+              <Reveal
+                as="li"
+                key={r}
+                delay={i * 80}
+                className="flex items-start gap-3 rounded-xl border border-border bg-card/50 p-4"
+              >
+                <CheckCircle2 className="h-5 w-5 text-primary-glow flex-shrink-0 mt-0.5" />
+                <span className="text-sm text-foreground/90">{r}</span>
+              </Reveal>
+            ))}
+          </ul>
+        </section>
+
+        {/* Highlights */}
+        <section className="mb-12">
+          <h2 className="font-display text-2xl mb-5">Highlights</h2>
+          <div className="grid md:grid-cols-3 gap-4">
+            {project.highlights.map((h, i) => (
+              <Reveal
+                key={h.title}
+                delay={i * 100}
+                className="rounded-2xl border border-border bg-gradient-card p-5 hover:border-primary/40 transition-colors"
+              >
+                <p className="font-display text-lg text-gradient mb-2">
+                  {h.title}
+                </p>
+                <p className="text-sm text-foreground/80 leading-relaxed">
+                  {h.body}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+        </section>
 
         {/* Role */}
         <section className="mb-12">
