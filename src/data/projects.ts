@@ -11,8 +11,8 @@ import rok1021_1 from "@/assets/rok/1021_1.png";
 import rok1021_2 from "@/assets/rok/1021_2.png";
 import rok1021_3 from "@/assets/rok/1021_3.png";
 import rok1021_4 from "@/assets/rok/1021_4.webp";
-import ahk2022 from "@/assets/ahk/2022_사소한_ahk.png";
-import ahk2023 from "@/assets/ahk/2023_다이트랩_ahk.png";
+import ahk2022 from "@/assets/ahk/2022_sosohan_ahk.png";
+import ahk2023 from "@/assets/ahk/2023_dytlab_ahk.png";
 
 export type ProjectGallery = {
   title: string;
