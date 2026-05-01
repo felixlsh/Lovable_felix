@@ -189,41 +189,6 @@ const ProjectDetail = () => {
           </div>
         </section>
 
-        {/* Role */}
-        <section className="mb-12">
-          <h2 className="font-display text-2xl mb-5">My Role</h2>
-          <ul className="space-y-3">
-            {project.role.map((r) => (
-              <li
-                key={r}
-                className="flex items-start gap-3 rounded-xl border border-border bg-card/50 p-4"
-              >
-                <CheckCircle2 className="h-5 w-5 text-primary-glow flex-shrink-0 mt-0.5" />
-                <span className="text-sm text-foreground/90">{r}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {/* Highlights */}
-        <section className="mb-12">
-          <h2 className="font-display text-2xl mb-5">Highlights</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            {project.highlights.map((h) => (
-              <div
-                key={h.title}
-                className="rounded-2xl border border-border bg-gradient-card p-5 hover:border-primary/40 transition-colors"
-              >
-                <p className="font-display text-lg text-gradient mb-2">
-                  {h.title}
-                </p>
-                <p className="text-sm text-foreground/80 leading-relaxed">
-                  {h.body}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
 
         {/* Live embed (e.g. Looker Studio) */}
         {project.embedUrl && (
@@ -302,30 +267,31 @@ const ProjectDetail = () => {
                   )}
                 >
                   {g.images.map((src, i) => (
-                    <button
-                      key={src}
-                      type="button"
-                      onClick={() =>
-                        setLightbox({
-                          src,
-                          alt: `${g.title} screenshot ${i + 1}`,
-                        })
-                      }
-                      className={cn(
-                        "group relative rounded-2xl border border-border bg-muted/30 overflow-hidden shadow-elevated hover:border-primary/40 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50",
-                        g.images.length === 1 ? "aspect-[16/7]" : "aspect-[4/3]"
-                      )}
-                    >
-                      <img
-                        src={src}
-                        alt={`${g.title} screenshot ${i + 1}`}
-                        className="absolute inset-0 w-full h-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-                        loading="lazy"
-                      />
-                      <span className="absolute top-2 right-2 inline-flex items-center justify-center h-8 w-8 rounded-full bg-background/80 backdrop-blur-sm text-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <ZoomIn className="h-4 w-4" />
-                      </span>
-                    </button>
+                    <Reveal key={src} delay={i * 100} as="button" className="contents">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setLightbox({
+                            src,
+                            alt: `${g.title} screenshot ${i + 1}`,
+                          })
+                        }
+                        className={cn(
+                          "group relative rounded-2xl border border-border bg-muted/30 overflow-hidden shadow-elevated hover:border-primary/40 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50",
+                          g.images.length === 1 ? "aspect-[16/7]" : "aspect-[4/3]"
+                        )}
+                      >
+                        <img
+                          src={src}
+                          alt={`${g.title} screenshot ${i + 1}`}
+                          className="absolute inset-0 w-full h-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                          loading="lazy"
+                        />
+                        <span className="absolute top-2 right-2 inline-flex items-center justify-center h-8 w-8 rounded-full bg-background/80 backdrop-blur-sm text-foreground/80 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <ZoomIn className="h-4 w-4" />
+                        </span>
+                      </button>
+                    </Reveal>
                   ))}
                 </div>
               </div>
