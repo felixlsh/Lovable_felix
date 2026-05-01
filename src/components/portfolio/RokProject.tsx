@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Area, AreaChart } from "recharts";
 import { TrendingUp, Users, Trophy, Target, Gamepad2, ExternalLink, BarChart3, ArrowUpRight } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Reveal } from "@/components/Reveal";
 
 const data = [
   { week: "W1", active: 612, kills: 1.2, power: 38 },
@@ -167,12 +168,16 @@ export const RokProject = () => {
               { icon: Trophy, v: "Top 3", l: "Server Ranking" },
               { icon: Target, v: "94%", l: "KPI 달성률" },
               { icon: TrendingUp, v: "+65%", l: "활동 증가율" },
-            ].map(({ icon: Icon, v, l }) => (
-              <div key={l} className="rounded-xl border border-border bg-card/60 p-4 hover:border-primary/40 transition-colors">
+            ].map(({ icon: Icon, v, l }, i) => (
+              <Reveal
+                key={l}
+                delay={i * 90}
+                className="rounded-xl border border-border bg-card/60 p-4 hover:border-primary/40 transition-colors"
+              >
                 <Icon className="h-4 w-4 text-primary-glow mb-3" />
                 <p className="font-display text-xl tabular-nums">{v}</p>
                 <p className="text-[11px] text-muted-foreground mt-1">{l}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
