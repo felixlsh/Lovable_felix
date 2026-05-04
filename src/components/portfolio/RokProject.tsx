@@ -61,7 +61,7 @@ export const RokProject = () => {
             <p className="text-xs text-muted-foreground mb-1">Featured Case Study</p>
             <h3 className="font-display text-2xl sm:text-3xl md:text-4xl break-keep inline-flex items-center gap-2">
               Rise of Kingdoms 데이터 분석
-              <ArrowUpRight className="h-5 w-5 text-muted-foreground opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary-glow" />
+              <ArrowUpRight className="h-5 w-5 text-muted-foreground opacity-50 transition-all group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary-glow" />
             </h3>
             <p className="text-sm text-muted-foreground mt-2 max-w-xl">
               1,000여 개 계정의 시즌별 활동을 수집·가공·시각화한 장기 분석 프로젝트
