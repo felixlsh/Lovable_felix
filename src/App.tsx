@@ -7,6 +7,7 @@ import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ProjectDetail from "./pages/ProjectDetail.tsx";
 import { ScrollProgress } from "./components/ScrollProgress.tsx";
+import ScrollToTop from "./components/ScrollToTop.tsx";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollProgress />
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
