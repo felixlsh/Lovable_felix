@@ -9,7 +9,7 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Sidebar />
       <main className="lg:pl-64">
-        <div className="mx-auto max-w-5xl px-5 md:px-10 lg:px-16">
+        <div className="mx-auto max-w-6xl px-5 md:px-10 lg:px-16">
           <Hero />
           <Experience />
           <Projects />
