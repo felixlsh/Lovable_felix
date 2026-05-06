@@ -29,7 +29,7 @@ const ProjectDetail = () => {
       <main className="lg:pl-64">
         {/* Sticky sub-header */}
         <div className="sticky top-0 z-30 border-b border-border bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
-          <div className="mx-auto max-w-4xl px-5 md:px-10 lg:px-16 h-14 flex items-center gap-3">
+          <div className="mx-auto max-w-6xl px-5 md:px-10 lg:px-16 h-14 flex items-center gap-3">
             <Link
               to="/#projects"
               className="inline-flex items-center justify-center h-8 w-8 rounded-md border border-border bg-card/60 text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors flex-shrink-0"
@@ -63,7 +63,7 @@ const ProjectDetail = () => {
           </div>
         </div>
 
-        <div className="mx-auto max-w-4xl px-5 md:px-10 lg:px-16 py-10 md:py-16 animate-fade-in" style={{ animationDelay: "80ms", animationFillMode: "backwards" }}>
+        <div className="mx-auto max-w-6xl px-5 md:px-10 lg:px-16 py-10 md:py-16 animate-fade-in" style={{ animationDelay: "80ms", animationFillMode: "backwards" }}>
         {/* Back link */}
         <Link
           to="/#projects"
