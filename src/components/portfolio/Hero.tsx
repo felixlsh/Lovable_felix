@@ -1,13 +1,13 @@
-import { ArrowUpRight, Sparkles, TrendingUp, Database, Code2, FileCode2, BarChart2, Server, Kanban, BookOpen, MessageSquare } from "lucide-react";
+import { ArrowUpRight, Sparkles, TrendingUp, Database, BarChart2, FileCode2, Hexagon, Trello, BookText, Hash } from "lucide-react";
 
 const stacks = [
-  { label: "Python", color: "from-blue-500/20 to-blue-500/5", Icon: Code2 },
+  { label: "Python", color: "from-blue-500/20 to-blue-500/5", Icon: FileCode2 },
   { label: "SQL", color: "from-cyan-500/20 to-cyan-500/5", Icon: Database },
   { label: "Looker Studio", color: "from-indigo-500/20 to-indigo-500/5", Icon: BarChart2 },
-  { label: "Node.js", color: "from-emerald-500/20 to-emerald-500/5", Icon: Server },
-  { label: "Jira", color: "from-sky-500/20 to-sky-500/5", Icon: Kanban },
-  { label: "Confluence", color: "from-blue-400/20 to-blue-400/5", Icon: BookOpen },
-  { label: "Slack", color: "from-fuchsia-500/20 to-fuchsia-500/5", Icon: MessageSquare },
+  { label: "Node.js", color: "from-emerald-500/20 to-emerald-500/5", Icon: Hexagon },
+  { label: "Jira", color: "from-sky-500/20 to-sky-500/5", Icon: Trello },
+  { label: "Confluence", color: "from-blue-400/20 to-blue-400/5", Icon: BookText },
+  { label: "Slack", color: "from-fuchsia-500/20 to-fuchsia-500/5", Icon: Hash },
 ];
 
 const stats = [
