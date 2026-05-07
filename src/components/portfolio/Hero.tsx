@@ -101,7 +101,9 @@ export const Hero = () => {
                     {s.label}
                   </span>
                 </TooltipTrigger>
-                <TooltipContent>{s.desc}</TooltipContent>
+                <TooltipContent side="top" align="center" sideOffset={8} avoidCollisions={false} className="z-[100] max-w-xs">
+                  {s.desc}
+                </TooltipContent>
               </Tooltip>
             ))}
           </div>
