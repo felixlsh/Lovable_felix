@@ -34,8 +34,19 @@ const ScrollToTop = () => {
     const behavior: ScrollBehavior = prefersReduced ? "auto" : "smooth";
 
     if (!hash) {
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-      return;
+      // Force top across multiple frames to defeat late layout shifts,
+      // async image loads, autofocus, or animations scrolling the page.
+      const startNoHash = performance.now();
+      const forceTop = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+        if (performance.now() - startNoHash < 600) {
+          rafRef.current = requestAnimationFrame(forceTop);
+        }
+      };
+      rafRef.current = requestAnimationFrame(forceTop);
+      return () => {
+        if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      };
     }
 
     const id = decodeURIComponent(hash.replace("#", ""));
