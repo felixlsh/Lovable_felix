@@ -94,10 +94,13 @@ export const Hero = () => {
               <Tooltip key={s.label}>
                 <TooltipTrigger asChild>
                   <span
-                    className={`inline-flex items-center gap-2 rounded-full border border-border bg-gradient-to-br ${s.color} px-4 py-2 text-sm font-semibold text-foreground backdrop-blur transition-all hover:border-primary/60 hover:shadow-glow hover:-translate-y-0.5 animate-fade-up cursor-default`}
+                    className={`group/badge inline-flex items-center gap-2 rounded-full border border-border bg-gradient-to-br ${s.color} px-4 py-2 text-sm font-semibold text-foreground backdrop-blur transition-all duration-300 hover:border-primary/60 hover:shadow-glow hover:-translate-y-0.5 animate-fade-up cursor-default`}
                     style={{ animationDelay: `${400 + i * 70}ms` }}
                   >
-                    <s.Icon className="h-4 w-4" style={{ color: s.iconColor }} />
+                    <s.Icon
+                      className="h-4 w-4 transition-transform duration-300 ease-out group-hover/badge:scale-125 group-hover/badge:-rotate-6 animate-scale-in"
+                      style={{ color: s.iconColor, animationDelay: `${500 + i * 70}ms`, animationFillMode: "backwards" }}
+                    />
                     {s.label}
                   </span>
                 </TooltipTrigger>
