@@ -1,4 +1,4 @@
-import { ArrowUpRight, Sparkles, TrendingUp, Database, Wand2 } from "lucide-react";
+import { ArrowUpRight, Sparkles, TrendingUp, Database } from "lucide-react";
 import { SiPython, SiMysql, SiLooker, SiJira, SiConfluence, SiSlack } from "react-icons/si";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import type { IconType } from "react-icons";
@@ -6,7 +6,8 @@ import type { IconType } from "react-icons";
 type Stack = {
   label: string;
   color: string;
-  Icon: IconType;
+  Icon?: IconType;
+  iconUrl?: string;
   iconColor: string;
   desc: string;
 };
@@ -15,10 +16,10 @@ const stacks: Stack[] = [
   { label: "Python", color: "from-blue-500/20 to-blue-500/5", Icon: SiPython, iconColor: "#3776AB", desc: "데이터 처리·자동화·분석 스크립트 작성" },
   { label: "SQL", color: "from-cyan-500/20 to-cyan-500/5", Icon: SiMysql, iconColor: "#4479A1", desc: "대용량 데이터 추출·집계 쿼리 작성" },
   { label: "Looker Studio", color: "from-indigo-500/20 to-indigo-500/5", Icon: SiLooker, iconColor: "#4285F4", desc: "비즈니스 KPI 대시보드 시각화" },
-  { label: "Lovable", color: "from-violet-500/20 to-violet-500/5", Icon: Wand2, iconColor: "#8B5CF6", desc: "AI 기반 프롬프트 엔지니어링과 풀스택 웹앱 빌드" },
   { label: "Jira", color: "from-sky-500/20 to-sky-500/5", Icon: SiJira, iconColor: "#0052CC", desc: "이슈 트래킹과 스프린트 기반 협업" },
   { label: "Confluence", color: "from-blue-400/20 to-blue-400/5", Icon: SiConfluence, iconColor: "#172B4D", desc: "팀 문서화와 지식 공유 관리" },
   { label: "Slack", color: "from-fuchsia-500/20 to-fuchsia-500/5", Icon: SiSlack, iconColor: "#4A154B", desc: "팀 커뮤니케이션과 알림 자동화 연동" },
+  { label: "Lovable", color: "from-violet-500/20 to-violet-500/5", iconUrl: "/lovable-favicon.ico", iconColor: "#8B5CF6", desc: "AI 기반 프롬프트 엔지니어링과 풀스택 웹앱 빌드" },
 ];
 
 const stats = [
@@ -97,10 +98,19 @@ export const Hero = () => {
                     className={`group/badge inline-flex items-center gap-2 rounded-full border border-border bg-gradient-to-br ${s.color} px-4 py-2 text-sm font-semibold text-foreground backdrop-blur transition-all duration-300 hover:border-primary/60 hover:shadow-glow hover:-translate-y-0.5 animate-fade-up cursor-default`}
                     style={{ animationDelay: `${400 + i * 70}ms` }}
                   >
-                    <s.Icon
-                      className="h-4 w-4 transition-transform duration-300 ease-out group-hover/badge:scale-125 group-hover/badge:-rotate-6 animate-scale-in"
-                      style={{ color: s.iconColor, animationDelay: `${500 + i * 70}ms`, animationFillMode: "backwards" }}
-                    />
+                    {s.Icon ? (
+                      <s.Icon
+                        className="h-4 w-4 transition-transform duration-300 ease-out group-hover/badge:scale-125 group-hover/badge:-rotate-6 animate-scale-in"
+                        style={{ color: s.iconColor, animationDelay: `${500 + i * 70}ms`, animationFillMode: "backwards" }}
+                      />
+                    ) : (
+                      <img
+                        src={s.iconUrl}
+                        alt={s.label}
+                        className="h-4 w-4 transition-transform duration-300 ease-out group-hover/badge:scale-125 group-hover/badge:-rotate-6 animate-scale-in object-contain"
+                        style={{ animationDelay: `${500 + i * 70}ms`, animationFillMode: "backwards" }}
+                      />
+                    )}
                     {s.label}
                   </span>
                 </TooltipTrigger>
