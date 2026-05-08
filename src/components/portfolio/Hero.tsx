@@ -1,5 +1,5 @@
 import { ArrowUpRight, Sparkles, TrendingUp, Database } from "lucide-react";
-import { SiPython, SiMysql, SiLooker, SiNodedotjs, SiJira, SiConfluence, SiSlack } from "react-icons/si";
+import { SiPython, SiMysql, SiLooker, SiJira, SiConfluence, SiSlack } from "react-icons/si";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import type { IconType } from "react-icons";
 
@@ -15,7 +15,6 @@ const stacks: Stack[] = [
   { label: "Python", color: "from-blue-500/20 to-blue-500/5", Icon: SiPython, iconColor: "#3776AB", desc: "데이터 처리·자동화·분석 스크립트 작성" },
   { label: "SQL", color: "from-cyan-500/20 to-cyan-500/5", Icon: SiMysql, iconColor: "#4479A1", desc: "대용량 데이터 추출·집계 쿼리 작성" },
   { label: "Looker Studio", color: "from-indigo-500/20 to-indigo-500/5", Icon: SiLooker, iconColor: "#4285F4", desc: "비즈니스 KPI 대시보드 시각화" },
-  { label: "Node.js", color: "from-emerald-500/20 to-emerald-500/5", Icon: SiNodedotjs, iconColor: "#5FA04E", desc: "API·서버사이드 데이터 파이프라인 구축" },
   { label: "Jira", color: "from-sky-500/20 to-sky-500/5", Icon: SiJira, iconColor: "#0052CC", desc: "이슈 트래킹과 스프린트 기반 협업" },
   { label: "Confluence", color: "from-blue-400/20 to-blue-400/5", Icon: SiConfluence, iconColor: "#172B4D", desc: "팀 문서화와 지식 공유 관리" },
   { label: "Slack", color: "from-fuchsia-500/20 to-fuchsia-500/5", Icon: SiSlack, iconColor: "#4A154B", desc: "팀 커뮤니케이션과 알림 자동화 연동" },
