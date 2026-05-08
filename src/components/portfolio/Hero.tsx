@@ -19,7 +19,7 @@ const stacks: Stack[] = [
   { label: "Jira", color: "from-sky-500/20 to-sky-500/5", Icon: SiJira, iconColor: "#0052CC", desc: "이슈 트래킹과 스프린트 기반 협업" },
   { label: "Confluence", color: "from-blue-400/20 to-blue-400/5", Icon: SiConfluence, iconColor: "#172B4D", desc: "팀 문서화와 지식 공유 관리" },
   { label: "Slack", color: "from-fuchsia-500/20 to-fuchsia-500/5", Icon: SiSlack, iconColor: "#4A154B", desc: "팀 커뮤니케이션과 알림 자동화 연동" },
-  { label: "Lovable", color: "from-violet-500/20 to-violet-500/5", iconUrl: "/lovable-favicon.ico", iconColor: "#8B5CF6", desc: "AI 기반 프롬프트 엔지니어링과 풀스택 웹앱 빌드" },
+  { label: "Lovable", color: "from-violet-500/20 to-violet-500/5", iconUrl: "/lovable-icon.svg", iconColor: "#8B5CF6", desc: "AI 기반 프롬프트 엔지니어링과 풀스택 웹앱 빌드" },
 ];
 
 const stats = [
