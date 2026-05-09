@@ -44,13 +44,25 @@ export const Sidebar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, [isProjectDetail]);
 
+  const SCROLL_OFFSET = 64;
+  const scrollToSection = (id: string) => {
+    if (id === "about") {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      return;
+    }
+    const el = document.getElementById(id);
+    if (!el) return;
+    const top = el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+    window.scrollTo({ top: Math.max(0, top), left: 0, behavior: "smooth" });
+  };
+
   const go = (id: string) => {
     setMobileOpen(false);
     if (isProjectDetail) {
       navigate(`/#${id}`);
       return;
     }
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    scrollToSection(id);
   };
 
   const goProject = (slug: string) => {
