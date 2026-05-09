@@ -13,9 +13,10 @@ const MAX_WAIT_MS = 3000;
 const POLL_INTERVAL_MS = 50;
 
 const ScrollToTop = () => {
-  const { pathname, hash, key } = useLocation();
+  const { pathname, search, hash, key } = useLocation();
   const rafRef = useRef<number | null>(null);
   const timeoutRef = useRef<number | null>(null);
+  const isInitialLoadRef = useRef(true);
 
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
@@ -33,17 +34,32 @@ const ScrollToTop = () => {
     ).matches;
     const behavior: ScrollBehavior = prefersReduced ? "auto" : "smooth";
 
-    if (!hash) {
+    const forceTopFor = (durationMs: number) => {
       // Force top across multiple frames to defeat late layout shifts,
       // async image loads, autofocus, or animations scrolling the page.
       const startNoHash = performance.now();
       const forceTop = () => {
         window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-        if (performance.now() - startNoHash < 600) {
+        if (performance.now() - startNoHash < durationMs) {
           rafRef.current = requestAnimationFrame(forceTop);
         }
       };
       rafRef.current = requestAnimationFrame(forceTop);
+    };
+
+    if (isInitialLoadRef.current) {
+      isInitialLoadRef.current = false;
+      if (hash) {
+        window.history.replaceState(null, "", `${pathname}${search}` || "/");
+      }
+      forceTopFor(1200);
+      return () => {
+        if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+      };
+    }
+
+    if (!hash) {
+      forceTopFor(600);
       return () => {
         if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
       };
