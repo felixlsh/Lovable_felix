@@ -28,20 +28,62 @@ export const Sidebar = () => {
       setProjectsOpen(true);
       return;
     }
-    const onScroll = () => {
-      for (const it of items) {
-        const el = document.getElementById(it.id);
-        if (!el) continue;
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= 160 && rect.bottom >= 160) {
-          setActive(it.id);
-          break;
-        }
+
+    const sectionEls = items
+      .map((it) => document.getElementById(it.id))
+      .filter((el): el is HTMLElement => !!el);
+    if (sectionEls.length === 0) return;
+
+    // Track each section's intersection ratio; pick the most-visible one.
+    const ratios = new Map<string, number>();
+
+    const pickActive = () => {
+      // Bottom of page → force last section active
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        setActive(items[items.length - 1].id);
+        return;
       }
+      // Top of page → force first section active
+      if (window.scrollY < 80) {
+        setActive(items[0].id);
+        return;
+      }
+      let bestId = active;
+      let bestRatio = -1;
+      ratios.forEach((r, id) => {
+        if (r > bestRatio) {
+          bestRatio = r;
+          bestId = id;
+        }
+      });
+      setActive(bestId);
     };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          ratios.set(entry.target.id, entry.intersectionRatio);
+        });
+        pickActive();
+      },
+      {
+        // Account for sticky header (~64px) at top
+        rootMargin: "-72px 0px -40% 0px",
+        threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+      }
+    );
+
+    sectionEls.forEach((el) => observer.observe(el));
+
+    const onScroll = () => pickActive();
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    pickActive();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isProjectDetail]);
 
   const SCROLL_OFFSET = 64;
