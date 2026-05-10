@@ -49,8 +49,10 @@ const ScrollToTop = () => {
 
     if (isInitialLoadRef.current) {
       isInitialLoadRef.current = false;
+      console.log("[ScrollToTop] initial load", { hash, pathname, search });
       if (hash) {
         window.history.replaceState(null, "", `${pathname}${search}` || "/");
+        console.log("[ScrollToTop] hash stripped from URL");
       }
       forceTopFor(1200);
       return () => {
@@ -59,6 +61,7 @@ const ScrollToTop = () => {
     }
 
     if (!hash) {
+      console.log("[ScrollToTop] no-hash navigation, force top", { pathname, search });
       forceTopFor(600);
       return () => {
         if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
