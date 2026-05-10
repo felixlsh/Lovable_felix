@@ -70,12 +70,14 @@ const ScrollToTop = () => {
 
     const id = decodeURIComponent(hash.replace("#", ""));
     const start = performance.now();
+    console.log("[ScrollToTop] hash navigation, target id:", id);
 
     const tryScroll = () => {
       const el = document.getElementById(id);
       if (el) {
         const top =
           el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+        console.log("[ScrollToTop] element found, scrolling to:", { id, top, scrollY: window.scrollY, offset: SCROLL_OFFSET });
         window.scrollTo({ top: Math.max(0, top), left: 0, behavior });
         return;
       }
@@ -85,6 +87,7 @@ const ScrollToTop = () => {
         }, POLL_INTERVAL_MS);
       } else {
         // Fallback: target never appeared, go to top
+        console.warn("[ScrollToTop] element not found after timeout, falling back to top");
         window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       }
     };
