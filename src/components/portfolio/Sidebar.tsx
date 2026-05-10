@@ -88,20 +88,28 @@ export const Sidebar = () => {
 
   const SCROLL_OFFSET = 64;
   const scrollToSection = (id: string) => {
+    console.log("[Sidebar] scrollToSection called:", id);
     if (id === "about") {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      console.log("[Sidebar] scrolling to top (about)");
       return;
     }
     const el = document.getElementById(id);
-    if (!el) return;
+    if (!el) {
+      console.warn("[Sidebar] element not found:", id);
+      return;
+    }
     const top = el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+    console.log("[Sidebar] scrolling to:", { id, top, scrollY: window.scrollY, offset: SCROLL_OFFSET });
     window.scrollTo({ top: Math.max(0, top), left: 0, behavior: "smooth" });
   };
 
   const go = (id: string) => {
+    console.log("[Sidebar] go called:", id, { isProjectDetail, pathname: location.pathname });
     setMobileOpen(false);
     if (isProjectDetail) {
       navigate(`/#${id}`);
+      console.log("[Sidebar] navigating from detail to /#" + id);
       return;
     }
     scrollToSection(id);
