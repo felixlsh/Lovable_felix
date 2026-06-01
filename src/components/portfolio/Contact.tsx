@@ -9,6 +9,7 @@ const PHONE = "010-6392-7944";
 
 export const Contact = () => {
   const [copied, setCopied] = useState(false);
+  const [phoneCopied, setPhoneCopied] = useState(false);
   const view = useInView<HTMLDivElement>();
 
   const copyEmail = async () => {
@@ -17,6 +18,17 @@ export const Contact = () => {
       setCopied(true);
       toast.success("이메일 주소가 복사되었습니다");
       setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast.error("복사에 실패했어요");
+    }
+  };
+
+  const copyPhone = async () => {
+    try {
+      await navigator.clipboard.writeText(PHONE);
+      setPhoneCopied(true);
+      toast.success("전화번호가 복사되었습니다");
+      setTimeout(() => setPhoneCopied(false), 2000);
     } catch {
       toast.error("복사에 실패했어요");
     }
