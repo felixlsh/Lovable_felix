@@ -1,4 +1,4 @@
-import { Mail, Copy, Check } from "lucide-react";
+import { Mail, Phone, Copy, Check } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useInView } from "@/hooks/use-in-view";
