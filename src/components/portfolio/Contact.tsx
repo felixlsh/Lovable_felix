@@ -75,6 +75,7 @@ export const Contact = () => {
                 <Mail className="h-4 w-4" />
                 이메일 보내기
               </a>
+            </div>
           </div>
 
           <div className="mt-12 pt-6 sm:pt-8 border-t border-border flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
