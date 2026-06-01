@@ -1,13 +1,15 @@
-import { Mail, Copy, Check } from "lucide-react";
+import { Mail, Phone, Copy, Check } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useInView } from "@/hooks/use-in-view";
 import { cn } from "@/lib/utils";
 
 const EMAIL = "felixlsh2@naver.com";
+const PHONE = "010-6392-7944";
 
 export const Contact = () => {
   const [copied, setCopied] = useState(false);
+  const [phoneCopied, setPhoneCopied] = useState(false);
   const view = useInView<HTMLDivElement>();
 
   const copyEmail = async () => {
@@ -16,6 +18,17 @@ export const Contact = () => {
       setCopied(true);
       toast.success("이메일 주소가 복사되었습니다");
       setTimeout(() => setCopied(false), 2000);
+    } catch {
+      toast.error("복사에 실패했어요");
+    }
+  };
+
+  const copyPhone = async () => {
+    try {
+      await navigator.clipboard.writeText(PHONE);
+      setPhoneCopied(true);
+      toast.success("전화번호가 복사되었습니다");
+      setTimeout(() => setPhoneCopied(false), 2000);
     } catch {
       toast.error("복사에 실패했어요");
     }
@@ -73,6 +86,37 @@ export const Contact = () => {
               >
                 <Mail className="h-4 w-4" />
                 이메일 보내기
+              </a>
+            </div>
+
+            {/* Phone card */}
+            <div className="shine group rounded-2xl border border-border bg-card/60 backdrop-blur p-5 sm:p-6 hover:border-primary/60 hover:-translate-y-1 transition-all duration-300">
+              <div className="flex items-start justify-between mb-4">
+                <div className="h-11 w-11 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center">
+                  <Phone className="h-5 w-5 text-primary-glow" />
+                </div>
+                <button
+                  onClick={copyPhone}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background/50 px-2.5 py-1.5 text-[11px] font-medium text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors"
+                  aria-label="Copy phone"
+                >
+                  {phoneCopied ? <Check className="h-3 w-3 text-emerald-400" /> : <Copy className="h-3 w-3" />}
+                  {phoneCopied ? "Copied" : "Copy"}
+                </button>
+              </div>
+              <p className="text-[10px] tracking-[0.2em] text-muted-foreground mb-1.5">PHONE</p>
+              <a
+                href={`tel:${PHONE.replace(/-/g, "")}`}
+                className="font-display text-base sm:text-lg break-all hover:text-primary-glow transition-colors"
+              >
+                {PHONE}
+              </a>
+              <a
+                href={`tel:${PHONE.replace(/-/g, "")}`}
+                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-background/50 px-5 py-3 text-sm font-semibold text-foreground hover:bg-card hover:border-primary/40 transition-colors"
+              >
+                <Phone className="h-4 w-4" />
+                전화 걸기
               </a>
             </div>
           </div>
