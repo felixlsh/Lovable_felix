@@ -5,6 +5,7 @@ import { useInView } from "@/hooks/use-in-view";
 import { cn } from "@/lib/utils";
 
 const EMAIL = "felixlsh2@naver.com";
+const PHONE = "010-6392-7944";
 
 export const Contact = () => {
   const [copied, setCopied] = useState(false);
