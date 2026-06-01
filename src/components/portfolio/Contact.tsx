@@ -75,30 +75,6 @@ export const Contact = () => {
                 <Mail className="h-4 w-4" />
                 이메일 보내기
               </a>
-            </div>
-
-            {/* Notion card */}
-            <div className="shine group rounded-2xl border border-border bg-card/60 backdrop-blur p-5 sm:p-6 hover:border-primary/60 hover:-translate-y-1 transition-all duration-300">
-              <div className="flex items-start justify-between mb-4">
-                <div className="h-11 w-11 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center">
-                  <ExternalLink className="h-5 w-5 text-primary-glow" />
-                </div>
-                <span className="rounded-full bg-emerald-500/15 text-emerald-300 px-2.5 py-1 text-[10px] font-semibold">
-                  ORIGINAL
-                </span>
-              </div>
-              <p className="text-[10px] tracking-[0.2em] text-muted-foreground mb-1.5">NOTION PORTFOLIO</p>
-              <p className="font-display text-base sm:text-lg break-all">felixlsh.oopy.io</p>
-              <a
-                href={NOTION}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-background/50 px-5 py-3 text-sm font-semibold text-foreground hover:bg-card hover:border-primary/40 transition-colors"
-              >
-                <ExternalLink className="h-4 w-4" />
-                노션에서 보기
-              </a>
-            </div>
           </div>
 
           <div className="mt-12 pt-6 sm:pt-8 border-t border-border flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
