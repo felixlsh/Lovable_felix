@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, ExternalLink, CheckCircle2, ZoomIn, BarChart3, FileText, Download } from "lucide-react";
+import { ArrowLeft, CheckCircle2, ZoomIn, BarChart3, FileText, Download } from "lucide-react";
 import { getProjectBySlug } from "@/data/projects";
 import NotFound from "./NotFound";
 import { cn } from "@/lib/utils";
@@ -335,16 +335,6 @@ const ProjectDetail = () => {
           </section>
         )}
 
-        {/* External link */}
-        <a
-          href={project.externalHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-xl border border-primary/40 bg-primary/10 hover:bg-primary/20 text-primary-glow px-5 py-3 text-sm font-semibold transition-colors"
-        >
-          상세 케이스 스터디 보기
-          <ExternalLink className="h-4 w-4" />
-        </a>
         </div>
       </main>
 
