@@ -111,8 +111,6 @@ export const Projects = () => {
           <ProjectCard key={p.slug} p={p} index={i} />
         ))}
       </div>
-
-      <RokProject />
     </section>
   );
 };
