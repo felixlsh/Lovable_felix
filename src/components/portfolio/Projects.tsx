@@ -1,7 +1,6 @@
 import { useRef, type MouseEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { RokProject } from "./RokProject";
 import { useInView } from "@/hooks/use-in-view";
 import { cn } from "@/lib/utils";
 import { projects, type Project } from "@/data/projects";
@@ -112,8 +111,6 @@ export const Projects = () => {
           <ProjectCard key={p.slug} p={p} index={i} />
         ))}
       </div>
-
-      <RokProject />
     </section>
   );
 };
