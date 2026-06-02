@@ -1,4 +1,4 @@
-import { Briefcase, Database, Server, Wrench, Zap, FileSpreadsheet, Repeat, Keyboard, Clock } from "lucide-react";
+import { Database, Server, Wrench } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
 import { cn } from "@/lib/utils";
 
