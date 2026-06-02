@@ -1,5 +1,6 @@
 import { Sidebar } from "@/components/portfolio/Sidebar";
 import { Hero } from "@/components/portfolio/Hero";
+import { RokProject } from "@/components/portfolio/RokProject";
 import { Experience } from "@/components/portfolio/Experience";
 import { Projects } from "@/components/portfolio/Projects";
 import { Contact } from "@/components/portfolio/Contact";
@@ -11,6 +12,7 @@ const Index = () => {
       <main className="lg:pl-64">
         <div className="mx-auto max-w-6xl px-5 md:px-10 lg:px-16">
           <Hero />
+          <RokProject />
           <Experience />
           <Projects />
           <Contact />
