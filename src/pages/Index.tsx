@@ -1,6 +1,7 @@
 import { Sidebar } from "@/components/portfolio/Sidebar";
 import { Hero } from "@/components/portfolio/Hero";
 import { RokProject } from "@/components/portfolio/RokProject";
+import { Automation } from "@/components/portfolio/Automation";
 import { Experience } from "@/components/portfolio/Experience";
 import { Projects } from "@/components/portfolio/Projects";
 import { Contact } from "@/components/portfolio/Contact";
@@ -13,6 +14,7 @@ const Index = () => {
         <div className="mx-auto max-w-6xl px-5 md:px-10 lg:px-16">
           <Hero />
           <RokProject />
+          <Automation />
           <Experience />
           <Projects />
           <Contact />
