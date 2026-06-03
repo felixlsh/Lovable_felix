@@ -188,7 +188,7 @@ export const Sidebar = () => {
             <BarChart3 className="h-5 w-5 text-primary-foreground" />
           </div>
           <div>
-            <p className="font-display text-base">Felix</p>
+            <p className="font-display text-base">이승헌</p>
             <p className="text-xs text-muted-foreground">Data Analyst</p>
           </div>
         </div>
@@ -244,7 +244,7 @@ export const Sidebar = () => {
             <div className="h-8 w-8 rounded-lg bg-gradient-primary flex items-center justify-center">
               <BarChart3 className="h-4 w-4 text-primary-foreground" />
             </div>
-            <span className="font-display text-sm">Felix</span>
+            <span className="font-display text-sm">이승헌</span>
           </button>
           <div className="flex items-center gap-2 flex-shrink-0">
             <ThemeToggle className="!h-8 !w-14" />
@@ -264,7 +264,7 @@ export const Sidebar = () => {
                       <BarChart3 className="h-4 w-4 text-primary-foreground" />
                     </div>
                     <div>
-                      <p className="font-display text-base">Felix</p>
+                      <p className="font-display text-base">이승헌</p>
                       <p className="text-xs text-muted-foreground font-normal">Data Analyst</p>
                     </div>
                   </SheetTitle>
