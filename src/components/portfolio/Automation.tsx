@@ -6,7 +6,7 @@ const automation = [
   {
     icon: FileSpreadsheet,
     title: "엑셀 편집 자동화",
-    desc: "AutoHotkey 스크립트로 포맷 변환, 셀 병합·정리 작업을 단일 핫키로 처리하고, Make 시나리오로 결과 파일을 자동 백업·공유.",
+    desc: "AutoHotkey로 포맷 변환·셀 병합·정리 작업을 단일 핫키에 묶어 로컬에서 즉시 실행. Make는 완성된 파일을 지정 경로·드라이브로 자동 백업하고 담당자에게 공유.",
     tools: ["AutoHotkey", "Make"],
     metric: "↓ 85%",
     metricLabel: "처리 시간",
@@ -14,7 +14,7 @@ const automation = [
   {
     icon: Repeat,
     title: "반복 작업 효율화",
-    desc: "보고서 생성·파일 분류·메일 발송 등 반복 업무를 AutoHotkey 매크로와 Zapier·Make 워크플로우로 연결해 트리거 기반으로 실행.",
+    desc: "AutoHotkey로 PC 내 반복 매크로(파일 분류·보고서 생성)를 처리. Zapier는 앱 간 단순 트리거 연결을, Make는 다단계 분기 시나리오를 맡아 워크플로우 전체를 자동화.",
     tools: ["AutoHotkey", "Zapier", "Make"],
     metric: "10+",
     metricLabel: "자동화 시나리오",
@@ -22,7 +22,7 @@ const automation = [
   {
     icon: Keyboard,
     title: "단축키 기반 워크플로우",
-    desc: "솔루션 진행 추적, 데이터 전처리 단계를 글로벌 핫키로 호출하고, 실행 로그를 Telegram Bot으로 즉시 푸시 받아 진행 상황 확인.",
+    desc: "AutoHotkey 글로벌 핫키로 솔루션 진행 추적·데이터 전처리 단계를 한 번에 호출. Telegram Bot은 실행 결과와 에러 로그를 실시간 푸시해 어디서든 진행 상황을 확인.",
     tools: ["AutoHotkey", "Telegram Bot"],
     metric: "1-key",
     metricLabel: "트리거 실행",
@@ -30,7 +30,7 @@ const automation = [
   {
     icon: Clock,
     title: "주기적 업무 보고",
-    desc: "Zapier·Make로 데이터 수집 → 가공 → 시각화 → 배포 파이프라인을 스케줄링하고, 완료 알림과 핵심 지표를 Telegram Bot으로 자동 전달.",
+    desc: "Zapier가 정기 트리거로 데이터 수집을 시작하면 Make가 가공·시각화·배포 시나리오를 실행. Telegram Bot은 완료 알림과 핵심 지표 요약을 매일 정해진 시간에 자동 전달.",
     tools: ["Zapier", "Make", "Telegram Bot"],
     metric: "24/7",
     metricLabel: "무인 실행",
