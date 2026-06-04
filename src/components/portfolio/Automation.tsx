@@ -20,12 +20,12 @@ const automation = [
     metricLabel: "자동화 시나리오",
   },
   {
-    icon: Keyboard,
-    title: "단축키 기반 워크플로우",
-    desc: "AutoHotkey 글로벌 핫키로 솔루션 진행 추적·데이터 전처리 단계를 한 번에 호출. Telegram Bot은 실행 결과와 에러 로그를 실시간 푸시해 어디서든 진행 상황을 확인.",
-    tools: ["AutoHotkey", "Telegram Bot"],
-    metric: "1-key",
-    metricLabel: "트리거 실행",
+    icon: Bell,
+    title: "실시간 웹 모니터링 알림",
+    desc: "GCP 인스턴스에서 Python 스크립트를 상시 구동, 타겟 웹사이트를 5~15초 주기로 폴링. 키워드·변경 감지 시 Telegram Bot이 즉시 Alert를 전송해 기회·이슈를 놓치지 않게 함.",
+    tools: ["Python", "GCP", "Telegram Bot"],
+    metric: "5~15s",
+    metricLabel: "폴링 주기",
   },
   {
     icon: Clock,
