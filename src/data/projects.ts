@@ -1,4 +1,4 @@
-import { BarChart3, Gamepad2, Zap, Car } from "lucide-react";
+import { BarChart3, Gamepad2, Zap, Car, Vote } from "lucide-react";
 import type { LucideProps } from "lucide-react";
 import type { ComponentType } from "react";
 import crmDashboardImg from "@/assets/crm-dashboard.webp";
