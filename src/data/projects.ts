@@ -1,4 +1,4 @@
-import { BarChart3, Gamepad2, Zap, Car } from "lucide-react";
+import { BarChart3, Gamepad2, Zap, Car, Vote } from "lucide-react";
 import type { LucideProps } from "lucide-react";
 import type { ComponentType } from "react";
 import crmDashboardImg from "@/assets/crm-dashboard.webp";
@@ -41,6 +41,40 @@ export type Project = {
 };
 
 export const projects: Project[] = [
+  {
+    slug: "election-dashboard",
+    title: "제9회 지선 서울시장 개표 추이 대시보드",
+    org: "Personal Project",
+    status: "Done",
+    icon: Vote,
+    desc: "Cloud 환경에서 Selenium으로 선관위 개표 데이터를 실시간 크롤링하고, Pandas로 변동 시점을 감지해 Streamlit 웹앱으로 시각화한 실시간 모니터링 대시보드.",
+    tags: ["Python", "Selenium", "Streamlit"],
+    metric: { v: "100%", l: "모니터링 자동화" },
+    externalHref: "https://felixlsh0election.streamlit.app/",
+    overview:
+      "중앙선거관리위원회의 실시간 개표 현황을 매번 수동으로 새로고침하며 직접 계산해야 하는 비효율을 해결하기 위해 만든 프로젝트입니다. 단순 현재 수치 조회를 넘어 개표율 변동에 따른 후보별 득표율 추이를 시계열로 축적, 실시간 흐름을 직관적으로 모니터링할 수 있는 대시보드 인프라를 구축했습니다.",
+    role: [
+      "Cloud 서버 환경에서 Python·Selenium 기반 실시간 크롤링 파이프라인 구축",
+      "Pandas로 이전 데이터와 비교해 Change Point만 필터링·적재하는 정제 프로세스 구현",
+      "Streamlit으로 누적 변동 추이 라인 차트와 실시간 로그 테이블을 동적 시각화·배포",
+    ],
+    highlights: [
+      {
+        title: "수기 모니터링 100% 제거",
+        body: "데이터 수집부터 가공·시각화까지 전 과정을 완전 자동화하여 사람이 새로고침할 필요가 없는 무인 대시보드를 완성했습니다.",
+      },
+      {
+        title: "Change Point 실시간 감지",
+        body: "이전 스냅샷과 비교해 변동이 발생한 순간만 필터링·적재함으로써 데이터 정합성을 확보했습니다.",
+      },
+      {
+        title: "라이브 대시보드 배포",
+        body: "Streamlit Cloud에 배포해 누구나 URL로 접속해 개표 변동 추이를 실시간으로 확인할 수 있도록 했습니다.",
+      },
+    ],
+    stack: ["Python", "Selenium", "Pandas", "Streamlit", "Cloud Server"],
+    embedUrl: "https://felixlsh0election.streamlit.app/?embed=true",
+  },
   {
     slug: "crm-dashboard",
     title: "CRM 실적 대시보드",
