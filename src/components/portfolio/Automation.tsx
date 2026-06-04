@@ -1,4 +1,4 @@
-import { Briefcase, Zap, FileSpreadsheet, Repeat, Keyboard, Clock } from "lucide-react";
+import { Briefcase, Zap, FileSpreadsheet, Repeat, Bell, Clock } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
 import { cn } from "@/lib/utils";
 

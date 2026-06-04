@@ -1,17 +1,24 @@
-## 요약
-`Automation.tsx`에서 **Make** 도구를 전부 **Zapier**로 교체하고, **주기적 업무 보고** 카드의 알림 도구를 **Telegram Bot → Discord Bot**으로 변경합니다.
+## 배치 방향
 
-## 상세 작업
+새 내용(GCP 상시 구동 Python 스크립트 + 텔레그램 알림 봇)은 기존 4개 카드 중 가장 결이 비슷한 **"단축키 기반 워크플로우"** 카드를 교체하는 것이 자연스럽습니다.
 
-### 1. Make → Zapier 교체
-- `엑셀 편집 자동화` desc: Make 역할 문구 → Zapier로 변경
-- `반복 작업 효율화` desc: Make 역할 문구 → Zapier로 변경, tools 배열에서 "Make" 제거
-- `주기적 업무 보고` desc: Make 역할 문구 → Zapier로 변경, tools 배열에서 "Make" → "Zapier"로 교체
+- 해당 카드는 이미 `Telegram Bot`을 도구로 쓰고 있어 알림 봇 맥락을 그대로 흡수 가능
+- "24/7 무인 실행" 컨셉은 4번 카드(주기적 업무 보고)에 이미 있으므로, 신규 카드는 **"실시간성"**(5~15초 폴링, 즉각 Alert)을 차별점으로 강조
+- AutoHotkey 단축키 관련 내용은 1·2번 카드(엑셀 편집, 반복 작업)에서 이미 충분히 다루므로 삭제해도 정보 손실 없음
 
-### 2. 주기적 업무 보고 카드 내용 변경
-- **데이터 흐름**: "Zapier가 정기 트리거로 데이터 수집을 시작하면 Make가 가공·시각화·배포 시나리오를 실행" → "Zapier가 정기 트리거로 데이터를 수집하고 가공·시각화·배포 시나리오를 실행"
-- **알림 도구**: "Telegram Bot" → "Discord Bot"
-- **알림 문구**: "Telegram Bot은 완료 알림과 핵심 지표 요약을 매일 정해진 시간에 자동 전달" → "Discord Bot은 완료 알림과 핵심 지표 요약을 매일 정해진 시간에 자동 전달"
+## 변경 사항 (`src/components/portfolio/Automation.tsx`)
 
-## 변경 대상 파일
-- `src/components/portfolio/Automation.tsx`
+3번째 카드를 아래로 교체:
+
+| 필드 | 값 |
+|---|---|
+| icon | `Bell` (lucide-react, import 추가) |
+| title | `실시간 웹 모니터링 알림` |
+| desc | `GCP 인스턴스에서 Python 스크립트를 상시 구동, 타겟 웹사이트를 5~15초 주기로 폴링. 키워드·변경 감지 시 Telegram Bot이 즉시 Alert를 전송해 기회·이슈를 놓치지 않게 함.` |
+| tools | `["Python", "GCP", "Telegram Bot"]` |
+| metric | `5~15s` |
+| metricLabel | `폴링 주기` |
+
+기존 `Keyboard` import는 더 이상 쓰이지 않으므로 제거하고 `Bell`로 교체합니다.
+
+나머지 3개 카드(엑셀 편집 자동화 / 반복 작업 효율화 / 주기적 업무 보고)는 그대로 유지합니다.
