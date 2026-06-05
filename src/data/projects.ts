@@ -37,6 +37,9 @@ export type Project = {
   image?: string;
   galleries?: ProjectGallery[];
   embedUrl?: string;
+  embedAppName?: string;
+  embedPoweredBy?: string;
+  embedCaption?: string;
   pdfUrl?: string;
 };
 
