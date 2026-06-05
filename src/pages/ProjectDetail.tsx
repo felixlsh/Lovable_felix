@@ -197,9 +197,9 @@ const ProjectDetail = () => {
               <p className="text-[10px] tracking-[0.25em] text-primary-glow mb-1.5">
                 LIVE DASHBOARD
               </p>
-              <h2 className="font-display text-2xl">{project.title} · Live</h2>
+              <h2 className="font-display text-2xl">{project.title}</h2>
               <p className="text-sm text-muted-foreground mt-1">
-                실시간으로 동기화되는 Looker Studio 대시보드입니다.
+                {project.embedCaption ?? "실시간으로 동기화되는 Looker Studio 대시보드입니다."}
               </p>
             </div>
             <div className="bezel-border relative rounded-2xl bg-gradient-card shadow-elevated overflow-hidden">
@@ -214,9 +214,9 @@ const ProjectDetail = () => {
                     <BarChart3 className="h-4 w-4 text-primary-glow" />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-display text-sm truncate">ROK Live Dashboard</p>
+                    <p className="font-display text-sm truncate">{project.embedAppName ?? project.title}</p>
                     <p className="text-[11px] text-muted-foreground truncate">
-                      Powered by Looker Studio
+                      {project.embedPoweredBy ?? "Powered by Looker Studio"}
                     </p>
                   </div>
                 </div>
