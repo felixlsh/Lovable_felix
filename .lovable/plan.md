@@ -1,73 +1,32 @@
-## 작업 개요
+## 작업
+`ElectionProject.tsx`에 **Architecture** 섹션을 신규 추가 — Streamlit 임베드 윈도우 바로 위에 배치하여 크롤링 → 변동 감지 → 대시보드 흐름을 시각적으로 설명.
 
-1. **Featured Case Study 컴포넌트 신규 추가** — `RokProject`와 동일한 톤의 강조 섹션을 Hero 바로 아래에 배치
-2. **Projects 그리드에 카드 추가** — 기존 4개 카드와 동일한 형식, 상세 페이지(`/projects/election-dashboard`)는 기존 `ProjectDetail` 라우트를 그대로 사용
+## 디자인 방향
+Mermaid 같은 외부 다이어그램이 아닌, 기존 다크 카드 톤(`bg-gradient-card`, `border-border`, `text-primary-glow`)에 맞춘 **Tailwind 기반 인라인 SVG/플로우 카드**로 구현. 페이지 전체 디자인과 통일감 유지.
 
-## 1. 신규 컴포넌트: `src/components/portfolio/ElectionProject.tsx`
-
-`RokProject.tsx` 구조를 참고한 다크 카드 레이아웃:
-
-- **헤더 (클릭 가능, `/projects/election-dashboard`로 이동)**
-  - 좌측 아이콘: `Vote` (lucide-react)
-  - 라벨: `Featured Case Study`
-  - 제목: `제9회 지선 서울시장 개표 추이 실시간 대시보드`
-  - 서브카피: 한 줄 요약
-  - 우측 상태 칩: `LIVE` (emerald, pulse dot)
-
-- **본문 2단 그리드 (`lg:grid-cols-5`)**
-  - 좌 3칸 — **Problem / Action / Result** 3개 스택 카드
-    - 각 블록: 단계 라벨(`01 PROBLEM` 등), 제목, 본문. 사용자 제공 문구 그대로 사용(요약 가공)
-  - 우 2칸
-    - **KEY OUTCOME 카드** (`100%` · `수기 모니터링 리소스 절감`) — RokProject의 그라데이션 카드와 동일 톤
-    - **Tech Stack 카드** — Python / Selenium / Pandas / Streamlit / Cloud Server 뱃지 나열
-    - **Live Demo 버튼** — `ExternalLink` 아이콘, `https://felixlsh0election.streamlit.app/`로 새 탭 오픈
-
-- **Streamlit 라이브 임베드**
-  - RokProject의 윈도우 크롬(트래픽 라이트 + 헤더 + LIVE 칩 + 하단 상태바) 동일 패턴 재사용
-  - `<iframe src="https://felixlsh0election.streamlit.app/?embed=true">`, 로딩 스켈레톤 포함
-  - 높이: `lg:h-[820px]`, 모바일 대응
-
-## 2. `src/pages/Index.tsx` 순서 변경
+## 레이아웃 (한 줄 5단계 파이프라인, 모바일은 세로)
 
 ```
-Hero
-ElectionProject  ← 신규
-RokProject
-Automation
-Experience
-Projects
-Contact
+[Cloud Server]  →  [Selenium Crawl]  →  [Pandas Change Pt]  →  [시계열 Dataset]  →  [Streamlit App]
+   Server          중앙선관위 폴링        변동 시점 필터링         누적 적재            Live Dashboard
 ```
 
-## 3. `src/data/projects.ts` 신규 엔트리 추가
+각 노드:
+- 아이콘 (lucide): `Server` → `Globe` → `GitCompare` → `Database` → `LineChart`
+- 상단 미니 라벨 (`STEP 01` 등, `text-[10px] tracking-[0.25em]`)
+- 노드 제목 (한 줄)
+- 한 줄 설명
+- 카드: `rounded-xl border border-border bg-card/60 p-4`
 
-`projects` 배열 맨 앞(또는 `rok-dashboard` 위)에 삽입:
+연결자:
+- 데스크탑(`lg:`): 가로 `ChevronRight` 또는 점선 + 화살촉, `text-primary-glow/60`
+- 모바일: 세로 `ChevronDown`
 
-```ts
-{
-  slug: "election-dashboard",
-  title: "제9회 지선 서울시장 개표 추이 대시보드",
-  org: "Personal Project",
-  status: "Done",
-  icon: Vote,
-  desc: "Selenium으로 선관위 개표 데이터를 실시간 크롤링하고 Pandas로 변동 시점을 감지, Streamlit 웹앱으로 시각화한 실시간 모니터링 대시보드.",
-  tags: ["Python", "Selenium", "Streamlit"],
-  metric: { v: "100%", l: "모니터링 자동화" },
-  externalHref: "https://felixlsh0election.streamlit.app/",
-  overview: "...(사용자 제공 기획 의도 통합)",
-  role: ["Cloud 서버 기반 Selenium 크롤링 파이프라인 구축", "Pandas 기반 Change Point 감지 로직 구현", "Streamlit 대시보드 설계 및 배포"],
-  highlights: [
-    { title: "수기 모니터링 100% 제거", body: "수집·가공·시각화 전 과정을 자동화하여 사람이 새로고침할 필요가 없음." },
-    { title: "Change Point 실시간 감지", body: "이전 스냅샷과 비교해 변동 시점만 필터링·적재하는 정제 프로세스." },
-    { title: "라이브 대시보드 배포", body: "Streamlit으로 누적 추이 라인 차트와 실시간 로그 테이블 제공." },
-  ],
-  stack: ["Python", "Selenium", "Pandas", "Streamlit", "Cloud Server"],
-  embedUrl: "https://felixlsh0election.streamlit.app/?embed=true",
-}
-```
+상단에 섹션 헤더:
+- 라벨 `ARCHITECTURE`
+- 제목 `데이터 흐름 — Crawl · Detect · Visualize`
 
-> 참고: 기존 `ProjectDetail` 페이지는 `embedUrl`을 그대로 렌더링하므로 별도 수정 불필요.
+배치: 현재 컴포넌트에서 "Phases/Side column 그리드" **이후**, "Streamlit 임베드 윈도우" **이전**.
 
-## 변경 파일 요약
-- 신규: `src/components/portfolio/ElectionProject.tsx`
-- 수정: `src/pages/Index.tsx`, `src/data/projects.ts`
+## 변경 파일
+- `src/components/portfolio/ElectionProject.tsx` 한 곳만 수정 (신규 섹션 블록 추가, lucide import 확장)

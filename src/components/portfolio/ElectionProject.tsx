@@ -1,6 +1,20 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Vote, ExternalLink, ArrowUpRight, Activity, Sparkles, Target } from "lucide-react";
+import {
+  Vote,
+  ExternalLink,
+  ArrowUpRight,
+  Activity,
+  Sparkles,
+  Target,
+  Server,
+  Globe,
+  GitCompare,
+  Database,
+  LineChart,
+  ChevronRight,
+  ChevronDown,
+} from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const phases = [
@@ -31,6 +45,39 @@ const phases = [
 ];
 
 const stack = ["Python", "Selenium", "Pandas", "Streamlit", "Cloud Server"];
+
+const pipeline = [
+  {
+    step: "01",
+    icon: Server,
+    title: "Cloud Server",
+    desc: "Python 상시 구동 환경",
+  },
+  {
+    step: "02",
+    icon: Globe,
+    title: "Selenium Crawl",
+    desc: "중앙선관위 페이지 실시간 폴링",
+  },
+  {
+    step: "03",
+    icon: GitCompare,
+    title: "Change Point 감지",
+    desc: "Pandas로 변동 시점만 필터링",
+  },
+  {
+    step: "04",
+    icon: Database,
+    title: "시계열 Dataset",
+    desc: "누적 변동 로그 적재",
+  },
+  {
+    step: "05",
+    icon: LineChart,
+    title: "Streamlit App",
+    desc: "라인 차트 · 실시간 로그 시각화",
+  },
+];
 
 const LIVE_URL = "https://felixlsh0election.streamlit.app/";
 
@@ -142,6 +189,46 @@ export const ElectionProject = () => {
             </span>
             <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
+        </div>
+      </div>
+
+      {/* Architecture — data flow pipeline */}
+      <div className="rounded-2xl border border-border bg-gradient-card p-5 md:p-7 mb-5">
+        <div className="flex items-baseline justify-between gap-4 mb-5">
+          <div>
+            <p className="text-[10px] tracking-[0.25em] text-primary-glow mb-1.5">ARCHITECTURE</p>
+            <h4 className="font-display text-xl md:text-2xl">
+              데이터 흐름 — <span className="text-gradient">Crawl · Detect · Visualize</span>
+            </h4>
+          </div>
+          <span className="hidden sm:inline text-[10px] font-mono text-muted-foreground">
+            end-to-end pipeline
+          </span>
+        </div>
+
+        <div className="flex flex-col lg:flex-row lg:items-stretch gap-2 lg:gap-1">
+          {pipeline.map(({ step, icon: Icon, title, desc }, i) => (
+            <div key={step} className="flex flex-col lg:flex-row lg:items-stretch lg:flex-1 gap-2 lg:gap-1">
+              <div className="flex-1 rounded-xl border border-border bg-card/60 p-4 hover:border-primary/40 transition-colors flex lg:flex-col items-start gap-3">
+                <div className="h-9 w-9 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center flex-shrink-0">
+                  <Icon className="h-4 w-4 text-primary-glow" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[10px] tracking-[0.25em] text-muted-foreground mb-1">
+                    STEP {step}
+                  </p>
+                  <p className="font-display text-sm leading-tight mb-1">{title}</p>
+                  <p className="text-[11px] text-foreground/70 leading-relaxed">{desc}</p>
+                </div>
+              </div>
+              {i < pipeline.length - 1 && (
+                <div className="flex items-center justify-center text-primary-glow/60 lg:px-0.5">
+                  <ChevronRight className="hidden lg:block h-5 w-5" />
+                  <ChevronDown className="lg:hidden h-4 w-4" />
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
