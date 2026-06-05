@@ -47,36 +47,11 @@ const phases = [
 const stack = ["Python", "Selenium", "Pandas", "Streamlit", "Cloud Server"];
 
 const pipeline = [
-  {
-    step: "01",
-    icon: Server,
-    title: "Cloud Server",
-    desc: "Python 상시 구동 환경",
-  },
-  {
-    step: "02",
-    icon: Globe,
-    title: "Selenium Crawl",
-    desc: "중앙선관위 페이지 실시간 폴링",
-  },
-  {
-    step: "03",
-    icon: GitCompare,
-    title: "Change Point 감지",
-    desc: "Pandas로 변동 시점만 필터링",
-  },
-  {
-    step: "04",
-    icon: Database,
-    title: "시계열 Dataset",
-    desc: "누적 변동 로그 적재",
-  },
-  {
-    step: "05",
-    icon: LineChart,
-    title: "Streamlit App",
-    desc: "라인 차트 · 실시간 로그 시각화",
-  },
+  { step: "01", icon: Server, title: "Cloud Server", desc: "Python 상시 구동" },
+  { step: "02", icon: Globe, title: "Selenium Crawl", desc: "선관위 실시간 폴링" },
+  { step: "03", icon: GitCompare, title: "Change Point", desc: "Pandas 변동 감지" },
+  { step: "04", icon: Database, title: "시계열 Dataset", desc: "변동 로그 적재" },
+  { step: "05", icon: LineChart, title: "Streamlit App", desc: "라인 차트 · 로그" },
 ];
 
 const LIVE_URL = "https://felixlsh0election.streamlit.app/";
@@ -86,13 +61,13 @@ export const ElectionProject = () => {
 
   return (
     <section className="py-12">
-      {/* Header — clickable, links to project detail */}
-      <Link
-        to="/projects/election-dashboard"
-        aria-label="지선 개표 추이 대시보드 프로젝트 상세 보기"
-        className="group flex items-start justify-between gap-4 mb-8 rounded-2xl -mx-3 px-3 py-2 transition-all duration-300 hover:bg-primary/5 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
-      >
-        <div className="flex items-start gap-4">
+      {/* Header — title + inline metric/CTA */}
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+        <Link
+          to="/projects/election-dashboard"
+          aria-label="지선 개표 추이 대시보드 프로젝트 상세 보기"
+          className="group flex items-start gap-4 rounded-2xl -mx-3 px-3 py-2 transition-all duration-300 hover:bg-primary/5 hover:-translate-y-0.5 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 min-w-0"
+        >
           <div className="h-12 w-12 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
             <Vote className="h-5 w-5 text-primary-glow" />
           </div>
@@ -106,17 +81,30 @@ export const ElectionProject = () => {
               선관위 데이터를 실시간 크롤링·감지·시각화하는 24/7 무인 대시보드
             </p>
           </div>
-        </div>
-        <span className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 text-emerald-300 px-3 py-1.5 text-[10px] font-semibold flex-shrink-0">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          LIVE
-        </span>
-      </Link>
+        </Link>
 
-      {/* Problem / Action / Result + Side column */}
-      <div className="grid lg:grid-cols-5 gap-5 mb-5">
-        {/* Phases */}
-        <div className="lg:col-span-3 flex flex-col gap-3">
+        {/* Inline metric + Live demo */}
+        <div className="flex items-center gap-3 flex-shrink-0">
+          <div className="rounded-xl border border-primary/30 bg-primary/10 px-4 py-2.5 text-right">
+            <p className="font-display text-xl leading-none text-gradient">100%</p>
+            <p className="text-[10px] tracking-[0.2em] text-muted-foreground mt-1">자동화</p>
+          </div>
+          <a
+            href={LIVE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 rounded-xl border border-primary/40 bg-gradient-primary px-4 py-2.5 text-primary-foreground shadow-glow hover:shadow-elevated hover:-translate-y-0.5 transition-all"
+          >
+            <ExternalLink className="h-4 w-4" />
+            <span className="font-display text-sm">Live Demo</span>
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+        </div>
+      </div>
+
+      {/* Problem / Action / Result + Tech stack */}
+      <div className="grid lg:grid-cols-3 gap-5 mb-5">
+        <div className="lg:col-span-2 flex flex-col gap-3">
           {phases.map(({ step, label, icon: Icon, title, body }) => (
             <div
               key={step}
@@ -138,24 +126,9 @@ export const ElectionProject = () => {
           ))}
         </div>
 
-        {/* Side column */}
-        <div className="lg:col-span-2 flex flex-col gap-3">
-          {/* Key outcome */}
-          <div className="rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/15 to-transparent p-6 relative overflow-hidden">
-            <div className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-primary/30 blur-3xl" />
-            <div className="relative">
-              <p className="text-[10px] tracking-[0.25em] text-primary-glow mb-3">KEY OUTCOME</p>
-              <p className="font-display text-3xl leading-tight">
-                <span className="text-gradient">100%</span> 자동화
-              </p>
-              <p className="text-sm text-foreground/85 mt-3 leading-relaxed">
-                수집·가공·시각화 전 과정을 무인화하여 수기 모니터링 리소스 0으로 절감
-              </p>
-            </div>
-          </div>
-
-          {/* Tech stack */}
-          <div className="rounded-2xl border border-border bg-card/60 p-5">
+        {/* Tech stack only — slim side column */}
+        <div className="lg:col-span-1">
+          <div className="rounded-2xl border border-border bg-card/60 p-5 h-full">
             <p className="text-[10px] tracking-[0.25em] text-muted-foreground mb-3">TECH STACK</p>
             <div className="flex flex-wrap gap-1.5">
               {stack.map((t) => (
@@ -167,34 +140,19 @@ export const ElectionProject = () => {
                 </span>
               ))}
             </div>
+            <div className="mt-5 pt-5 border-t border-border/60">
+              <p className="text-[10px] tracking-[0.25em] text-muted-foreground mb-2">DEPLOY</p>
+              <p className="text-xs text-foreground/75 leading-relaxed">
+                Cloud 서버에서 상시 크롤링 → Streamlit Cloud로 무중단 배포
+              </p>
+            </div>
           </div>
-
-          {/* Live demo CTA */}
-          <a
-            href={LIVE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center justify-between rounded-2xl border border-primary/40 bg-gradient-primary px-5 py-4 text-primary-foreground shadow-glow hover:shadow-elevated hover:-translate-y-0.5 transition-all"
-          >
-            <span className="flex items-center gap-3">
-              <span className="h-9 w-9 rounded-lg bg-background/15 flex items-center justify-center">
-                <ExternalLink className="h-4 w-4" />
-              </span>
-              <span>
-                <span className="block font-display text-base leading-tight">Live Demo</span>
-                <span className="block text-[11px] opacity-80 font-mono">
-                  felixlsh0election.streamlit.app
-                </span>
-              </span>
-            </span>
-            <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
         </div>
       </div>
 
-      {/* Architecture — data flow pipeline */}
-      <div className="rounded-2xl border border-border bg-gradient-card p-5 md:p-7 mb-5">
-        <div className="flex items-baseline justify-between gap-4 mb-5">
+      {/* Architecture — compact pipeline */}
+      <div className="rounded-2xl border border-border bg-gradient-card p-5 md:p-6 mb-6">
+        <div className="flex items-baseline justify-between gap-4 mb-4">
           <div>
             <p className="text-[10px] tracking-[0.25em] text-primary-glow mb-1.5">ARCHITECTURE</p>
             <h4 className="font-display text-xl md:text-2xl">
@@ -202,28 +160,28 @@ export const ElectionProject = () => {
             </h4>
           </div>
           <span className="hidden sm:inline text-[10px] font-mono text-muted-foreground">
-            end-to-end pipeline
+            5 stages
           </span>
         </div>
 
-        <div className="flex flex-col lg:flex-row lg:items-stretch gap-2 lg:gap-1">
+        <div className="flex flex-col lg:flex-row lg:items-stretch gap-1.5">
           {pipeline.map(({ step, icon: Icon, title, desc }, i) => (
-            <div key={step} className="flex flex-col lg:flex-row lg:items-stretch lg:flex-1 gap-2 lg:gap-1">
-              <div className="flex-1 rounded-xl border border-border bg-card/60 p-4 hover:border-primary/40 transition-colors flex lg:flex-col items-start gap-3">
-                <div className="h-9 w-9 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center flex-shrink-0">
-                  <Icon className="h-4 w-4 text-primary-glow" />
+            <div key={step} className="flex flex-col lg:flex-row lg:items-stretch lg:flex-1 gap-1.5">
+              <div className="flex-1 rounded-xl border border-border bg-card/60 p-3 hover:border-primary/40 transition-colors flex items-center gap-3">
+                <div className="h-8 w-8 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center flex-shrink-0">
+                  <Icon className="h-3.5 w-3.5 text-primary-glow" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[10px] tracking-[0.25em] text-muted-foreground mb-1">
+                  <p className="text-[9px] tracking-[0.25em] text-muted-foreground leading-none mb-1">
                     STEP {step}
                   </p>
-                  <p className="font-display text-sm leading-tight mb-1">{title}</p>
-                  <p className="text-[11px] text-foreground/70 leading-relaxed">{desc}</p>
+                  <p className="font-display text-[13px] leading-tight">{title}</p>
+                  <p className="text-[10px] text-foreground/65 leading-tight mt-0.5">{desc}</p>
                 </div>
               </div>
               {i < pipeline.length - 1 && (
-                <div className="flex items-center justify-center text-primary-glow/60 lg:px-0.5">
-                  <ChevronRight className="hidden lg:block h-5 w-5" />
+                <div className="flex items-center justify-center text-primary-glow/60">
+                  <ChevronRight className="hidden lg:block h-4 w-4" />
                   <ChevronDown className="lg:hidden h-4 w-4" />
                 </div>
               )}
@@ -248,7 +206,7 @@ export const ElectionProject = () => {
               <Vote className="h-4 w-4 text-primary-glow" />
             </div>
             <div className="min-w-0">
-              <p className="font-display text-sm truncate">Seoul Mayor · Live Tally</p>
+              <p className="font-display text-sm truncate">서울시장 개표 추이 대시보드</p>
               <p className="text-[11px] text-muted-foreground truncate">Powered by Streamlit</p>
             </div>
           </div>
@@ -257,11 +215,20 @@ export const ElectionProject = () => {
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
               LIVE
             </span>
+            <a
+              href={LIVE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="새 창에서 열기"
+              className="inline-flex items-center justify-center h-7 w-7 rounded-md border border-border bg-card/60 text-muted-foreground hover:text-primary-glow hover:border-primary/40 transition-colors"
+            >
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
           </div>
         </div>
 
         {/* iframe slot */}
-        <div className="relative bg-background/60 h-[70vh] min-h-[420px] sm:h-[78vh] sm:min-h-[560px] lg:h-[820px] lg:max-h-[88vh]">
+        <div className="relative bg-background/60 h-[60vh] min-h-[420px] sm:h-[640px] lg:h-[680px] lg:max-h-[78vh]">
           <div className="pointer-events-none absolute inset-0 rounded-b-2xl ring-1 ring-inset ring-border/60 z-10" />
 
           {!iframeLoaded && (

@@ -37,6 +37,9 @@ export type Project = {
   image?: string;
   galleries?: ProjectGallery[];
   embedUrl?: string;
+  embedAppName?: string;
+  embedPoweredBy?: string;
+  embedCaption?: string;
   pdfUrl?: string;
 };
 
@@ -74,6 +77,9 @@ export const projects: Project[] = [
     ],
     stack: ["Python", "Selenium", "Pandas", "Streamlit", "Cloud Server"],
     embedUrl: "https://felixlsh0election.streamlit.app/?embed=true",
+    embedAppName: "서울시장 개표 추이 대시보드",
+    embedPoweredBy: "Powered by Streamlit",
+    embedCaption: "Streamlit Cloud에 배포된 실시간 개표 추이 대시보드입니다.",
   },
   {
     slug: "crm-dashboard",
