@@ -192,6 +192,46 @@ export const ElectionProject = () => {
         </div>
       </div>
 
+      {/* Architecture — data flow pipeline */}
+      <div className="rounded-2xl border border-border bg-gradient-card p-5 md:p-7 mb-5">
+        <div className="flex items-baseline justify-between gap-4 mb-5">
+          <div>
+            <p className="text-[10px] tracking-[0.25em] text-primary-glow mb-1.5">ARCHITECTURE</p>
+            <h4 className="font-display text-xl md:text-2xl">
+              데이터 흐름 — <span className="text-gradient">Crawl · Detect · Visualize</span>
+            </h4>
+          </div>
+          <span className="hidden sm:inline text-[10px] font-mono text-muted-foreground">
+            end-to-end pipeline
+          </span>
+        </div>
+
+        <div className="flex flex-col lg:flex-row lg:items-stretch gap-2 lg:gap-1">
+          {pipeline.map(({ step, icon: Icon, title, desc }, i) => (
+            <div key={step} className="flex flex-col lg:flex-row lg:items-stretch lg:flex-1 gap-2 lg:gap-1">
+              <div className="flex-1 rounded-xl border border-border bg-card/60 p-4 hover:border-primary/40 transition-colors flex lg:flex-col items-start gap-3">
+                <div className="h-9 w-9 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center flex-shrink-0">
+                  <Icon className="h-4 w-4 text-primary-glow" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[10px] tracking-[0.25em] text-muted-foreground mb-1">
+                    STEP {step}
+                  </p>
+                  <p className="font-display text-sm leading-tight mb-1">{title}</p>
+                  <p className="text-[11px] text-foreground/70 leading-relaxed">{desc}</p>
+                </div>
+              </div>
+              {i < pipeline.length - 1 && (
+                <div className="flex items-center justify-center text-primary-glow/60 lg:px-0.5">
+                  <ChevronRight className="hidden lg:block h-5 w-5" />
+                  <ChevronDown className="lg:hidden h-4 w-4" />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Streamlit embed — window chrome */}
       <div className="bezel-border relative rounded-2xl bg-gradient-card shadow-elevated overflow-hidden">
         <div className="pointer-events-none absolute -inset-px rounded-2xl bg-[radial-gradient(60%_80%_at_50%_-10%,hsl(var(--primary-glow)/0.18),transparent_60%)]" />
