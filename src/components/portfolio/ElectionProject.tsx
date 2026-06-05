@@ -46,6 +46,39 @@ const phases = [
 
 const stack = ["Python", "Selenium", "Pandas", "Streamlit", "Cloud Server"];
 
+const pipeline = [
+  {
+    step: "01",
+    icon: Server,
+    title: "Cloud Server",
+    desc: "Python 상시 구동 환경",
+  },
+  {
+    step: "02",
+    icon: Globe,
+    title: "Selenium Crawl",
+    desc: "중앙선관위 페이지 실시간 폴링",
+  },
+  {
+    step: "03",
+    icon: GitCompare,
+    title: "Change Point 감지",
+    desc: "Pandas로 변동 시점만 필터링",
+  },
+  {
+    step: "04",
+    icon: Database,
+    title: "시계열 Dataset",
+    desc: "누적 변동 로그 적재",
+  },
+  {
+    step: "05",
+    icon: LineChart,
+    title: "Streamlit App",
+    desc: "라인 차트 · 실시간 로그 시각화",
+  },
+];
+
 const LIVE_URL = "https://felixlsh0election.streamlit.app/";
 
 export const ElectionProject = () => {
