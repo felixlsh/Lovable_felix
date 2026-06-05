@@ -1,6 +1,20 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Vote, ExternalLink, ArrowUpRight, Activity, Sparkles, Target } from "lucide-react";
+import {
+  Vote,
+  ExternalLink,
+  ArrowUpRight,
+  Activity,
+  Sparkles,
+  Target,
+  Server,
+  Globe,
+  GitCompare,
+  Database,
+  LineChart,
+  ChevronRight,
+  ChevronDown,
+} from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const phases = [
