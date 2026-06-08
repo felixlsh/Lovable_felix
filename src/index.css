@@ -17,10 +17,10 @@
     --popover: 222 40% 9%;
     --popover-foreground: 210 40% 96%;
 
-    /* Deep Blue — brightened for dark bg legibility */
-    --primary: 224 76% 56%;
+    /* Deep Blue */
+    --primary: 226 71% 40%;
     --primary-foreground: 210 40% 98%;
-    --primary-glow: 217 91% 68%;
+    --primary-glow: 224 76% 52%;
 
     --secondary: 222 30% 14%;
     --secondary-foreground: 210 40% 96%;
@@ -28,7 +28,7 @@
     --muted: 222 25% 13%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 224 76% 56%;
+    --accent: 226 71% 40%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 72% 51%;
@@ -36,7 +36,7 @@
 
     --border: 222 30% 16%;
     --input: 222 30% 16%;
-    --ring: 224 76% 60%;
+    --ring: 226 71% 50%;
 
     --radius: 0.875rem;
 
@@ -47,12 +47,12 @@
     --chart-4: 262 83% 65%;
 
     /* Gradients & shadows */
-    --gradient-primary: linear-gradient(135deg, hsl(224 76% 56%), hsl(217 91% 68%));
-    --gradient-radial: radial-gradient(circle at 20% 0%, hsl(224 76% 56% / 0.28), transparent 60%),
+    --gradient-primary: linear-gradient(135deg, hsl(226 71% 40%), hsl(224 76% 52%));
+    --gradient-radial: radial-gradient(circle at 20% 0%, hsl(226 71% 55% / 0.28), transparent 60%),
                        radial-gradient(circle at 90% 80%, hsl(199 89% 60% / 0.20), transparent 55%);
     --gradient-card: linear-gradient(160deg, hsl(222 40% 11%), hsl(222 45% 7%));
 
-    --shadow-glow: 0 0 60px -10px hsl(224 76% 62% / 0.55);
+    --shadow-glow: 0 0 60px -10px hsl(226 71% 50% / 0.55);
     --shadow-elevated: 0 24px 48px -16px hsl(222 80% 2% / 0.7);
 
     --sidebar-background: 222 45% 7%;

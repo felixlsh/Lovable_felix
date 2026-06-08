@@ -1,27 +1,14 @@
-## 요약
-다크 모드 포인트 블루 컬러 밝기를 올리고, 수기 새로고침 한계 설명에 포털 사이트 느린 새로고침 주기를 추가합니다.
+Revert the dark-mode primary blue color and related tokens in `src/index.css` back to their original values before the previous brightening change.
 
-## 변경 내용
+Changes in `:root` (dark mode):
+- `--primary`: `224 76% 56%` -> `226 71% 40%`
+- `--primary-foreground`: keep `210 40% 98%`
+- `--primary-glow`: `217 91% 68%` -> `224 76% 52%`
+- `--accent`: `224 76% 56%` -> `226 71% 40%`
+- `--ring`: `224 76% 60%` -> `226 71% 50%`
+- `--gradient-primary`: `linear-gradient(135deg, hsl(224 76% 56%), hsl(217 91% 68%))` -> `linear-gradient(135deg, hsl(226 71% 40%), hsl(224 76% 52%))`
+- `--gradient-radial`: revert `hsl(224 76% 56% / 0.28)` -> `hsl(226 71% 55% / 0.28)` and `hsl(199 89% 60% / 0.20)` -> `hsl(199 89% 60% / 0.20)` (only the first radial's primary color changes)
+- `--shadow-glow`: `0 0 60px -10px hsl(224 76% 62% / 0.55)` -> `0 0 60px -10px hsl(226 71% 50% / 0.55)`
+- Update comment on line 20 from `/* Deep Blue — brightened for dark bg legibility */` back to original comment or simply `/* Deep Blue */`
 
-### 1. 다크 모드 포인트 블루 밝기 상향
-**파일:** `src/index.css`
-
-현재 `--primary: 226 71% 40%` (lightness 40%)에서 **48%** 또는 **50%**로 상향해 검은 배경 위에서 더 뚜렷하게 보이도록 조정합니다.
-
-연쇄 변경 대상:
-- `:root` 내 `--primary` HSL lightness 값
-- `--gradient-primary` 내 해당 색상 참조
-- `--gradient-radial` 내 해당 색상 참조
-- `--shadow-glow` 내 해당 색상 참조
-
-**검증:** Preview에서 다크 모드 상태로 카드의 primary 테두리, 아이콘, 그라데이션 텍스트 등이 더 선명해졌는지 확인.
-
-### 2. 수기 새로고침 한계 설명 문구 추가
-**파일:** `src/components/portfolio/ElectionProject.tsx`
-
-PROBLEM phase(수기 새로고침의 한계) body 문구 끝 또는 중간에 아래 내용을 삽입:
-> 포털 사이트 새로고침 주기가 느려 실시간성이 떨어지는 문제도 포함.
-
-원문 흐름에 자연스럽게 녹여서 수정합니다.
-
-**검증:** 텍스트가 정상 렌더링되고 문맥이 어색하지 않은지 Preview에서 확인.
+No other files are affected.
