@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useInView } from "@/hooks/use-in-view";
 import { cn } from "@/lib/utils";
 import { projects, type Project } from "@/data/projects";
-import { CaseStudyCard } from "./CaseStudyCard";
 
 const ProjectCard = ({ p, index }: { p: Project; index: number }) => {
   const Icon = p.icon;
@@ -108,13 +107,9 @@ export const Projects = () => {
       </div>
 
       <div className="grid md:grid-cols-2 gap-5">
-        {projects.map((p, i) =>
-          p.caseStudy ? (
-            <CaseStudyCard key={p.slug} p={p} index={i} />
-          ) : (
-            <ProjectCard key={p.slug} p={p} index={i} />
-          )
-        )}
+        {projects.map((p, i) => (
+          <ProjectCard key={p.slug} p={p} index={i} />
+        ))}
       </div>
     </section>
   );
