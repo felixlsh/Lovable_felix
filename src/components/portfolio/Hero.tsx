@@ -20,6 +20,7 @@ const stacks: Stack[] = [
   { label: "Confluence", color: "from-blue-400/20 to-blue-400/5", Icon: SiConfluence, iconColor: "#172B4D", desc: "팀 문서화와 지식 공유 관리" },
   { label: "Slack", color: "from-fuchsia-500/20 to-fuchsia-500/5", Icon: SiSlack, iconColor: "#4A154B", desc: "팀 커뮤니케이션과 알림 자동화 연동" },
   { label: "Lovable", color: "from-violet-500/20 to-violet-500/5", iconUrl: "/lovable-icon.svg", iconColor: "#8B5CF6", desc: "AI 기반 프롬프트 엔지니어링과 풀스택 웹앱 빌드" },
+  { label: "Zapier", color: "from-orange-500/20 to-orange-500/5", Icon: SiZapier, iconColor: "#FF4A00", desc: "다양한 웹 서비스 간 워크플로우 자동화 연동" },
 ];
 
 const stats = [
