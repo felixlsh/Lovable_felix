@@ -30,6 +30,11 @@ export type Project = {
   tags: string[];
   metric: { v: string; l: string };
   externalHref: string;
+  caseStudy?: {
+    problem: string;
+    solution: string;
+    result: string;
+  };
   overview: string;
   role: string[];
   highlights: { title: string; body: string }[];
