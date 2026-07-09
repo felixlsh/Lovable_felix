@@ -108,9 +108,13 @@ export const Projects = () => {
       </div>
 
       <div className="grid md:grid-cols-2 gap-5">
-        {projects.map((p, i) => (
-          <ProjectCard key={p.slug} p={p} index={i} />
-        ))}
+        {projects.map((p, i) =>
+          p.caseStudy ? (
+            <CaseStudyCard key={p.slug} p={p} index={i} />
+          ) : (
+            <ProjectCard key={p.slug} p={p} index={i} />
+          )
+        )}
       </div>
     </section>
   );
