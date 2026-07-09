@@ -1,5 +1,5 @@
 import { ArrowUpRight, Sparkles, TrendingUp, Database } from "lucide-react";
-import { SiPython, SiMysql, SiLooker, SiJira, SiConfluence, SiSlack } from "react-icons/si";
+import { SiPython, SiMysql, SiLooker, SiJira, SiConfluence, SiSlack, SiZapier } from "react-icons/si";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import type { IconType } from "react-icons";
 
