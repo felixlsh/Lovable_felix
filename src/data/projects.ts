@@ -59,6 +59,14 @@ export const projects: Project[] = [
     tags: ["Python", "Selenium", "Streamlit"],
     metric: { v: "100%", l: "모니터링 자동화" },
     externalHref: "https://felixlsh0election.streamlit.app/",
+    caseStudy: {
+      problem:
+        "중앙선관위 개표 페이지를 매번 수동으로 새로고침하고 후보별 득표율을 손으로 계산해야 해, 변동 시점을 놓치기 쉽고 시계열 흐름을 파악할 수 없었습니다.",
+      solution:
+        "Cloud 서버에서 Selenium으로 개표 데이터를 상시 크롤링하고, Pandas로 이전 스냅샷 대비 Change Point만 필터링해 적재. Streamlit으로 누적 변동 추이 라인 차트와 실시간 로그 테이블을 배포했습니다.",
+      result:
+        "수기 모니터링을 100% 제거한 무인 대시보드를 완성했고, 개표율 변동마다 후보별 득표율 추이가 자동 축적되어 누구나 URL로 실시간 확인할 수 있게 됐습니다.",
+    },
     overview:
       "중앙선거관리위원회의 실시간 개표 현황을 매번 수동으로 새로고침하며 직접 계산해야 하는 비효율을 해결하기 위해 만든 프로젝트입니다. 단순 현재 수치 조회를 넘어 개표율 변동에 따른 후보별 득표율 추이를 시계열로 축적, 실시간 흐름을 직관적으로 모니터링할 수 있는 대시보드 인프라를 구축했습니다.",
     role: [
