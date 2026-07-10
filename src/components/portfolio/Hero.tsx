@@ -47,9 +47,11 @@ export const Hero = () => {
           className="font-display text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl leading-[1.2] tracking-tight animate-fade-up"
           style={{ animationDelay: "80ms" }}
         >
-          <span className="text-gradient">데이터</span>의 흐름을 설계하고,
+          수집부터 분석, 자동화, 시각화까지
           <br />
-          비즈니스의 해답을 <span className="text-gradient">시각화</span>합니다.
+          비즈니스 의사결정을 위한{" "}
+          <span className="text-gradient">End-to-End</span> 데이터 프로젝트를
+          만듭니다.
         </h1>
 
         <p
