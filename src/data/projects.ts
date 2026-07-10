@@ -20,6 +20,12 @@ export type ProjectGallery = {
   images: string[];
 };
 
+export type CaseStudy = {
+  problem: string;
+  solution: string;
+  result: string;
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -41,6 +47,7 @@ export type Project = {
   embedPoweredBy?: string;
   embedCaption?: string;
   pdfUrl?: string;
+  caseStudy?: CaseStudy;
 };
 
 export const projects: Project[] = [
