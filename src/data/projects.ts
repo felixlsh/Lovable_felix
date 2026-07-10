@@ -112,6 +112,11 @@ export const projects: Project[] = [
     ],
     stack: ["SQL", "Looker Studio", "Google BigQuery"],
     image: crmDashboardImg,
+    caseStudy: {
+      problem: "신규 CRM 이관 후 실적 조회 기능이 부재하여, 실무자가 매일 수기로 데이터를 취합·집계해야 했습니다.",
+      solution: "SQL 기반 데이터 파이프라인을 구축하고, Looker Studio로 실적 대시보드를 시각화하여 누구나 손쉽게 조회할 수 있도록 했습니다.",
+      result: "수기 집계 작업을 100% 제거하여 실장단이 결제 금액·내역·고객 정보를 즉시 확인할 수 있게 되었습니다.",
+    },
   },
   {
     slug: "rok-dashboard",
