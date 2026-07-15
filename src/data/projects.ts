@@ -87,6 +87,11 @@ export const projects: Project[] = [
     embedAppName: "서울시장 개표 추이 대시보드",
     embedPoweredBy: "Powered by Streamlit",
     embedCaption: "Streamlit Cloud에 배포된 실시간 개표 추이 대시보드입니다.",
+    caseStudy: {
+      problem: "중앙선거관리위원회 개표 현황을 매번 수동으로 새로고침하며 후보별 득표율을 직접 계산해야 하는 비효율이 있었습니다.",
+      solution: "Cloud 서버에서 Selenium으로 실시간 크롤링하고, Pandas로 Change Point만 필터링·적재한 뒤 Streamlit 대시보드로 시계열 시각화했습니다.",
+      result: "수집·가공·시각화 전 과정을 완전 자동화하여 수기 모니터링을 100% 제거하고, 라이브 URL로 개표 변동 추이를 실시간 확인할 수 있게 되었습니다.",
+    },
   },
   {
     slug: "crm-dashboard",
