@@ -13,6 +13,7 @@ import rok1021_3 from "@/assets/rok/1021_3.png";
 import rok1021_4 from "@/assets/rok/1021_4.webp";
 import ahk2022 from "@/assets/ahk/2022_sosohan_ahk.png";
 import ahk2023 from "@/assets/ahk/2023_dytlab_ahk.png";
+import electionFinalAnalysis from "@/assets/election-final-analysis.png.asset.json";
 
 export type ProjectGallery = {
   title: string;
@@ -92,6 +93,13 @@ export const projects: Project[] = [
       solution: "Cloud 서버에서 Selenium으로 실시간 크롤링하고, Pandas로 Change Point만 필터링·적재한 뒤 Streamlit 대시보드로 시계열 시각화했습니다.",
       result: "수집·가공·시각화 전 과정을 완전 자동화하여 수기 모니터링을 100% 제거하고, 라이브 URL로 개표 변동 추이를 실시간 확인할 수 있게 되었습니다.",
     },
+    galleries: [
+      {
+        title: "주요 차트",
+        subtitle: "Streamlit 대시보드에서 산출된 최종 분석 결과입니다.",
+        images: [electionFinalAnalysis.url],
+      },
+    ],
   },
   {
     slug: "crm-dashboard",
