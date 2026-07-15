@@ -13,6 +13,7 @@ import rok1021_3 from "@/assets/rok/1021_3.png";
 import rok1021_4 from "@/assets/rok/1021_4.webp";
 import ahk2022 from "@/assets/ahk/2022_sosohan_ahk.png";
 import ahk2023 from "@/assets/ahk/2023_dytlab_ahk.png";
+import electionFinalAnalysis from "@/assets/election-final-analysis.png.asset.json";
 
 export type ProjectGallery = {
   title: string;
