@@ -2,6 +2,7 @@ import { ArrowUpRight, Sparkles, TrendingUp, Database } from "lucide-react";
 import { SiPython, SiMysql, SiLooker, SiJira, SiConfluence, SiSlack, SiZapier } from "react-icons/si";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import type { IconType } from "react-icons";
+import { useEffect, useRef, useState } from "react";
 
 type Stack = {
   label: string;
