@@ -91,8 +91,9 @@ export const Hero = () => {
           수집부터 분석, 자동화, 시각화까지
           <br />
           비즈니스 의사결정을 위한{" "}
-          <span className="text-gradient">End-to-End</span> 데이터 프로젝트를
-          만듭니다.
+          <span className="text-gradient">End-to-End</span>
+          <br />
+          데이터 프로젝트를 만듭니다.
         </h1>
 
         <p
