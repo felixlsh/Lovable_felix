@@ -31,12 +31,52 @@ const stats = [
 ];
 
 export const Hero = () => {
+  const [offset, setOffset] = useState(0);
+  const [reduced, setReduced] = useState(false);
+  const rafRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia?.("(prefers-reduced-motion: reduce)");
+    if (mq) {
+      setReduced(mq.matches);
+      const onChange = (e: MediaQueryListEvent) => setReduced(e.matches);
+      mq.addEventListener("change", onChange);
+      return () => mq.removeEventListener("change", onChange);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (reduced) return;
+    const onScroll = () => {
+      if (rafRef.current != null) return;
+      rafRef.current = requestAnimationFrame(() => {
+        setOffset(window.scrollY);
+        rafRef.current = null;
+      });
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
+    };
+  }, [reduced]);
+
+  const p = (rate: number) => (reduced ? undefined : `translate3d(0, ${offset * rate}px, 0)`);
+  const fade = reduced ? 1 : Math.max(0, 1 - offset / 600);
+
   return (
     <section id="about" className="relative overflow-hidden pt-12 pb-16 lg:pt-20">
-      <div className="absolute inset-0 grid-bg pointer-events-none" />
-      <div className="absolute inset-0 data-network pointer-events-none opacity-70" />
+      <div
+        className="absolute inset-0 grid-bg pointer-events-none will-change-transform"
+        style={{ transform: p(0.15), opacity: fade }}
+      />
+      <div
+        className="absolute inset-0 data-network pointer-events-none opacity-70 will-change-transform"
+        style={{ transform: p(0.3), opacity: fade * 0.7 }}
+      />
 
-      <div className="relative">
+      <div className="relative" style={{ transform: p(-0.08) }}>
+
         {/* Status pill */}
         <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 backdrop-blur px-4 py-1.5 text-xs text-muted-foreground mb-8 animate-fade-up">
           <span className="h-1.5 w-1.5 rounded-full bg-primary-glow animate-pulse" />
