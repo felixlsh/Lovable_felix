@@ -1,35 +1,34 @@
-## 목표
-업로드된 PDF(`선거_개표_최종_분석_결과_·_Streamlit.pdf`, 1페이지 A2)를 election-dashboard 상세 페이지의 **갤러리 섹션(기존 8번 렌더링 슬롯)** 에 "주요 차트" 스크린샷으로 첨부합니다.
+# 시네마틱 동적 배경 적용 계획
 
-## 처리 순서
+전체 페이지 배경을 정적인 radial gradient에서 **부드럽게 움직이는 시네마틱 배경**으로 교체합니다. 다크 톤(현재 딥 네이비/블루)을 유지하면서 데이터·기술 포트폴리오 분위기에 맞는 절제된 무드로 갑니다.
 
-### 1. PDF → PNG 변환
-- `pdftoppm`(poppler)로 300 DPI PNG 렌더링 → `/tmp/election-chart.png`.
-- A2 세로가 커서 결과 이미지 폭을 최대 2400px로 리사이즈 (선명도/용량 균형).
+## 시각 컨셉
 
-### 2. Lovable Asset 등록
-- `lovable-assets create --file /tmp/election-chart.png --filename election-final-analysis.png > src/assets/election-final-analysis.png.asset.json`
-- 자산은 CDN에서 서빙 (PDF 원본은 리포에 복사하지 않음).
+- **레이어 1 — 컬러 오브(Aurora Orbs)**: primary/청록/보라 색의 큰 blur 오브 3~4개가 30~40초 주기로 아주 천천히 이동·스케일. 화면 전체를 은은하게 물들이는 시네마틱 라이팅 효과.
+- **레이어 2 — 그리드/노이즈**: 기존 `grid-bg` + 얇은 필름 그레인(SVG noise) 오버레이로 아날로그 질감. 노이즈는 매우 낮은 opacity(2~4%)로 정적 유지.
+- **레이어 3 — 비네트**: 상하 가장자리를 살짝 어둡게 해 시네마틱 프레이밍.
+- 기존 `data-network` 도트 패턴은 Hero 내부 로컬 데코로 유지, 전역 배경에서는 제거하지 않고 그대로 둠.
 
-### 3. `src/data/projects.ts`
-`election-dashboard` 프로젝트에 `galleries` 필드 추가:
+## 구현 위치
 
-```ts
-galleries: [
-  {
-    title: "주요 차트",
-    subtitle: "Streamlit 대시보드에서 산출된 최종 분석 결과입니다.",
-    images: [electionFinalAnalysis.url],
-  },
-]
-```
+- `src/index.css` `body` 배경을 시네마틱 스택으로 교체:
+  - `body::before` → 움직이는 aurora 오브들(고정 위치, `position: fixed; z-index: -2`)
+  - `body::after` → 노이즈 + 비네트(`z-index: -1`)
+  - 기존 `--gradient-radial` 은 초기 페인트용 fallback으로 유지
+- `@keyframes aurora-drift`(translate + scale), `aurora-hue`(선택적으로 아주 미세한 hue-rotate) 추가. 지속시간 30~45s, `ease-in-out` `infinite alternate`.
+- **`prefers-reduced-motion: reduce`** 시 애니메이션 정지(정적 그라디언트만 노출).
+- 라이트 모드(`.light`)에서는 오브 opacity를 낮추고 밝은 톤으로 재정의.
 
-파일 상단에 `import electionFinalAnalysis from "@/assets/election-final-analysis.png.asset.json"` 추가.
+## 성능·접근성
 
-## 렌더링 결과
-election-dashboard 상세 페이지 8번 위치의 기존 `{project.galleries && ...}` 블록이 자동으로 활성화되어, "주요 차트" 섹션에 단일 이미지가 `aspect-[16/7]` 카드로 표시됩니다. 클릭 시 기존 라이트박스로 확대 조회 가능.
+- `will-change: transform` 만 적용, `filter: blur()` 는 오브 자체에 고정값(움직임에 blur 재계산 없음).
+- 배경 요소는 모두 `pointer-events: none`.
+- 콘텐츠 위 대비 유지 위해 오브 총 opacity 상한 ~0.35.
 
-## 변경하지 않는 것
-- `ProjectDetail.tsx` 코드는 이미 갤러리 조건부 렌더링을 지원하므로 수정 없음.
-- 다른 프로젝트 데이터/컴포넌트 변경 없음.
-- 카드 클릭 시 라우팅(모달이 아닌 상세 페이지) 유지 — 이전 대화에서 확정된 방향.
+## 변경 파일
+
+- `src/index.css` (배경 스택 + keyframes + reduced-motion)
+
+## 확인
+
+- 빌드 통과, 다크/라이트 모드, reduced-motion 각각 시각 확인.
