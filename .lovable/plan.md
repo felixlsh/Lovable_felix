@@ -1,34 +1,19 @@
-# 시네마틱 동적 배경 적용 계획
+# Hero 타이포 리듬 조정
 
-전체 페이지 배경을 정적인 radial gradient에서 **부드럽게 움직이는 시네마틱 배경**으로 교체합니다. 다크 톤(현재 딥 네이비/블루)을 유지하면서 데이터·기술 포트폴리오 분위기에 맞는 절제된 무드로 갑니다.
+`src/components/portfolio/Hero.tsx`의 `<h1>` 한 곳만 수정합니다. 현재 모든 브레이크포인트에서 `leading-[1.2]`로 붙어 있고, 모바일 32px → 데스크톱 60px 계단이 다소 급합니다. 4줄 구성(수집… / 비즈니스… / End-to-End / 데이터…)에서 줄 사이가 답답하게 느껴지는 원인입니다.
 
-## 시각 컨셉
+## 변경 사항
 
-- **레이어 1 — 컬러 오브(Aurora Orbs)**: primary/청록/보라 색의 큰 blur 오브 3~4개가 30~40초 주기로 아주 천천히 이동·스케일. 화면 전체를 은은하게 물들이는 시네마틱 라이팅 효과.
-- **레이어 2 — 그리드/노이즈**: 기존 `grid-bg` + 얇은 필름 그레인(SVG noise) 오버레이로 아날로그 질감. 노이즈는 매우 낮은 opacity(2~4%)로 정적 유지.
-- **레이어 3 — 비네트**: 상하 가장자리를 살짝 어둡게 해 시네마틱 프레이밍.
-- 기존 `data-network` 도트 패턴은 Hero 내부 로컬 데코로 유지, 전역 배경에서는 제거하지 않고 그대로 둠.
+**클래스 변경 (한 줄)**
+- 이전: `text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl leading-[1.2] tracking-tight`
+- 이후: `text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem] leading-[1.28] sm:leading-[1.25] lg:leading-[1.22] tracking-[-0.02em]`
 
-## 구현 위치
+## 왜 이렇게
 
-- `src/index.css` `body` 배경을 시네마틱 스택으로 교체:
-  - `body::before` → 움직이는 aurora 오브들(고정 위치, `position: fixed; z-index: -2`)
-  - `body::after` → 노이즈 + 비네트(`z-index: -1`)
-  - 기존 `--gradient-radial` 은 초기 페인트용 fallback으로 유지
-- `@keyframes aurora-drift`(translate + scale), `aurora-hue`(선택적으로 아주 미세한 hue-rotate) 추가. 지속시간 30~45s, `ease-in-out` `infinite alternate`.
-- **`prefers-reduced-motion: reduce`** 시 애니메이션 정지(정적 그라디언트만 노출).
-- 라이트 모드(`.light`)에서는 오브 opacity를 낮추고 밝은 톤으로 재정의.
+- **글자 크기**: 모바일 28px → sm 36px → md 44px → lg 52px. 기존 32/36/48/60의 급격한 점프를 완만한 계단으로 바꿔 줄바꿈 지점에서 어색한 크기 차이를 줄입니다.
+- **줄간격**: 큰 사이즈일수록 line-height를 살짝 좁혀(1.28 → 1.22) 시각 밸런스를 맞춥니다. 작은 화면에선 여백을 유지해 4줄이 뭉치지 않게 합니다.
+- **자간**: `tracking-tight`(-0.025em)에서 `-0.02em`로 살짝 완화. 큰 디스플레이 폰트에서 자모가 붙는 현상을 줄입니다.
 
-## 성능·접근성
+## 범위 밖
 
-- `will-change: transform` 만 적용, `filter: blur()` 는 오브 자체에 고정값(움직임에 blur 재계산 없음).
-- 배경 요소는 모두 `pointer-events: none`.
-- 콘텐츠 위 대비 유지 위해 오브 총 opacity 상한 ~0.35.
-
-## 변경 파일
-
-- `src/index.css` (배경 스택 + keyframes + reduced-motion)
-
-## 확인
-
-- 빌드 통과, 다크/라이트 모드, reduced-motion 각각 시각 확인.
+- 문장/줄바꿈, 색상, 그라데이션, 애니메이션, 아래 문단(`<p>`)은 변경하지 않습니다.
