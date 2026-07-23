@@ -1,4 +1,4 @@
-import { useRef, type MouseEvent } from "react";
+import { useMemo, useRef, useState, type MouseEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useInView } from "@/hooks/use-in-view";

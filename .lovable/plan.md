@@ -1,19 +1,29 @@
-# Hero 타이포 리듬 조정
+# Projects 섹션 태그 필터 추가
 
-`src/components/portfolio/Hero.tsx`의 `<h1>` 한 곳만 수정합니다. 현재 모든 브레이크포인트에서 `leading-[1.2]`로 붙어 있고, 모바일 32px → 데스크톱 60px 계단이 다소 급합니다. 4줄 구성(수집… / 비즈니스… / End-to-End / 데이터…)에서 줄 사이가 답답하게 느껴지는 원인입니다.
+`src/components/portfolio/Projects.tsx`에 태그 기반 필터 UI를 추가해 프로젝트를 손쉽게 좁혀볼 수 있게 합니다. 데이터 스키마와 카드 컴포넌트는 그대로 두고, Projects 컨테이너에만 필터 상태/UI를 얹습니다.
 
-## 변경 사항
+## UI
 
-**클래스 변경 (한 줄)**
-- 이전: `text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl leading-[1.2] tracking-tight`
-- 이후: `text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem] leading-[1.28] sm:leading-[1.25] lg:leading-[1.22] tracking-[-0.02em]`
+헤더 아래, 그리드 위에 얇은 필터 바를 배치합니다.
 
-## 왜 이렇게
+```text
+[ All · 5 ]  [ Python · 3 ]  [ SQL · 1 ]  [ Streamlit · 1 ]  [ Looker Studio · 2 ]  ...
+```
 
-- **글자 크기**: 모바일 28px → sm 36px → md 44px → lg 52px. 기존 32/36/48/60의 급격한 점프를 완만한 계단으로 바꿔 줄바꿈 지점에서 어색한 크기 차이를 줄입니다.
-- **줄간격**: 큰 사이즈일수록 line-height를 살짝 좁혀(1.28 → 1.22) 시각 밸런스를 맞춥니다. 작은 화면에선 여백을 유지해 4줄이 뭉치지 않게 합니다.
-- **자간**: `tracking-tight`(-0.025em)에서 `-0.02em`로 살짝 완화. 큰 디스플레이 폰트에서 자모가 붙는 현상을 줄입니다.
+- 각 칩: `text-xs` 라운드 필(pill), 비활성은 `bg-muted/40 text-muted-foreground border-border`, 활성은 `bg-primary/15 text-primary-glow border-primary/40`.
+- 각 칩 오른쪽에 프로젝트 개수 뱃지(`text-[10px] opacity-70`).
+- 좌우로 스크롤 가능한 flex-wrap 컨테이너 (`flex flex-wrap gap-2`), 모바일에서도 자연스러운 랩.
+- 진입 시 헤더와 같은 `animate-fade-up` (딜레이 60ms).
+
+## 동작
+
+- `useState<string>("All")` 하나로 관리 — 단일 선택 방식(다중 필터는 이 단계에선 오버스펙).
+- 태그 목록은 `projects` 배열에서 `useMemo`로 도출: 등장 빈도 내림차순, 동률이면 원본 순서.
+- 필터 적용: `selected === "All" ? projects : projects.filter(p => p.tags.includes(selected))`.
+- 필터링된 배열을 그대로 기존 렌더 분기(`caseStudy ? CaseStudyCard : ProjectCard`)로 전달 — 카드 로직/키/애니메이션 인덱스 유지.
+- 결과가 0개일 때: 그리드 자리에 `col-span-full` 안내 문구 ("해당 태그의 프로젝트가 없어요") + "All 보기" 리셋 버튼.
 
 ## 범위 밖
 
-- 문장/줄바꿈, 색상, 그라데이션, 애니메이션, 아래 문단(`<p>`)은 변경하지 않습니다.
+- `Project` 타입, 카드 디자인, `CaseStudyCard`, 상세 페이지, 사이드바 네비게이션은 변경하지 않습니다.
+- 검색창/다중 선택/카테고리 그룹핑은 이번 단계에서 넣지 않습니다 (추후 확장 가능).
