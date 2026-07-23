@@ -1,4 +1,4 @@
-import { useRef, type MouseEvent } from "react";
+import { useMemo, useRef, useState, type MouseEvent } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useInView } from "@/hooks/use-in-view";
@@ -88,13 +88,35 @@ const ProjectCard = ({ p, index }: { p: Project; index: number }) => {
 
 export const Projects = () => {
   const header = useInView<HTMLDivElement>();
+  const filterRow = useInView<HTMLDivElement>();
+  const [selected, setSelected] = useState<string>("All");
+
+  const tagOptions = useMemo(() => {
+    const counts = new Map<string, number>();
+    const order: string[] = [];
+    projects.forEach((p) => {
+      p.tags.forEach((t) => {
+        if (!counts.has(t)) order.push(t);
+        counts.set(t, (counts.get(t) ?? 0) + 1);
+      });
+    });
+    const sorted = order
+      .map((t) => ({ tag: t, count: counts.get(t)! }))
+      .sort((a, b) => b.count - a.count || order.indexOf(a.tag) - order.indexOf(b.tag));
+    return [{ tag: "All", count: projects.length }, ...sorted];
+  }, []);
+
+  const filtered = useMemo(
+    () => (selected === "All" ? projects : projects.filter((p) => p.tags.includes(selected))),
+    [selected]
+  );
 
   return (
     <section id="projects" className="py-20 lg:py-28">
       <div
         ref={header.ref}
         className={cn(
-          "flex items-end justify-between mb-12 opacity-0",
+          "flex items-end justify-between mb-8 opacity-0",
           header.inView && "animate-fade-up"
         )}
       >
@@ -107,12 +129,58 @@ export const Projects = () => {
         </p>
       </div>
 
+      <div
+        ref={filterRow.ref}
+        className={cn(
+          "flex flex-wrap gap-2 mb-8 opacity-0",
+          filterRow.inView && "animate-fade-up"
+        )}
+        style={{ animationDelay: filterRow.inView ? "60ms" : undefined }}
+        role="tablist"
+        aria-label="Filter projects by tag"
+      >
+        {tagOptions.map(({ tag, count }) => {
+          const isActive = selected === tag;
+          return (
+            <button
+              key={tag}
+              role="tab"
+              aria-selected={isActive}
+              onClick={() => setSelected(tag)}
+              className={cn(
+                "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs transition-all",
+                isActive
+                  ? "bg-primary/15 text-primary-glow border-primary/40 shadow-[inset_0_0_0_1px_hsl(var(--primary)/0.25)]"
+                  : "bg-muted/40 text-muted-foreground border-border hover:text-foreground hover:border-primary/40"
+              )}
+            >
+              <span>{tag}</span>
+              <span className={cn("text-[10px] tabular-nums", isActive ? "opacity-80" : "opacity-60")}>
+                {count}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+
       <div className="grid md:grid-cols-2 gap-5">
-        {projects.map((p, i) =>
-          p.caseStudy ? (
-            <CaseStudyCard key={p.slug} p={p} index={i} />
-          ) : (
-            <ProjectCard key={p.slug} p={p} index={i} />
+        {filtered.length === 0 ? (
+          <div className="md:col-span-2 rounded-2xl border border-dashed border-border bg-muted/20 p-10 text-center">
+            <p className="text-sm text-muted-foreground mb-4">해당 태그의 프로젝트가 없어요.</p>
+            <button
+              onClick={() => setSelected("All")}
+              className="inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3 py-1.5 text-xs text-primary-glow hover:bg-primary/20 transition-colors"
+            >
+              All 보기
+            </button>
+          </div>
+        ) : (
+          filtered.map((p, i) =>
+            p.caseStudy ? (
+              <CaseStudyCard key={p.slug} p={p} index={i} />
+            ) : (
+              <ProjectCard key={p.slug} p={p} index={i} />
+            )
           )
         )}
       </div>
