@@ -85,7 +85,7 @@ export const Hero = () => {
         </div>
 
         <h1
-          className="font-display text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl leading-[1.2] tracking-tight animate-fade-up"
+          className="font-display text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem] leading-[1.28] sm:leading-[1.25] lg:leading-[1.22] tracking-[-0.02em] animate-fade-up"
           style={{ animationDelay: "80ms" }}
         >
           수집부터 분석, 자동화, 시각화까지
