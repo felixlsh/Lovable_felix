@@ -105,6 +105,7 @@ export const Projects = () => {
   const header = useInView<HTMLDivElement>();
   const filterRow = useInView<HTMLDivElement>();
   const [selected, setSelected] = useState<string>("All");
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
 
   const tagOptions = useMemo(() => {
     const counts = new Map<string, number>();
