@@ -75,10 +75,7 @@ const ScrollToTop = () => {
     const tryScroll = () => {
       const el = document.getElementById(id);
       if (el) {
-        const top =
-          el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
-        console.log("[ScrollToTop] element found, scrolling to:", { id, top, scrollY: window.scrollY, offset: SCROLL_OFFSET });
-        window.scrollTo({ top: Math.max(0, top), left: 0, behavior });
+        smoothScrollToId(id);
         return;
       }
       if (performance.now() - start < MAX_WAIT_MS) {
