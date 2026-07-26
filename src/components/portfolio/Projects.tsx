@@ -5,8 +5,17 @@ import { useInView } from "@/hooks/use-in-view";
 import { cn } from "@/lib/utils";
 import { projects, type Project } from "@/data/projects";
 import { CaseStudyCard } from "./CaseStudyCard";
+import { ProjectModal } from "./ProjectModal";
 
-const ProjectCard = ({ p, index }: { p: Project; index: number }) => {
+const ProjectCard = ({
+  p,
+  index,
+  onOpen,
+}: {
+  p: Project;
+  index: number;
+  onOpen?: (p: Project) => void;
+}) => {
   const Icon = p.icon;
   const isLive = p.status === "In Progress";
   const cardRef = useRef<HTMLAnchorElement | null>(null);
@@ -25,11 +34,18 @@ const ProjectCard = ({ p, index }: { p: Project; index: number }) => {
     el.style.setProperty("--my", `${e.clientY - r.top}px`);
   };
 
+  const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (!onOpen || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    onOpen(p);
+  };
+
   return (
     <Link
       ref={setRefs}
       to={`/projects/${p.slug}`}
       onMouseMove={onMove}
+      onClick={onClick}
       className={cn(
         "shine group relative block rounded-2xl border border-border bg-gradient-card p-6 md:p-7 overflow-hidden transition-all duration-300 hover:border-primary/60 hover:-translate-y-1 hover:shadow-elevated opacity-0",
         inView && "animate-fade-up"
@@ -90,6 +106,7 @@ export const Projects = () => {
   const header = useInView<HTMLDivElement>();
   const filterRow = useInView<HTMLDivElement>();
   const [selected, setSelected] = useState<string>("All");
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
 
   const tagOptions = useMemo(() => {
     const counts = new Map<string, number>();
@@ -177,13 +194,19 @@ export const Projects = () => {
         ) : (
           filtered.map((p, i) =>
             p.caseStudy ? (
-              <CaseStudyCard key={p.slug} p={p} index={i} />
+              <CaseStudyCard key={p.slug} p={p} index={i} onOpen={setActiveProject} />
             ) : (
-              <ProjectCard key={p.slug} p={p} index={i} />
+              <ProjectCard key={p.slug} p={p} index={i} onOpen={setActiveProject} />
             )
           )
         )}
       </div>
+
+      <ProjectModal
+        project={activeProject}
+        open={!!activeProject}
+        onOpenChange={(o) => !o && setActiveProject(null)}
+      />
     </section>
   );
 };
