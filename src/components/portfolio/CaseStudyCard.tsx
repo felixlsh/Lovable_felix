@@ -11,7 +11,15 @@ const steps = [
   { key: "result" as const, label: "성과", Icon: Trophy },
 ];
 
-export const CaseStudyCard = ({ p, index }: { p: Project; index: number }) => {
+export const CaseStudyCard = ({
+  p,
+  index,
+  onOpen,
+}: {
+  p: Project;
+  index: number;
+  onOpen?: (p: Project) => void;
+}) => {
   const cardRef = useRef<HTMLAnchorElement | null>(null);
   const { ref: viewRef, inView } = useInView<HTMLAnchorElement>();
 
@@ -28,6 +36,12 @@ export const CaseStudyCard = ({ p, index }: { p: Project; index: number }) => {
     el.style.setProperty("--my", `${e.clientY - r.top}px`);
   };
 
+  const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (!onOpen || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    onOpen(p);
+  };
+
   if (!p.caseStudy) return null;
 
   return (
@@ -35,6 +49,7 @@ export const CaseStudyCard = ({ p, index }: { p: Project; index: number }) => {
       ref={setRefs}
       to={`/projects/${p.slug}`}
       onMouseMove={onMove}
+      onClick={onClick}
       className={cn(
         "shine group relative block rounded-2xl border border-primary/40 bg-gradient-card p-6 md:p-7 overflow-hidden transition-all duration-300 hover:border-primary/60 hover:-translate-y-1 hover:shadow-elevated opacity-0",
         inView && "animate-fade-up"
