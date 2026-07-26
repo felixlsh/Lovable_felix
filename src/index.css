@@ -268,3 +268,7 @@
     pointer-events: none;
   }
 }
+
+section[id] {
+  scroll-margin-top: 5rem;
+}
