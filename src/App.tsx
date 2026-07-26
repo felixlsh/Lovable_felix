@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound.tsx";
 import ProjectDetail from "./pages/ProjectDetail.tsx";
 import { ScrollProgress } from "./components/ScrollProgress.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
+import { ScrollToTopButton } from "./components/ScrollToTopButton.tsx";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const App = () => (
       <BrowserRouter>
         <ScrollProgress />
         <ScrollToTop />
+        <ScrollToTopButton />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
