@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./ThemeToggle";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader } from "@/components/ui/sheet";
 import { projects } from "@/data/projects";
+import { smoothScrollTo, smoothScrollToId } from "@/lib/smooth-scroll";
 
 const items = [
   { id: "about", label: "About", icon: User },
