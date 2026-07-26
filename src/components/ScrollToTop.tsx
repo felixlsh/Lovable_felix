@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
+import { smoothScrollToId } from "@/lib/smooth-scroll";
 
 /**
  * Robust scroll handling on route/hash change:
