@@ -5,6 +5,7 @@ import { useInView } from "@/hooks/use-in-view";
 import { cn } from "@/lib/utils";
 import { projects, type Project } from "@/data/projects";
 import { CaseStudyCard } from "./CaseStudyCard";
+import { ProjectModal } from "./ProjectModal";
 
 const ProjectCard = ({
   p,
