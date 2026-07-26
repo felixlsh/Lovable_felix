@@ -192,13 +192,19 @@ export const Projects = () => {
         ) : (
           filtered.map((p, i) =>
             p.caseStudy ? (
-              <CaseStudyCard key={p.slug} p={p} index={i} />
+              <CaseStudyCard key={p.slug} p={p} index={i} onOpen={setActiveProject} />
             ) : (
-              <ProjectCard key={p.slug} p={p} index={i} />
+              <ProjectCard key={p.slug} p={p} index={i} onOpen={setActiveProject} />
             )
           )
         )}
       </div>
+
+      <ProjectModal
+        project={activeProject}
+        open={!!activeProject}
+        onOpenChange={(o) => !o && setActiveProject(null)}
+      />
     </section>
   );
 };
