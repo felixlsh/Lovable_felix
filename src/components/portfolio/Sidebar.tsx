@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./ThemeToggle";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetHeader } from "@/components/ui/sheet";
 import { projects } from "@/data/projects";
+import { smoothScrollTo, smoothScrollToId } from "@/lib/smooth-scroll";
 
 const items = [
   { id: "about", label: "About", icon: User },
@@ -86,30 +87,25 @@ export const Sidebar = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isProjectDetail]);
 
-  const SCROLL_OFFSET = 64;
   const scrollToSection = (id: string) => {
-    console.log("[Sidebar] scrollToSection called:", id);
     if (id === "about") {
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-      console.log("[Sidebar] scrolling to top (about)");
+      smoothScrollTo(0);
       return;
     }
-    const el = document.getElementById(id);
-    if (!el) {
-      console.warn("[Sidebar] element not found:", id);
-      return;
-    }
-    const top = el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
-    console.log("[Sidebar] scrolling to:", { id, top, scrollY: window.scrollY, offset: SCROLL_OFFSET });
-    window.scrollTo({ top: Math.max(0, top), left: 0, behavior: "smooth" });
+    smoothScrollToId(id);
   };
 
   const go = (id: string) => {
-    console.log("[Sidebar] go called:", id, { isProjectDetail, pathname: location.pathname });
-    setMobileOpen(false);
+    setActive(id);
     if (isProjectDetail) {
+      setMobileOpen(false);
       navigate(`/#${id}`);
-      console.log("[Sidebar] navigating from detail to /#" + id);
+      return;
+    }
+    if (mobileOpen) {
+      // Let the drawer close (and layout settle) before animating.
+      setMobileOpen(false);
+      window.setTimeout(() => scrollToSection(id), 260);
       return;
     }
     scrollToSection(id);
