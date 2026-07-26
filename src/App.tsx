@@ -20,6 +20,7 @@ const App = () => (
       <BrowserRouter>
         <ScrollProgress />
         <ScrollToTop />
+        <ScrollToTopButton />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
