@@ -1,5 +1,7 @@
-import { Sidebar } from "@/components/portfolio/Sidebar";
+import { TopNav } from "@/components/portfolio/TopNav";
 import { Hero } from "@/components/portfolio/Hero";
+import { StackMarquee } from "@/components/portfolio/StackMarquee";
+import { Metrics } from "@/components/portfolio/Metrics";
 import { ElectionProject } from "@/components/portfolio/ElectionProject";
 import { RokProject } from "@/components/portfolio/RokProject";
 import { Automation } from "@/components/portfolio/Automation";
@@ -10,10 +12,14 @@ import { Contact } from "@/components/portfolio/Contact";
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Sidebar />
-      <main className="lg:pl-64">
-        <div className="mx-auto max-w-6xl px-5 md:px-10 lg:px-16">
+      <TopNav />
+      <main>
+        <div className="mx-auto max-w-6xl px-5 md:px-8 lg:px-10">
           <Hero />
+        </div>
+        <StackMarquee />
+        <div className="mx-auto max-w-6xl px-5 md:px-8 lg:px-10">
+          <Metrics />
           <ElectionProject />
           <RokProject />
           <Automation />
@@ -27,4 +33,3 @@ const Index = () => {
 };
 
 export default Index;
-
