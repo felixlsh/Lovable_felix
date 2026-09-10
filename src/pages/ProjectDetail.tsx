@@ -5,7 +5,7 @@ import { getProjectBySlug } from "@/data/projects";
 import NotFound from "./NotFound";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Sidebar } from "@/components/portfolio/Sidebar";
+import { TopNav } from "@/components/portfolio/TopNav";
 import { Reveal } from "@/components/Reveal";
 
 const ProjectDetail = () => {
@@ -25,11 +25,11 @@ const ProjectDetail = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground animate-fade-in">
-      <Sidebar />
-      <main className="lg:pl-64">
+      <TopNav />
+      <main>
         {/* Sticky sub-header */}
-        <div className="sticky top-0 z-30 border-b border-border bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
-          <div className="mx-auto max-w-6xl px-5 md:px-10 lg:px-16 h-14 flex items-center gap-3">
+        <div className="sticky top-[4.75rem] z-30 border-b border-border bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
+          <div className="mx-auto max-w-6xl px-5 md:px-8 lg:px-10 h-14 flex items-center gap-3">
             <Link
               to="/#projects"
               className="inline-flex items-center justify-center h-8 w-8 rounded-md border border-border bg-card/60 text-muted-foreground hover:text-foreground hover:border-primary/40 transition-colors flex-shrink-0"
@@ -63,7 +63,7 @@ const ProjectDetail = () => {
           </div>
         </div>
 
-        <div className="mx-auto max-w-6xl px-5 md:px-10 lg:px-16 py-10 md:py-16 animate-fade-in" style={{ animationDelay: "80ms", animationFillMode: "backwards" }}>
+        <div className="mx-auto max-w-6xl px-5 md:px-8 lg:px-10 pt-28 pb-16 md:pb-20 animate-fade-in" style={{ animationDelay: "80ms", animationFillMode: "backwards" }}>
         {/* Back link */}
         <Link
           to="/#projects"
