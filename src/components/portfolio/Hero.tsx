@@ -8,7 +8,7 @@ export const Hero = () => {
       id="about"
       className="relative flex min-h-[92vh] items-center pt-28 pb-16 md:pt-32 lg:min-h-screen"
     >
-      <div className="grid w-full items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
+      <div className="grid w-full items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
         {/* Left — editorial headline */}
         <div className="relative z-10">
           <p
@@ -19,12 +19,13 @@ export const Hero = () => {
           </p>
 
           <h1
-            className="display-xl mt-6 text-[2.6rem] leading-[1.05] sm:text-[3.6rem] md:text-[4.4rem] lg:text-[4.8rem] xl:text-[5.4rem] animate-fade-up"
+            className="display-xl mt-6 animate-fade-up text-[clamp(2.3rem,9vw,3.1rem)] leading-[1.08] lg:text-[clamp(3rem,4.6vw,4.35rem)]"
             style={{ animationDelay: "120ms" }}
           >
-            데이터를 읽고,
-            <br />
-            <span className="text-gradient">다음</span>을 만듭니다.
+            <span className="block lg:whitespace-nowrap">데이터를 읽고,</span>
+            <span className="block lg:whitespace-nowrap">
+              <span className="text-gradient">다음</span>을 만듭니다.
+            </span>
           </h1>
 
           <p
