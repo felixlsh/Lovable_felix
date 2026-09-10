@@ -8,7 +8,7 @@ import { smoothScrollToId, smoothScrollTo } from "@/lib/smooth-scroll";
 
 const items = [
   { id: "about", label: "About" },
-  { id: "work", label: "Work" },
+  { id: "projects", label: "Work" },
   { id: "experience", label: "Experience" },
   { id: "contact", label: "Contact" },
 ];
