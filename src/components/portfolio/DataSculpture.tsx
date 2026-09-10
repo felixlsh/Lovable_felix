@@ -24,6 +24,9 @@ export const DataSculpture = ({ className }: { className?: string }) => {
     let width = 0;
     let height = 0;
 
+    const isCoarse = window.matchMedia("(pointer: coarse)").matches;
+    const animated = motion && !isCoarse;
+
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
       width = rect.width;
@@ -31,8 +34,9 @@ export const DataSculpture = ({ className }: { className?: string }) => {
       canvas.width = Math.round(width * dpr);
       canvas.height = Math.round(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      // Keep a visible frame after any size change, even when motion is off.
+      if (!animated) render(0);
     };
-    resize();
 
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
@@ -188,7 +192,7 @@ export const DataSculpture = ({ className }: { className?: string }) => {
     };
 
     const start = () => {
-      if (running || !motion) return;
+      if (running || !animated) return;
       running = true;
       raf = requestAnimationFrame(loop);
     };
@@ -197,6 +201,8 @@ export const DataSculpture = ({ className }: { className?: string }) => {
       if (raf !== null) cancelAnimationFrame(raf);
       raf = null;
     };
+
+    resize();
 
     const io = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
@@ -211,7 +217,7 @@ export const DataSculpture = ({ className }: { className?: string }) => {
     };
     document.addEventListener("visibilitychange", onVisibility);
 
-    if (motion) {
+    if (animated) {
       start();
     } else {
       render(0); // single static frame — content stays visible
@@ -221,7 +227,6 @@ export const DataSculpture = ({ className }: { className?: string }) => {
       stop();
       io.disconnect();
       ro.disconnect();
-      document.removeEventListener("visibilitychange", onVisibility);
       document.removeEventListener("visibilitychange", onVisibility);
       if (finePointer) window.removeEventListener("pointermove", onPointerMove);
     };

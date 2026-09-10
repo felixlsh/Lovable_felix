@@ -29,8 +29,11 @@ export const MotionProvider = ({ children }: { children: ReactNode }) => {
   const [userEnabled, setUserEnabled] = useState(true);
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === "off") setUserEnabled(false);
+    try {
+      if (localStorage.getItem(STORAGE_KEY) === "off") setUserEnabled(false);
+    } catch {
+      /* storage blocked — keep default */
+    }
 
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     setSystemReduced(mq.matches);
@@ -48,7 +51,11 @@ export const MotionProvider = ({ children }: { children: ReactNode }) => {
   const toggle = useCallback(() => {
     setUserEnabled((prev) => {
       const next = !prev;
-      localStorage.setItem(STORAGE_KEY, next ? "on" : "off");
+      try {
+        localStorage.setItem(STORAGE_KEY, next ? "on" : "off");
+      } catch {
+        /* storage blocked — session-only preference */
+      }
       return next;
     });
   }, []);

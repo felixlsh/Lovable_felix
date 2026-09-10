@@ -1,194 +1,79 @@
-import { ArrowUpRight, Sparkles, TrendingUp, Database } from "lucide-react";
-import { SiPython, SiMysql, SiLooker, SiJira, SiConfluence, SiSlack, SiZapier } from "react-icons/si";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import type { IconType } from "react-icons";
-import { useEffect, useRef, useState } from "react";
-
-type Stack = {
-  label: string;
-  color: string;
-  Icon?: IconType;
-  iconUrl?: string;
-  iconColor: string;
-  desc: string;
-};
-
-const stacks: Stack[] = [
-  { label: "Python", color: "from-blue-500/20 to-blue-500/5", Icon: SiPython, iconColor: "#3776AB", desc: "데이터 처리·자동화·분석 스크립트 작성" },
-  { label: "SQL", color: "from-cyan-500/20 to-cyan-500/5", Icon: SiMysql, iconColor: "#4479A1", desc: "대용량 데이터 추출·집계 쿼리 작성" },
-  { label: "Looker Studio", color: "from-indigo-500/20 to-indigo-500/5", Icon: SiLooker, iconColor: "#4285F4", desc: "비즈니스 KPI 대시보드 시각화" },
-  { label: "Jira", color: "from-sky-500/20 to-sky-500/5", Icon: SiJira, iconColor: "#0052CC", desc: "이슈 트래킹과 스프린트 기반 협업" },
-  { label: "Confluence", color: "from-blue-400/20 to-blue-400/5", Icon: SiConfluence, iconColor: "#172B4D", desc: "팀 문서화와 지식 공유 관리" },
-  { label: "Slack", color: "from-fuchsia-500/20 to-fuchsia-500/5", Icon: SiSlack, iconColor: "#4A154B", desc: "팀 커뮤니케이션과 알림 자동화 연동" },
-  { label: "Lovable", color: "from-violet-500/20 to-violet-500/5", iconUrl: "/lovable-icon.svg", iconColor: "#8B5CF6", desc: "AI 기반 프롬프트 엔지니어링과 풀스택 웹앱 빌드" },
-  { label: "Zapier", color: "from-orange-500/20 to-orange-500/5", Icon: SiZapier, iconColor: "#FF4A00", desc: "다양한 웹 서비스 간 워크플로우 자동화 연동" },
-];
-
-const stats = [
-  { value: "1,000+", label: "분석 계정", sub: "Rise of Kingdoms" },
-  { value: "4년+", label: "데이터 경력", sub: "취미 · 실무 포함" },
-  { value: "3", label: "주요 프로젝트", sub: "Data viz & 자동화" },
-];
+import { ArrowUpRight } from "lucide-react";
+import { DataSculpture } from "./DataSculpture";
+import { smoothScrollToId } from "@/lib/smooth-scroll";
 
 export const Hero = () => {
-  const [offset, setOffset] = useState(0);
-  const [reduced, setReduced] = useState(false);
-  const rafRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    const mq = window.matchMedia?.("(prefers-reduced-motion: reduce)");
-    if (mq) {
-      setReduced(mq.matches);
-      const onChange = (e: MediaQueryListEvent) => setReduced(e.matches);
-      mq.addEventListener("change", onChange);
-      return () => mq.removeEventListener("change", onChange);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (reduced) return;
-    const onScroll = () => {
-      if (rafRef.current != null) return;
-      rafRef.current = requestAnimationFrame(() => {
-        setOffset(window.scrollY);
-        rafRef.current = null;
-      });
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (rafRef.current != null) cancelAnimationFrame(rafRef.current);
-    };
-  }, [reduced]);
-
-  const p = (rate: number) => (reduced ? undefined : `translate3d(0, ${offset * rate}px, 0)`);
-  const fade = reduced ? 1 : Math.max(0, 1 - offset / 600);
-
   return (
-    <section id="about" className="relative overflow-hidden pt-12 pb-16 lg:pt-20">
-      <div
-        className="absolute inset-0 grid-bg pointer-events-none will-change-transform"
-        style={{ transform: p(0.15), opacity: fade }}
-      />
-      <div
-        className="absolute inset-0 data-network pointer-events-none opacity-70 will-change-transform"
-        style={{ transform: p(0.3), opacity: fade * 0.7 }}
-      />
-
-      <div className="relative" style={{ transform: p(-0.08) }}>
-
-        {/* Status pill */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 backdrop-blur px-4 py-1.5 text-xs text-muted-foreground mb-8 animate-fade-up">
-          <span className="h-1.5 w-1.5 rounded-full bg-primary-glow animate-pulse" />
-          PORTFOLIO · 2026
-          <Sparkles className="h-3 w-3 text-primary-glow" />
-        </div>
-
-        <h1
-          className="font-display text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem] leading-[1.28] sm:leading-[1.25] lg:leading-[1.22] tracking-[-0.02em] animate-fade-up"
-          style={{ animationDelay: "80ms" }}
-        >
-          수집부터 분석, 자동화, 시각화까지
-          <br />
-          비즈니스 의사결정을 위한{" "}
-          <span className="text-gradient">End-to-End</span>
-          <br />
-          데이터 프로젝트를 만듭니다.
-        </h1>
-
-        <p
-          className="mt-6 sm:mt-8 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed animate-fade-up"
-          style={{ animationDelay: "180ms" }}
-        >
-          안녕하세요, <span className="text-foreground font-semibold">이승헌</span>입니다.
-          단순한 열정을 넘어, <span className="font-bold text-[hsl(var(--primary))]">데이터</span> 기반의 정교한{" "}
-          <span className="font-bold text-[hsl(var(--primary))]">의사결정</span>으로 가치를 증명한다고 생각합니다.
-        </p>
-
-        <p
-          className="mt-3 max-w-2xl text-sm sm:text-base text-foreground/90 font-medium animate-fade-up"
-          style={{ animationDelay: "220ms" }}
-        >
-          <span className="font-bold text-[hsl(var(--primary))]">1,000개 이상</span>의 유저 데이터를 다뤄본 경험으로 비즈니스 임팩트를 만들고자 합니다.
-        </p>
-
-        {/* CTA */}
-        <div
-          className="mt-10 flex flex-wrap gap-3 animate-fade-up"
-          style={{ animationDelay: "260ms" }}
-        >
-          <a
-            href="#projects"
-            className="group inline-flex items-center gap-2 rounded-xl bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5"
+    <section
+      id="about"
+      className="relative flex min-h-[92vh] items-center pt-28 pb-16 md:pt-32 lg:min-h-screen"
+    >
+      <div className="grid w-full items-center gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        {/* Left — editorial headline */}
+        <div className="relative z-10">
+          <p
+            className="eyebrow text-[10px] text-muted-foreground animate-fade-up sm:text-[11px]"
+            style={{ animationDelay: "40ms" }}
           >
-            프로젝트 보기
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 rounded-xl border border-border bg-card/40 backdrop-blur px-6 py-3 text-sm font-semibold text-foreground hover:bg-card transition-colors"
-          >
-            연락하기
-          </a>
-        </div>
+            Felix <span className="text-primary-glow">/</span> Data Analyst &amp; Builder
+          </p>
 
-        {/* Tech stack badges */}
-        <div className="mt-12 animate-fade-up" style={{ animationDelay: "340ms" }}>
-          <p className="text-[10px] tracking-[0.25em] text-muted-foreground mb-4">CORE STACK</p>
-          <div className="flex flex-wrap gap-2.5">
-            {stacks.map((s, i) => (
-              <Tooltip key={s.label}>
-                <TooltipTrigger asChild>
-                  <span
-                    className={`group/badge inline-flex items-center gap-2 rounded-full border border-border bg-gradient-to-br ${s.color} px-4 py-2 text-sm font-semibold text-foreground backdrop-blur transition-all duration-300 hover:border-primary/60 hover:shadow-glow hover:-translate-y-0.5 animate-fade-up cursor-default`}
-                    style={{ animationDelay: `${400 + i * 70}ms` }}
-                  >
-                    {s.Icon ? (
-                      <s.Icon
-                        className="h-4 w-4 transition-transform duration-300 ease-out group-hover/badge:scale-125 group-hover/badge:-rotate-6 animate-scale-in"
-                        style={{ color: s.iconColor, animationDelay: `${500 + i * 70}ms`, animationFillMode: "backwards" }}
-                      />
-                    ) : (
-                      <img
-                        src={s.iconUrl}
-                        alt={s.label}
-                        className="h-4 w-4 transition-transform duration-300 ease-out group-hover/badge:scale-125 group-hover/badge:-rotate-6 animate-scale-in object-contain"
-                        style={{ animationDelay: `${500 + i * 70}ms`, animationFillMode: "backwards" }}
-                      />
-                    )}
-                    {s.label}
-                  </span>
-                </TooltipTrigger>
-                <TooltipContent side="top" align="center" sideOffset={8} avoidCollisions={false} className="z-[200] max-w-xs">
-                  {s.desc}
-                </TooltipContent>
-              </Tooltip>
-            ))}
+          <h1
+            className="display-xl mt-6 animate-fade-up text-[clamp(2.3rem,9vw,3.1rem)] leading-[1.08] lg:text-[clamp(3rem,4.6vw,4.35rem)]"
+            style={{ animationDelay: "120ms" }}
+          >
+            <span className="block lg:whitespace-nowrap">데이터를 읽고,</span>
+            <span className="block lg:whitespace-nowrap">
+              <span className="text-gradient">다음</span>을 만듭니다.
+            </span>
+          </h1>
+
+          <p
+            className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground animate-fade-up sm:text-lg"
+            style={{ animationDelay: "200ms" }}
+          >
+            수집부터 분석, 자동화, 시각화까지 — 비즈니스 의사결정을 위한{" "}
+            <span className="font-semibold text-foreground">End-to-End</span> 데이터 프로젝트를 만듭니다.
+          </p>
+
+          <p
+            className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground animate-fade-up sm:text-base"
+            style={{ animationDelay: "260ms" }}
+          >
+            안녕하세요, <span className="font-semibold text-foreground">이승헌</span>입니다. 단순한 열정을 넘어,
+            데이터 기반의 정교한 의사결정으로 가치를 증명한다고 생각합니다.{" "}
+            <span className="font-semibold text-foreground">1,000개 이상</span>의 유저 데이터를 다뤄본 경험으로
+            비즈니스 임팩트를 만들고자 합니다.
+          </p>
+
+          <div
+            className="mt-10 flex flex-wrap gap-3 animate-fade-up"
+            style={{ animationDelay: "320ms" }}
+          >
+            <button
+              type="button"
+              onClick={() => smoothScrollToId("projects")}
+              className="group inline-flex items-center gap-2 rounded-full bg-gradient-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5"
+            >
+              프로젝트 보기
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </button>
+            <button
+              type="button"
+              onClick={() => smoothScrollToId("contact")}
+              className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-semibold text-foreground/90 transition-colors hover:border-primary/50 hover:text-foreground"
+            >
+              연락하기
+            </button>
           </div>
         </div>
 
-        {/* KPI strip */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {stats.map((s, i) => (
-            <div
-              key={s.label}
-              className="shine relative rounded-2xl border border-border bg-gradient-card p-6 overflow-hidden group hover:border-primary/50 hover:-translate-y-1 transition-all duration-300 animate-fade-up"
-              style={{ animationDelay: `${300 + i * 120}ms` }}
-            >
-              <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-primary/10 blur-2xl group-hover:bg-primary/30 transition-colors" />
-              <div className="relative flex items-start justify-between mb-4">
-                <div className="h-9 w-9 rounded-lg bg-primary/15 flex items-center justify-center transition-transform group-hover:scale-110">
-                  {i === 0 && <Database className="h-4 w-4 text-primary-glow" />}
-                  {i === 1 && <TrendingUp className="h-4 w-4 text-primary-glow" />}
-                  {i === 2 && <Sparkles className="h-4 w-4 text-primary-glow" />}
-                </div>
-                <span className="text-[10px] text-muted-foreground tracking-widest">0{i + 1}</span>
-              </div>
-              <p className="font-display text-4xl tabular-nums">{s.value}</p>
-              <p className="mt-2 text-sm font-semibold text-foreground">{s.label}</p>
-              <p className="text-xs text-muted-foreground mt-0.5">{s.sub}</p>
-            </div>
-          ))}
+        {/* Right — conceptual data sculpture */}
+        <div className="relative animate-fade-in" style={{ animationDelay: "220ms" }}>
+          <DataSculpture className="mx-auto aspect-square w-full max-w-[380px] sm:max-w-[460px] lg:max-w-none lg:h-[620px]" />
+          <p className="mt-2 text-center text-[10px] text-muted-foreground/70 lg:text-right">
+            개념적 시각 요소 (실제 분석 수치 아님)
+          </p>
         </div>
       </div>
     </section>

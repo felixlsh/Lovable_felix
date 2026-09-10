@@ -13,7 +13,7 @@ import rok1021_3 from "@/assets/rok/1021_3.png";
 import rok1021_4 from "@/assets/rok/1021_4.webp";
 import ahk2022 from "@/assets/ahk/2022_sosohan_ahk.png";
 import ahk2023 from "@/assets/ahk/2023_dytlab_ahk.png";
-import electionFinalAnalysis from "@/assets/election-final-analysis.png.asset.json";
+import electionFinalAnalysis from "@/assets/election-final-analysis.png";
 
 export type ProjectGallery = {
   title: string;
@@ -97,7 +97,7 @@ export const projects: Project[] = [
       {
         title: "주요 차트",
         subtitle: "Streamlit 대시보드에서 산출된 최종 분석 결과입니다.",
-        images: [electionFinalAnalysis.url],
+        images: [electionFinalAnalysis],
       },
     ],
   },

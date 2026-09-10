@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import ProjectDetail from "./pages/ProjectDetail.tsx";
+import { MotionProvider } from "@/lib/motion";
 import { ScrollProgress } from "./components/ScrollProgress.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import { ScrollToTopButton } from "./components/ScrollToTopButton.tsx";
@@ -14,6 +15,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
+    <MotionProvider>
     <TooltipProvider>
       <Toaster />
       <Sonner />
@@ -29,6 +31,7 @@ const App = () => (
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
+    </MotionProvider>
   </QueryClientProvider>
 );
 
