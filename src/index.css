@@ -76,9 +76,9 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 226 71% 40%;
-    --primary-foreground: 210 40% 98%;
-    --primary-glow: 224 76% 52%;
+    --primary: 218 92% 46%;
+    --primary-foreground: 210 40% 99%;
+    --primary-glow: 205 92% 52%;
 
     --secondary: 214 32% 94%;
     --secondary-foreground: 222 47% 11%;
@@ -86,8 +86,8 @@
     --muted: 214 32% 94%;
     --muted-foreground: 215 16% 42%;
 
-    --accent: 226 71% 40%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 262 55% 58%;
+    --accent-foreground: 210 40% 99%;
 
     --border: 214 32% 88%;
     --input: 214 32% 88%;
@@ -131,10 +131,10 @@
     z-index: -2;
     pointer-events: none;
     background:
-      radial-gradient(38vmax 38vmax at 18% 22%, hsl(226 85% 58% / 0.32), transparent 60%),
-      radial-gradient(32vmax 32vmax at 82% 18%, hsl(199 89% 60% / 0.26), transparent 62%),
-      radial-gradient(36vmax 36vmax at 72% 82%, hsl(262 83% 65% / 0.22), transparent 60%),
-      radial-gradient(28vmax 28vmax at 22% 78%, hsl(173 80% 50% / 0.20), transparent 62%);
+      radial-gradient(38vmax 38vmax at 18% 22%, hsl(218 92% 56% / 0.20), transparent 60%),
+      radial-gradient(32vmax 32vmax at 82% 18%, hsl(199 92% 62% / 0.16), transparent 62%),
+      radial-gradient(36vmax 36vmax at 72% 82%, hsl(262 60% 70% / 0.14), transparent 60%),
+      radial-gradient(28vmax 28vmax at 22% 78%, hsl(199 92% 62% / 0.10), transparent 62%);
     filter: blur(40px) saturate(120%);
     will-change: transform;
     animation: aurora-drift 42s ease-in-out infinite alternate;
@@ -272,4 +272,43 @@
 
 section[id] {
   scroll-margin-top: 5rem;
+}
+
+@layer utilities {
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
+  .marquee-track { animation: marquee-scroll 32s linear infinite; }
+  @keyframes marquee-scroll {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50%, 0, 0); }
+  }
+
+  .glass-panel {
+    background: hsl(var(--card) / 0.55);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid hsl(var(--border) / 0.9);
+  }
+
+  .display-xl {
+    font-family: 'Space Grotesk', 'Pretendard', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+  }
+
+  .eyebrow {
+    font-family: 'Space Grotesk', 'Pretendard', sans-serif;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+  }
+}
+
+/* Motion toggle: stop every continuous decorative animation */
+.motion-off body::before,
+.motion-off .marquee-track,
+.motion-off .animate-pulse {
+  animation: none !important;
 }
